@@ -1,0 +1,9 @@
+@import "inc";
+h1 {
+  display: flex;
+  color: rgb(33, 202, 160);
+  span {
+    margin: 10px;
+    direction: inherit;
+  }
+}

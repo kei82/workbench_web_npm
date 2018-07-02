@@ -1,0 +1,8 @@
+# 管理対象外
+node_modules/
+package-lock.json
+.DS_Store
+Thumbs.db
+/.vscode
+/src/assets/css
+/dest

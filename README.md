@@ -35,7 +35,7 @@ Git、Node.js を使用します。
 **ファイル**  
 .eslintrc (ESLint) [設定](https://eslint.org/docs/rules/)  
 .htmlhintrc (htmlHint) [設定](https://github.com/yaniswang/HTMLHint/wiki/Rules)  
-.jsbeautifyrc (Beautify) [設定](https://github.com/HookyQR/VSCodeBeautify/blob/master/Settings.md) (prettierに移行予定)  
+.jsbeautifyrc (Beautify) [設定](https://github.com/HookyQR/VSCodeBeautify/blob/master/Settings.md)  
 .stylelintrc (stylelint) [設定](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules.md)  
 .gitattributes (Git) [設定](https://git-scm.com/docs/gitattributes)  
 .gitignore (Git) [設定](https://git-scm.com/docs/gitignore)  
@@ -58,7 +58,7 @@ assets/sass内にscssファイルを入れます。コンパイルされたフ�
 
 **インデントやコードをフォーマットする**  
 [Beautify](https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify)  
-をインストールする。 (左クリック「ドキュメントのフォーマット」で使用できます) (prettierに移行予定)
+をインストールする。 (左クリック「ドキュメントのフォーマット」で使用できます)
 
 ## package.json (編集者向け)
 

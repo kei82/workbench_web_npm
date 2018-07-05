@@ -4,27 +4,32 @@ const postcss = require('postcss');
 const autoprefixer = require('autoprefixer');
 const mqpacker = require('css-mqpacker');
 
+const cwd = process.cwd().replace(/\\/g, '/') + '/';
 const postcssPlugin = [ // 使用するPostcssプラグイン
   autoprefixer({
     browsers: ['IE 11', 'last 2 versions']
   }),
   mqpacker
 ];
-const cwd = process.cwd() + '/';
-const inputCssPath = 'src/assets/css/'; // cssを読込場所
-const outputCssPath = 'src/assets/css/'; // cssを出力場所
-const cssFiles = [outputCssPath + '**/*.css']; // cssを読込パターン
+const scssFolderPath = 'src/assets/sass/'; // scssの場所
+const cssFolderPath = 'src/assets/css/'; // cssの場所
+const scssFiles = ['src/assets/sass/**/!(_)*.scss']; // scssを読込パターン (scssをpostcss対象にする)
 const globOptions = {
   matchBase: true,
   onlyFiles: true,
 }
 
+const toCssPath = (path) => {
+  return path.replace(scssFolderPath, cssFolderPath).replace(/\.scss$/, '.css');
+}
+
 const glob = (pattern, options) => {
   globby(pattern, options)
     .then((files) => {
+      files = files
       files.forEach((file) => {
-        fileName = file.replace(/\\/g, '/').split('/').pop();
-        postcssStart(cwd + inputCssPath + fileName, cwd + outputCssPath + fileName);
+        let cssPath = toCssPath(file);
+        postcssStart(cssPath, cssPath);
       });
     });
 }
@@ -39,8 +44,9 @@ const postcssStart = (inputFile, outputFile) => {
       })
       .then(result => {
         fs.writeFile(outputFile, result.css, () => true);
+        console.log('[POSTCSS Completed]');
       });
   });
 }
 
-glob(cssFiles, globOptions);
+glob(scssFiles, globOptions);

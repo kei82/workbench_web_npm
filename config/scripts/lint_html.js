@@ -62,8 +62,7 @@ const lint = (inputFiles) => {
 command('git diff --diff-filter=ACMR --staged --name-only', staged) // Git ステージングされているファイルを読込
   .then((result) => {
     let paths = result.split(/\r\n|\r|\n/);
-    paths = paths
-      .filter(path => path.length > 3 && /src\/.*\.html$/.test(path));
+    paths = paths.filter(path => /^src\/.*\.html$/.test(path)); // srcフォルダ内のhtmlを抜き出す
     if (inputFiles.length < 1) inputFiles = paths;
     lint(inputFiles);
   })

@@ -1,10 +1,39 @@
-@import "inc";
+@charset "utf-8";
+
+// function
+@import "function";
+
+// ここは変更しないでください
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: $fontFamilyRoboto;
+  color: $color_default;
+}
 
 h1 {
-  display: flex;
-  color: rgb(33, 202, 160);
-  span {
-    margin: 10px;
-    direction: inherit;
+  font-size: 28px;
+}
+
+p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.container {
+  margin: 50px 0;
+}
+
+.main-content {
+  width: $width_main;
+  margin: 0 auto 40px auto;
+  @media #{$media_middle} {
+    width: auto;
+    padding: 0 8%;
   }
 }
+
+// ここから下は自由

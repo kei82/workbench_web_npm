@@ -1,5 +1,6 @@
 const fs = require('fs');
 const interfaces = require('os').networkInterfaces();
+const opener = require("opener");
 const http = require('http');
 const https = require('https');
 const express = require('express');
@@ -33,6 +34,7 @@ const app = express()
 
 http.createServer(app).listen(httpPort); // httpサーバー作成
 https.createServer(options, app).listen(httpsPort); // httpsサーバー作成
+opener(`http://localhost:${httpPort}`);
 
 const addresses = Object.keys(interfaces)
   .reduce((results, name) => results.concat(interfaces[name]), [])
@@ -43,7 +45,7 @@ console.log(
   '\x1b[36m%s\x1b[0m',
   `[http server] http://localhost:${httpPort} \n` +
   `[https server] https://localhost:${httpsPort} \n` +
-  `------------------------------------------- \n` +
+  `---------------------------------------- \n` +
   `[http server] http://${addresses[0]}:${httpPort} \n` +
   `[https server] https://${addresses[0]}:${httpsPort}`,
   '\x1b[0m'

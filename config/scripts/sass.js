@@ -55,9 +55,11 @@ const glob = (pattern, options) => {
 
 const compileStart = () => {
   let path = cwd + cssPath;
-  if (!fs.existsSync(path)) {
-    fs.mkdirSync(path);
-  }
+  fs.access(path, fs.constants.R_OK, (error) => {
+    if (error) {
+      fs.mkdirSync(path);
+    }
+  });
   glob(scssFiles, globOptions);
 }
 

@@ -28,8 +28,8 @@ p {
 }
 
 .main-content {
+  margin: 0 auto 40px;
   width: $width_main;
-  margin: 0 auto 40px auto;
   @media #{$media_middle} {
     width: auto;
     padding: 0 8%;

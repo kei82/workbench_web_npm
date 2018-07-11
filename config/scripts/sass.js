@@ -1,11 +1,11 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const notifier = require('node-notifier');
 const sass = require('node-sass');
 const globby = require('globby');
 
 const cwd = process.cwd() + '/';
 const scssPath = 'src/assets/sass/'; // scssの読込場所
-const cssPath = 'src/assets/css/'; // cssの出力場所
+const cssPath = 'dist/assets/css/'; // cssの出力場所
 const scssFiles = [scssPath + '**/!(_)*.scss']; // scssを読込パターン
 const globOptions = {
   matchBase: true,
@@ -38,7 +38,7 @@ const sassCompile = (inputFile, outputFile) => {
         '\x1b[0m'
       );
     } else {
-      fs.writeFile(outputFile, result.css, () => true);
+      fs.outputFile(outputFile, result.css);
       console.log('[SASS Compiled]');
     }
   });
@@ -55,11 +55,6 @@ const glob = (pattern, options) => {
 
 const compileStart = () => {
   let path = cwd + cssPath;
-  fs.access(path, fs.constants.R_OK, (error) => {
-    if (error) {
-      fs.mkdirSync(path);
-    }
-  });
   glob(scssFiles, globOptions);
 }
 

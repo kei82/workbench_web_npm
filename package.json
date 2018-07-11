@@ -27,6 +27,7 @@
     "css-mqpacker": "^6.0.2",
     "eslint": "^5.0.1",
     "express": "^4.16.3",
+    "fs-extra": "^6.0.1",
     "globby": "^8.0.1",
     "htmlhint": "^0.9.13",
     "husky": "^1.0.0-rc.9",

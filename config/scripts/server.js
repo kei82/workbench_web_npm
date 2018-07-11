@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const interfaces = require('os').networkInterfaces();
 const opener = require("opener");
 const http = require('http');

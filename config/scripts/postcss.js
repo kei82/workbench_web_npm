@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const globby = require('globby');
 const postcss = require('postcss');
 const autoprefixer = require('autoprefixer');
@@ -43,7 +43,7 @@ const postcssStart = (inputFile, outputFile) => {
         to: outputFile
       })
       .then(result => {
-        fs.writeFile(outputFile, result.css, () => true);
+        fs.outputFile(outputFile, result.css);
         console.log('[POSTCSS Completed]');
       });
   });

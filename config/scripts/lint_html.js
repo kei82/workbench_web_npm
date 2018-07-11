@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const htmlhint = require('htmlhint').HTMLHint;
 const exec = require('child_process').exec;
 const notifier = require('node-notifier');
@@ -6,7 +6,7 @@ const notifier = require('node-notifier');
 const cwd = process.cwd().replace(/\\/g, '/') + '/';
 let inputFiles = process.argv.slice(2); // 引数がある場合は受取る
 let errMsg;
-const htmlhintOptions = JSON.parse(fs.readFileSync('.htmlhintrc')); // 設定ファイルを読込
+const htmlhintOptions = fs.readJsonSync('.htmlhintrc'); // 設定ファイルを読込
 
 const staged = (error, stdout, stderr) => {
   if (error) console.error(error);

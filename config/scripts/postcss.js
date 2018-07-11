@@ -4,7 +4,6 @@ const postcss = require('postcss');
 const autoprefixer = require('autoprefixer');
 const mqpacker = require('css-mqpacker');
 
-const cwd = process.cwd().replace(/\\/g, '/') + '/';
 const postcssPlugin = [ // 使用するPostcssプラグイン
   autoprefixer({
     browsers: ['IE 11', 'last 2 versions']

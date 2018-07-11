@@ -8,7 +8,6 @@ const connectSSI = require('connect-ssi');
 const browserSync = require('browser-sync');
 const connectBrowserSync = require('connect-browser-sync');
 
-const cwd = process.cwd().replace(/\\/g, '/') + '/';
 const httpPort = 8000; // httpポート
 const httpsPort = 8001; // httpsポート
 const rootDir = 'src'; // ルートディレクトリ

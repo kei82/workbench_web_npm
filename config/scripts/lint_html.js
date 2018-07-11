@@ -3,7 +3,6 @@ const htmlhint = require('htmlhint').HTMLHint;
 const exec = require('child_process').exec;
 const notifier = require('node-notifier');
 
-const cwd = process.cwd().replace(/\\/g, '/') + '/';
 let inputFiles = process.argv.slice(2); // 引数がある場合は受取る
 let errMsg;
 const htmlhintOptions = fs.readJsonSync('.htmlhintrc'); // 設定ファイルを読込
@@ -15,9 +14,7 @@ const staged = (error, stdout, stderr) => {
 
 const command = (cmd, func) => {
   return new Promise((resolve, reject) => {
-    exec(cmd, {
-      cwd: cwd
-    }, (error, stdout, stderr) => {
+    exec(cmd, (error, stdout, stderr) => {
       if (func) resolve(func(error, stdout, stderr));
     });
   });

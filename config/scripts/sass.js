@@ -3,7 +3,6 @@ const notifier = require('node-notifier');
 const sass = require('node-sass');
 const globby = require('globby');
 
-const cwd = process.cwd() + '/';
 const scssPath = 'src/assets/sass/'; // scssの読込場所
 const cssPath = 'dist/assets/css/'; // cssの出力場所
 const scssFiles = [scssPath + '**/!(_)*.scss']; // scssを読込パターン
@@ -48,13 +47,12 @@ const glob = (pattern, options) => {
   globby(pattern, options)
     .then((files) => {
       files.forEach((path) => {
-        sassCompile(cwd + path, cwd + toCssPath(path));
+        sassCompile(path, toCssPath(path));
       });
     });
 }
 
 const compileStart = () => {
-  let path = cwd + cssPath;
   glob(scssFiles, globOptions);
 }
 

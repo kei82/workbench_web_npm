@@ -33,10 +33,8 @@ Git、Node.js を使用します。
 ## ファイル・ディレクトリ構成
 
 **ファイル**  
-.eslintrc (ESLint) [設定](https://eslint.org/docs/rules/)  
 .htmlhintrc (htmlHint) [設定](https://github.com/yaniswang/HTMLHint/wiki/Rules)  
 .jsbeautifyrc (Beautify) [設定](https://github.com/HookyQR/VSCodeBeautify/blob/master/Settings.md)  
-.stylelintrc (stylelint) [設定](https://github.com/stylelint/stylelint/blob/master/docs/user-guide/rules.md)  
 .gitattributes (Git) [設定](https://git-scm.com/docs/gitattributes)  
 .gitignore (Git) [設定](https://git-scm.com/docs/gitignore)  
 のファイルは設定ファイルです。プロジェクトごとに設定することをおすすめします。
@@ -48,12 +46,10 @@ assets/sass内にscssファイルを入れます。コンパイルされたフ�
 
 ## エディタ
 
-エディタの指定はありませんが [Visual Studio Code](https://code.visualstudio.com/) にすることで、よりこの開発環境が使いやすくなります。  
+エディタの指定はありませんが [Visual Studio Code](https://code.visualstudio.com/) を使用することで、よりこの開発環境が使いやすくなります。  
 
 **チェックの結果をエディタ上に表示**  
 [HTMLHint](https://marketplace.visualstudio.com/items?itemName=mkaufman.HTMLHint)  
-[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)  
-[stylelint](https://marketplace.visualstudio.com/items?itemName=shinnn.stylelint)  
 をインストールする。 (インストールすると自動で起動します)
 
 **インデントやコードをフォーマットする**  
@@ -62,6 +58,4 @@ assets/sass内にscssファイルを入れます。コンパイルされたフ�
 
 ## package.json (編集者向け)
 
-gulpなど特定のプラグインに依存しないように npm scripts でタスク管理をしています。  
-package.json で設定するものは タスク、監視タスク、git hooks(husky)のタスク とします。  
-細かい設定(入出力場所 など)は config/scripts 内のjsのように設定を管理します。
+[編集者向け資料](README_editor.md)

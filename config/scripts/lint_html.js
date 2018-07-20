@@ -3,9 +3,9 @@ const htmlhint = require('htmlhint').HTMLHint;
 const exec = require('child_process').exec;
 const notifier = require('node-notifier');
 
-let inputFiles = process.argv.slice(2); // 引数がある場合は受取る
+let inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取る
+let htmlhintOptions = fs.readJsonSync('.htmlhintrc'); // 設定ファイルを読込
 let errMsg;
-const htmlhintOptions = fs.readJsonSync('.htmlhintrc'); // 設定ファイルを読込
 
 const staged = (error, stdout, stderr) => {
   if (error) console.error(error);
@@ -25,6 +25,7 @@ const htmlhintStart = (inputData) => {
 
   if (messages.length > 0) {
     errMsg = messages[0];
+
     command(`git reset HEAD ${inputFiles[0]}`);
     notifier.notify({
       'title': 'HTMLにエラーがあります',
@@ -51,7 +52,7 @@ const lint = (inputFiles) => {
     if (errMsg) return true;
     fs.readFile(file, (err, data) => {
       if (err) console.error(err);
-      htmlhintStart(data.toString());
+      else htmlhintStart(data.toString());
     });
   });
 }
@@ -60,8 +61,12 @@ command('git diff --diff-filter=ACMR --staged --name-only', staged) // Git ス�
   .then((result) => {
     let paths = result.split(/\r\n|\r|\n/);
     paths = paths.filter(path => /^src\/.*\.html$/.test(path)); // srcフォルダ内のhtmlを抜き出す
-    if (inputFiles.length < 1) inputFiles = paths;
-    lint(inputFiles);
+    if (inputFiles.length < 1) {
+      inputFiles = paths;
+      lint(inputFiles);
+    } else if (inputFiles[1] !== 'unlink') {
+      lint([inputFiles[0]]);
+    };
   })
   .catch((err) => {
     console.error(err);

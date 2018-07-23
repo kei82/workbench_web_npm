@@ -3,5 +3,8 @@ node_modules/
 .DS_Store
 Thumbs.db
 /.vscode
-/src/assets/css
+/.fusebox
 /dest
+/dist
+/src/assets/css/
+/src/assets/js/bundle.js

@@ -3,12 +3,13 @@
   "version": "1.2.0",
   "scripts": {
     "start": "npm-run-all -p build:* watch:*",
-    "fuse": "node config/scripts/fuse.js",
     "prettier": "node config/scripts/prettier.js",
     "build:sass": "node config/scripts/sass.js",
+    "build:fuse": "node config/scripts/fuse.js",
     "lint:html": "node config/scripts/lint_html.js",
-    "watch:server": "node config/scripts/server.js",
-    "watch:sass": "chokidar src/**/*.scss --silent -c \"npm run build:sass -- {event} {path}\""
+    "watch:sass": "chokidar src/assets/sass/**/*.scss --silent -c \"npm run build:sass -- {event} {path}\"",
+    "watch:fuse": "chokidar src/assets/js/**/*.js -i **/bundle.js --silent -c \"npm run build:fuse\"",
+    "watch:server": "node config/scripts/server.js"
   },
   "husky": {
     "hooks": {
@@ -24,6 +25,7 @@
     "chokidar-cli": "1.2.0",
     "connect-ssi": "1.1.1",
     "css-mqpacker": "7.0.0",
+    "ejs": "2.6.1",
     "fs-extra": "7.0.0",
     "fuse-box": "3.4.0",
     "globby": "8.0.1",

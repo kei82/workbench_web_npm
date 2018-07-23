@@ -5,8 +5,6 @@
 
 ## 今後の機能実装予定
 
-* babelかTypeScriptの実装（どちらがいいでしょう？）
-* 上記の一部機能をバンドルするバンドラー
 * eslintの追加（babelかTypeScriptで変更）
 * 独立したよく使われそうなツール群の実装
 
@@ -38,6 +36,8 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 * ローカルサーバ機能 (http&https、ssi、自動リロード に対応)
 * scssファイルの変更を監視してコンパイルする機能 (autoprefixer、メディアクエリのマージ に対応)
 * Git コミット時にファイルをチェックをして問題があればコミットできないようにする機能 (例外対応でコミットする場合はpackage.jsonの `"husky" {...}` を一旦無効化（削除）することで対応できます)
+* ファイルのフォーマット (prettier 試験的)
+* babelまたはTypeScriptのトランスパイラ＋バンドラ (minify に対応)
 
 ## ファイル・ディレクトリ構成
 

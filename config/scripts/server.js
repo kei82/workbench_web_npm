@@ -1,6 +1,5 @@
 const browserSync = require('browser-sync');
-const connectSSI = require('connect-ssi');
-const ejsMiddleWare = require('./ejs.js');
+const ssiMiddleWare = require('./ssi.js');
 
 const port = 3000; // ポート
 const rootDir = 'src'; // ルートディレクトリ
@@ -13,9 +12,8 @@ browserSync({
   server: {
     baseDir: rootDir,
     middleware: [
-      ejsMiddleWare(),
-      connectSSI({
-        baseDir: rootDir,
+      ssiMiddleWare({
+        baseDir: process.cwd()+ "/"+ rootDir,
         ext: '.html'
       })
     ]

@@ -1,9 +1,9 @@
-const fs = require('fs-extra');
-const prettier = require('prettier');
+const fs = require("fs-extra");
+const prettier = require("prettier");
 
-let prettierOptions = fs.readJsonSync('.prettierrc');
+let prettierOptions = fs.readJsonSync(".prettierrc");
 let inputFiles = process.argv[2] || false;
-if (!inputFiles) throw 'ファイルを設定してください';
+if (!inputFiles) throw "ファイルを設定してください";
 
 const prettierStart = data => {
   return prettier.format(data.toString(), prettierOptions);
@@ -19,7 +19,7 @@ const writeFile = (outputFile, data) => {
 
 const promiseStart = (str, func) => {
   return new Promise((resolve, reject) => {
-    if(!str && !func) reject('Error');
+    if (!str && !func) reject("Error");
     else resolve(func(str));
   });
 };
@@ -29,7 +29,7 @@ promiseStart(inputFiles, readFile)
     return prettierStart(result);
   })
   .then(result => {
-    writeFile(inputFiles, result)
+    writeFile(inputFiles, result);
   })
   .catch(err => {
     console.error(err);

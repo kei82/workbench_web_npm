@@ -1,47 +1,38 @@
 const fs = require("fs-extra");
-const url = require("url");
+const path = require("path");
 const nodeSSI = require("node-ssi");
 
-module.exports = mwSSI = opt => {
-  opt.baseDir = opt.baseDir || ".";
-  opt.ext = opt.ext || ".html";
-  opt.middleware = opt.middleware || [];
+module.exports = mwSSI = (rootDir, requestPath, data) => {
+  let opt = {
+    baseDir: rootDir,
+    ext: ".html"
+  };
 
-  const ssi = new nodeSSI(opt);
-
-  return (req, res, next) => {
-    let requestPath = req ? url.parse(req.url).pathname : false;
-    requestPath = /\/$/.test(requestPath)
-      ? requestPath + "index" + opt.ext
-      : requestPath;
-
-    if (!new RegExp(`${opt.ext}$`).test(requestPath)) return next();
-
-    let filePath;
-    let fileData;
-
-    // ミドルウェアがあるとき
-    if (opt.middleware.length > 0) {
-      opt.middleware.forEach(func => {
-        fileData = func({
-          baseDir: opt.baseDir,
-          requestPath: requestPath,
-          data: fileData
-        });
-      });
+  // パスの存在判定
+  const isExistFile = file => {
+    try {
+      fs.statSync(file);
+      return true;
+    } catch (err) {
+      if (err.code === "ENOENT") return false;
     }
+  };
 
-    if (!fileData) {
-      fileData = fs.readFileSync(opt.baseDir + requestPath);
-    }
+  // ファイルパス変換
+  const filePath = path.join(opt.baseDir, requestPath);
+
+  // Dataかファイルが存在するとき
+  if (data || isExistFile(filePath)) {
+    // ファイル読み込み
+    const fileData = !data ? fs.readFileSync(filePath) : data;
 
     // ssiコンパイル
+    const ssi = new nodeSSI(opt);
     ssi.compile(fileData.toString(), (err, content) => {
-      if (err) {
-        if (err.code == "ENOENT") return next();
-        return next(err);
-      }
-      res.end(content);
+      if (err) throw err;
+      else return Buffer.from(content);
     });
-  };
+  } else {
+    return `Not Find ${filePath}`;
+  }
 };

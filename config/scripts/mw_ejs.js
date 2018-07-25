@@ -2,12 +2,12 @@ const fs = require("fs-extra");
 const path = require("path");
 const ejs = require("ejs");
 
-module.exports = mwEJS = opt => {
-  opt.baseDir = opt.baseDir || ".";
-  opt.requestPath = opt.requestPath || false;
-  opt.data = opt.data || false;
-  opt.ext = opt.ext || ".html";
-  opt.convert = opt.convert || ".ejs";
+module.exports = mwEJS = (rootDir, requestPath, data) => {
+  let opt = {
+    baseDir: rootDir,
+    ext: ".html",
+    convert: ".ejs"
+  };
 
   // パスの存在判定
   const isExistFile = file => {
@@ -22,17 +22,18 @@ module.exports = mwEJS = opt => {
   // ejsのパス変換
   let ejsPath = path.join(
     opt.baseDir,
-    opt.requestPath.replace(new RegExp(`${opt.ext}$`), opt.convert)
+    requestPath.replace(new RegExp(`${opt.ext}$`), opt.convert)
   );
 
   // ejsがあるとき
   if (isExistFile(ejsPath)) {
-    const ejsStr = opt.data
-      ? opt.data.toString()
-      : fs.readFileSync(ejsPath).toString();
-    const ejsContent = ejs.render(ejsStr);
-    return Buffer.from(ejsContent);
+    // ファイル読み込み
+    const ejsData = fs.readFileSync(ejsPath);
+    const ejsStr = data ? data.toString() : ejsData.toString();
+
+    // ejsコンパイル
+    return Buffer.from(ejs.render(ejsStr));
   } else {
-    return false;
+    return data || false;
   }
 };

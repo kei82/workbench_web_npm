@@ -2,14 +2,14 @@
   "name": "coding-boilerplate",
   "version": "1.2.0",
   "scripts": {
-    "start": "npm-run-all -s build:* -p watch:*",
-    "prettier": "node config/scripts/prettier.js",
+    "start": "cross-env NODE_ENV=development npm-run-all -p build:*",
+    "build": "cross-env NODE_ENV=production npm-run-all -p build:*",
     "build:sass": "node config/scripts/sass.js",
     "build:fuse": "node config/scripts/fuse.js",
+    "build:server": "node config/scripts/server.js",
     "lint:html": "node config/scripts/lint_html.js",
-    "watch:fuse": "chokidar src/assets/js/**/*.js -i **/common_bundle.js --silent -c \"npm run build:fuse\"",
-    "watch:sass": "chokidar src/assets/sass/**/*.scss --silent -c \"npm run build:sass -- {event} {path}\"",
-    "watch:server": "node config/scripts/server.js"
+    "format:prettier": "node config/scripts/prettier.js",
+    "//watch:sass": "chokidar src/assets/sass/**/*.scss --silent -c \"npm run build:sass -- {event} {path}\""
   },
   "husky": {
     "hooks": {
@@ -23,6 +23,7 @@
     "babel-preset-env": "1.7.0",
     "browser-sync": "2.24.6",
     "chokidar-cli": "1.2.0",
+    "cross-env": "5.2.0",
     "css-mqpacker": "7.0.0",
     "ejs": "2.6.1",
     "fs-extra": "7.0.0",

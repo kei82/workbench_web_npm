@@ -3,8 +3,8 @@ const htmlhint = require("htmlhint").HTMLHint;
 const exec = require("child_process").exec;
 const notifier = require("node-notifier");
 
-let inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取る
-let htmlhintOptions = fs.readJsonSync(".htmlhintrc"); // 設定ファイルを読込
+const inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取る
+const htmlhintOptions = fs.readJsonSync(".htmlhintrc"); // 設定ファイルを読込
 let errMsg;
 
 const staged = (error, stdout, stderr) => {
@@ -15,7 +15,8 @@ const staged = (error, stdout, stderr) => {
 const command = (cmd, func) => {
   return new Promise((resolve, reject) => {
     exec(cmd, (error, stdout, stderr) => {
-      if (func) resolve(func(error, stdout, stderr));
+      if (error) reject(error);
+      else if (func) resolve(func(error, stdout, stderr));
     });
   });
 };
@@ -72,5 +73,5 @@ command("git diff --diff-filter=ACMR --staged --name-only", staged) // Git ス�
     }
   })
   .catch(err => {
-    console.error(err);
+    throw err;
   });

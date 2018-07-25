@@ -6,6 +6,7 @@ const postcss = require("postcss");
 const autoprefixer = require("autoprefixer");
 const mqpacker = require("css-mqpacker");
 
+const isProduction = process.env.NODE_ENV === "production" ? true : false; // プロダクションビルド判定
 let changeEvent = process.argv[2] === "change" ? true : false; // 引数 監視イベント
 let changePath = process.argv[3] ? process.argv[3].replace(/\\/g, "/") : false; // 引数 監視イベントパス
 let isScssInclude = changePath

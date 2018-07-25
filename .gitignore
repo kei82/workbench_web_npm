@@ -6,5 +6,7 @@ Thumbs.db
 /.fusebox
 /dest
 /dist
-/src/assets/css/
-/src/assets/js/common_bundle.js
+
+# 生成するビルドファイルを除外
+/src/assets/css/common.css
+/src/assets/js/common.js

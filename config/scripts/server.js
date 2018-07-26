@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 const url = require("url");
 const browserSync = require("browser-sync");
 
-// ミドルウェア
+// ミドルウェア [return Buffer]
 const mwEJS = require("./mw_ejs.js");
 const mwSSI = require("./mw_ssi.js");
 
@@ -27,10 +27,7 @@ mwReqLoader = opt => {
         let data;
         set.command.some((cmd, index) => {
           data = cmd(rootDir, requestPath, data);
-          if (set.command.length === index + 1) {
-            res.end(new Buffer(data));
-            return next();
-          }
+          if (set.command.length === index + 1) res.end(data);
         });
       } else {
         return next();
@@ -55,7 +52,7 @@ if (!isProduction)
     },
     port: port,
     watch: true,
-    files: [rootDir + "/**/*.{html,css,js}"],
+    files: [rootDir + "/**/*.{html,css,js,ejs}"],
     https: httpsOptions, // httpの場合はfalseにする
     logFileChanges: false,
     open: true

@@ -28,9 +28,16 @@ module.exports = mwSSI = (rootDir, requestPath, data) => {
 
     // ssiコンパイル
     const parser = new ssi(opt.baseDir, opt.baseDir, "/**/*" + opt.ext);
-    const includes = parser.parse(filePath, fileData.toString()).contents;
-    return Buffer.from(includes);
+    let ssiContent;
+    try {
+      ssiContent = parser.parse(filePath, fileData.toString()).contents;
+    } catch (err) {
+      return Buffer.from(
+        `SSI Compile Error\nAfter solving the problem\nPlease reload yourself\n${err}`
+      );
+    }
+    return Buffer.from(ssiContent);
   } else {
-    return `Not Find ${filePath}`;
+    return `Not Find ${filePath}\nAfter solving the problem\nPlease reload yourself`;
   }
 };

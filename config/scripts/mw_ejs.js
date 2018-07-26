@@ -32,7 +32,15 @@ module.exports = mwEJS = (rootDir, requestPath, data) => {
     const ejsStr = data ? data.toString() : ejsData.toString();
 
     // ejsコンパイル
-    return Buffer.from(ejs.render(ejsStr));
+    let ejsContent;
+    try {
+      ejsContent = ejs.render(ejsStr);
+    } catch (err) {
+      return Buffer.from(
+        `EJS Compile Error\nAfter solving the problem\nPlease reload yourself\n${err}`
+      );
+    }
+    return Buffer.from(ejsContent);
   } else {
     return data || false;
   }

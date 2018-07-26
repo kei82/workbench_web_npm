@@ -8,9 +8,6 @@ const mqpacker = require("css-mqpacker");
 const autoprefixer = require("autoprefixer");
 
 const isProduction = process.env.NODE_ENV === "production" ? true : false; // プロダクションビルド判定
-let changeEvent = process.argv[2] === "change" ? true : false; // 引数 監視イベント
-let changePath = process.argv[3] ? process.argv[3].replace(/\\/g, "/") : false; // 引数 監視イベントパス
-
 const scssPath = "src/assets/sass/"; // scssの読込場所
 const cssPath = !isProduction ? "src/assets/css/" : "dist/assets/css/"; // cssの出力場所
 const scssFiles = [scssPath + "**/!(_)*.scss"]; // scssを読込パターン
@@ -31,6 +28,7 @@ const postcssPlugin = [
   })
 ];
 
+// scssのパス変換
 const toCssPath = path => {
   return path.replace(scssPath, cssPath).replace(/\.scss$/, ".css");
 };
@@ -40,6 +38,7 @@ const isScssInclude = path => {
   return /^_.*\.scss$/.test(path.split("/").pop());
 };
 
+// postcssコンパイル
 const postcssStart = (outputFile, data) => {
   postcss(postcssPlugin)
     .process(data, {
@@ -51,6 +50,7 @@ const postcssStart = (outputFile, data) => {
     });
 };
 
+// scssコンパイル
 const sassCompile = (inputFile, outputFile) => {
   sassOptions.file = inputFile;
   sass.render(sassOptions, (err, result) => {
@@ -73,6 +73,7 @@ const sassCompile = (inputFile, outputFile) => {
   });
 };
 
+// ファイルの取得
 const glob = (pattern, options = globOptions) => {
   globby(pattern, options).then(files => {
     files.forEach(path => {
@@ -100,8 +101,6 @@ if (!isProduction) {
       fs.removeSync(toCssPath(path));
     else compileStart();
   });
+} else {
+  compileStart();
 }
-
-if (changeEvent && !isScssInclude(path))
-  sassCompile(changePath, toCssPath(changePath));
-else compileStart();

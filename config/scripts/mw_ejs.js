@@ -25,11 +25,11 @@ module.exports = mwEJS = (rootDir, requestPath, data) => {
     requestPath.replace(new RegExp(`${opt.ext}$`), opt.convert)
   );
 
-  // ejsがあるとき
-  if (isExistFile(ejsPath)) {
+  // ejsかdataがあるとき
+  if (isExistFile(ejsPath) || data) {
     // ファイル読み込み
-    const ejsData = fs.readFileSync(ejsPath);
-    const ejsStr = data ? data.toString() : ejsData.toString();
+    const ejsData = data ? data : fs.readFileSync(ejsPath);
+    const ejsStr = ejsData.toString();
 
     // ejsコンパイル
     let ejsContent;

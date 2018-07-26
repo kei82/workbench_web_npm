@@ -4,6 +4,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development npm-run-all -p build:*",
     "build": "cross-env NODE_ENV=production npm-run-all -p build:*",
+    "build:ejs": "node config/scripts/ejs.js",
     "build:sass": "node config/scripts/sass.js",
     "build:fuse": "node config/scripts/fuse.js",
     "build:server": "node config/scripts/server.js",

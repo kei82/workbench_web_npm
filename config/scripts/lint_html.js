@@ -1,11 +1,11 @@
 const fs = require("fs-extra");
-const htmlhint = require("htmlhint").HTMLHint;
 const exec = require("child_process").exec;
+const htmlhint = require("htmlhint").HTMLHint;
 const notifier = require("node-notifier");
 
-const inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取る
-const htmlhintOptions = fs.readJsonSync(".htmlhintrc"); // 設定ファイルを読込
+let inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取る
 let errMsg;
+const htmlhintOptions = fs.readJsonSync(".htmlhintrc"); // 設定ファイルを読込
 
 const staged = (error, stdout, stderr) => {
   if (error) console.error(error);
@@ -26,19 +26,16 @@ const htmlhintStart = inputData => {
 
   if (messages.length > 0) {
     errMsg = messages[0];
-
     command(`git reset HEAD ${inputFiles[0]}`);
-    notifier.notify(
-      {
-        title: "HTMLにエラーがあります",
-        message: `@${inputFiles[0]} @${errMsg.message}`
-      },
-      (err, res) => {
-        setTimeout(() => {
-          throw "HTML Lint Error";
-        }, 500);
-      }
-    );
+    let notifyMessage = {
+      title: "HTMLにエラーがあります",
+      message: `@${inputFiles[0]} @${errMsg.message}`
+    };
+    notifier.notify(notifyMessage, (err, res) => {
+      setTimeout(() => {
+        throw "HTML Lint Error";
+      }, 500);
+    });
     console.error(
       "\x1b[41m\x1b[37m",
       `HTMLにエラーがあります`,
@@ -46,8 +43,6 @@ const htmlhintStart = inputData => {
       `\n ${inputFiles[0]} \n ${errMsg.message} \n ${errMsg.evidence} \n`,
       "\x1b[0m"
     );
-  } else {
-    console.log("[HTML Lint Completed]");
   }
 };
 

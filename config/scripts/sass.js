@@ -1,35 +1,43 @@
 const fs = require("fs-extra");
 const globby = require("globby");
+const chokidar = require("chokidar");
 const notifier = require("node-notifier");
 const sass = require("node-sass");
 const postcss = require("postcss");
-const autoprefixer = require("autoprefixer");
 const mqpacker = require("css-mqpacker");
+const autoprefixer = require("autoprefixer");
 
 const isProduction = process.env.NODE_ENV === "production" ? true : false; // プロダクションビルド判定
 let changeEvent = process.argv[2] === "change" ? true : false; // 引数 監視イベント
 let changePath = process.argv[3] ? process.argv[3].replace(/\\/g, "/") : false; // 引数 監視イベントパス
-let isScssInclude = changePath
-  ? /^_.*\.scss$/.test(changePath.split("/").pop())
-  : false; // scssのインクルードファイルか判定
 
 const scssPath = "src/assets/sass/"; // scssの読込場所
-const cssPath = "src/assets/css/"; // cssの出力場所
+const cssPath = !isProduction ? "src/assets/css/" : "dist/assets/css/"; // cssの出力場所
 const scssFiles = [scssPath + "**/!(_)*.scss"]; // scssを読込パターン
-const postcssPlugin = [
-  // 使用するPostcssプラグイン
-  autoprefixer({
-    browsers: ["IE 11", "last 2 versions"]
-  }),
-  mqpacker()
-];
-const globOptions = {
+let sassOptions = {
+  file: false,
+  outputStyle: "compressed"
+};
+let globOptions = {
   matchBase: true,
   onlyFiles: true
 };
 
+// 使用するPostcssプラグイン
+const postcssPlugin = [
+  mqpacker(),
+  autoprefixer({
+    browsers: ["IE 11", "last 2 versions"]
+  })
+];
+
 const toCssPath = path => {
   return path.replace(scssPath, cssPath).replace(/\.scss$/, ".css");
+};
+
+// インクルード用scss判定
+const isScssInclude = path => {
+  return /^_.*\.scss$/.test(path.split("/").pop());
 };
 
 const postcssStart = (outputFile, data) => {
@@ -40,42 +48,29 @@ const postcssStart = (outputFile, data) => {
     })
     .then(result => {
       fs.outputFile(outputFile, result.css);
-      console.log("[POSTCSS Completed]");
     });
 };
 
 const sassCompile = (inputFile, outputFile) => {
-  sass.render(
-    {
-      file: inputFile,
-      outputStyle: "expanded"
-    },
-    (err, result) => {
-      if (err) {
-        notifier.notify(
-          {
-            title: "SASSにエラーがあります",
-            message: err.formatted
-          },
-          (err, res) => {
-            setTimeout(() => {
-              throw "SASS Compil Error";
-            }, 500);
-          }
-        );
-        console.error(
-          "\x1b[41m\x1b[37m",
-          "SASSにエラーがあります",
-          "\x1b[0m\x1b[31m",
-          "\n" + err.formatted,
-          "\x1b[0m"
-        );
-      } else {
-        postcssStart(outputFile, result.css);
-        console.log("[SASS Compiled]");
-      }
+  sassOptions.file = inputFile;
+  sass.render(sassOptions, (err, result) => {
+    if (err) {
+      let notifyMessage = {
+        title: "SASSにエラーがあります",
+        message: err.formatted
+      };
+      notifier.notify(notifyMessage);
+      console.error(
+        "\x1b[41m\x1b[37m",
+        "SASSにエラーがあります",
+        "\x1b[0m\x1b[31m",
+        "\n" + err.formatted,
+        "\x1b[0m"
+      );
+    } else {
+      postcssStart(outputFile, result.css);
     }
-  );
+  });
 };
 
 const glob = (pattern, options = globOptions) => {
@@ -90,8 +85,23 @@ const compileStart = () => {
   glob(scssFiles);
 };
 
-if (changeEvent && !isScssInclude) {
-  sassCompile(changePath, toCssPath(changePath));
-} else {
-  compileStart();
+if (!isProduction) {
+  // scssファイルを監視
+  let watcher = chokidar.watch(scssPath, {
+    awaitWriteFinish: {
+      stabilityThreshold: 500
+    }
+  });
+  watcher.on("all", (event, path) => {
+    path = path.replace(/\\/g, "/");
+    if (event === "change" && !isScssInclude(path))
+      sassCompile(path, toCssPath(path));
+    else if (event === "unlink" && !isScssInclude(path))
+      fs.removeSync(toCssPath(path));
+    else compileStart();
+  });
 }
+
+if (changeEvent && !isScssInclude(path))
+  sassCompile(changePath, toCssPath(changePath));
+else compileStart();

@@ -2,10 +2,10 @@
 node_modules/
 .DS_Store
 Thumbs.db
-/.vscode
-/.fusebox
-/dest
-/dist
+/.vscode/
+/.fusebox/
+/dest/
+/dist/
 
 # 生成するビルドファイルを除外
 /src/assets/css/common.css

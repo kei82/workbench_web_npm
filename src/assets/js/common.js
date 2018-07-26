@@ -1,1 +1,1 @@
-// ここから下は自由ｗ
+!function(){if(!window.$fsx){var o=window.$fsx={};o.f={},o.m={},o.r=function(r){var t=o.m[r];if(t)return t.m.exports;var n=o.f[r];return n?((t=o.m[r]={}).exports={},t.m={exports:t.exports},n.call(t.exports,t.m,t.exports),t.m.exports):void 0}}}(),function(o){o.f[0]=function(){console.log("test")},o.r(0)}($fsx);

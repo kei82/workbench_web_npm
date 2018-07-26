@@ -1,6 +1,6 @@
 const fs = require("fs-extra");
 const path = require("path");
-const nodeSSI = require("node-ssi");
+const ssi = require("ssi");
 
 module.exports = mwSSI = (rootDir, requestPath, data) => {
   let opt = {
@@ -22,16 +22,14 @@ module.exports = mwSSI = (rootDir, requestPath, data) => {
   const filePath = path.join(opt.baseDir, requestPath);
 
   // Dataかファイルが存在するとき
-  if (data || isExistFile(filePath)) {
+  if (isExistFile(filePath) || data) {
     // ファイル読み込み
     const fileData = !data ? fs.readFileSync(filePath) : data;
 
     // ssiコンパイル
-    const ssi = new nodeSSI(opt);
-    ssi.compile(fileData.toString(), (err, content) => {
-      if (err) throw err;
-      else return Buffer.from(content);
-    });
+    const parser = new ssi(opt.baseDir, opt.baseDir, "/**/*" + opt.ext);
+    const includes = parser.parse(filePath, fileData.toString()).contents;
+    return Buffer.from(includes);
   } else {
     return `Not Find ${filePath}`;
   }

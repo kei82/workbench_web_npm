@@ -1,5 +1,6 @@
 # Gitに改行コードを変換させない(core.autocrlfよりも優先される)
 * -text
+
 # git archiveの対象外
 README.md            export-ignore
 .gitattributes       export-ignore

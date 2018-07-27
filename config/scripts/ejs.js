@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 const globby = require("globby");
 const ejs = require("ejs");
 
-const isProduction = process.env.NODE_ENV === "production" ? true : false; // プロダクションビルド判定
+const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 const rootDir = "src"; // 入力元
 const distDir = "dist"; // 出力先
 const inExt = ".ejs";

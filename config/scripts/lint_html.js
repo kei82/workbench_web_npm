@@ -7,9 +7,9 @@ let inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取�
 let errMsg;
 const htmlhintOptions = fs.readJsonSync(".htmlhintrc"); // 設定ファイルを読込
 
-const staged = (error, stdout, stderr) => {
-  if (error) console.error(error);
-  return stdout;
+const outStr = (error, stdout, stderr) => {
+  if (error) throw error;
+  else return stdout;
 };
 
 const command = (cmd, func) => {
@@ -38,7 +38,7 @@ const htmlhintStart = inputData => {
     });
     console.error(
       "\x1b[41m\x1b[37m",
-      `HTMLにエラーがあります`,
+      "HTMLにエラーがあります",
       "\x1b[0m\x1b[31m",
       `\n ${inputFiles[0]} \n ${errMsg.message} \n ${errMsg.evidence} \n`,
       "\x1b[0m"
@@ -56,7 +56,7 @@ const lint = inputFiles => {
   });
 };
 
-command("git diff --diff-filter=ACMR --staged --name-only", staged) // Git ステージングされているファイルを読込
+command("git diff --diff-filter=ACMR --staged --name-only", outStr) // Git ステージングされているファイルを読込
   .then(result => {
     let paths = result.split(/\r\n|\r|\n/);
     paths = paths.filter(path => /^src\/.*\.html$/.test(path)); // srcフォルダ内のhtmlを抜き出す

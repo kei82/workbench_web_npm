@@ -1,11 +1,12 @@
 # 管理対象外
 node_modules/
+npm-debug.log*
 .DS_Store
 Thumbs.db
 /.vscode/
 /.fusebox/
 /dist/
 
-# 生成するビルドファイルを除外
+# 生成されるビルドファイルを除外
 /src/assets/css/common.css
 /src/assets/js/common.js

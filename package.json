@@ -1,15 +1,18 @@
 {
   "name": "coding-boilerplate",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "scripts": {
-    "start": "cross-env NODE_ENV=development npm-run-all -p build:*",
-    "build": "cross-env NODE_ENV=production npm-run-all -p build:*",
-    "build:ejs": "node config/scripts/ejs.js",
-    "build:sass": "node config/scripts/sass.js",
-    "build:fuse": "node config/scripts/fuse.js",
-    "build:server": "node config/scripts/server.js",
+    "start": "cross-env NODE_ENV=development npm-run-all -p dev:*",
+    "build": "cross-env NODE_ENV=production npm-run-all -s dev:*",
+    "dev": "npm-run-all start",
+    "dev:copy": "node config/scripts/copy.js",
+    "dev:ejs": "node config/scripts/ejs.js",
+    "dev:sass": "node config/scripts/sass.js",
+    "dev:fuse": "node config/scripts/fuse.js",
+    "dev:server": "node config/scripts/server.js",
     "lint:html": "node config/scripts/lint_html.js",
-    "format:prettier": "node config/scripts/prettier.js"
+    "format:prettier": "node config/scripts/prettier.js",
+    "test": "node config/scripts/test.js"
   },
   "husky": {
     "hooks": {

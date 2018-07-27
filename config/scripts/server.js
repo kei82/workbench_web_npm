@@ -6,7 +6,7 @@ const browserSync = require("browser-sync");
 const mwEJS = require("./mw_ejs.js");
 const mwSSI = require("./mw_ssi.js");
 
-const isProduction = process.env.NODE_ENV === "production" ? true : false; // プロダクションビルド判定
+const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 const rootDir = !isProduction ? "src" : "dist"; // ルートディレクトリ
 const port = 3000; // ポート
 const httpsOptions = {

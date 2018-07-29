@@ -8,8 +8,9 @@ const mqpacker = require("css-mqpacker");
 const autoprefixer = require("autoprefixer");
 
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
+const hasRootDir = !isProduction ? "src" : "dist"; // 出力先
 const scssPath = "src/assets/sass/"; // scssの読込場所
-const cssPath = !isProduction ? "src/assets/css/" : "dist/assets/css/"; // cssの出力場所
+const cssPath = hasRootDir + "/assets/css/"; // cssの出力場所
 const scssFiles = [scssPath + "**/!(_)*.scss"]; // scssを読込パターン
 let sassOptions = {
   file: false,

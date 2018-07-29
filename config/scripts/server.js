@@ -1,5 +1,3 @@
-const fs = require("fs-extra");
-const url = require("url");
 const browserSync = require("browser-sync");
 
 // ミドルウェア [return Buffer]
@@ -13,42 +11,58 @@ const httpsOptions = {
   pfx: "config/ssl/ssl.pfx", // 証明書を読込
   passphrase: "test" // 証明書のパスワード
 };
+const reqLoaderOptions = [
+  {
+    reqFile: [/\.html$/],
+    command: [
+      {
+        process: mwEJS,
+        option: {
+          baseDir: rootDir,
+          ext: ".html",
+          convert: ".ejs"
+        }
+      },
+      {
+        process: mwSSI,
+        option: {
+          baseDir: rootDir,
+          ext: ".html"
+        }
+      }
+    ]
+  }
+];
 
 // ミドルウェアを読み込んで直列処理する
-mwReqLoader = opt => {
+const mwReqLoader = opt => {
   return (req, res, next) => {
-    let requestPath = req ? url.parse(req.url).pathname : false;
+    let requestPath = req ? req.url : false;
     if (/\/$/.test(requestPath)) requestPath += "index.html";
-    opt.some(set => {
-      let match = !set.reqFile.every(reg => {
-        return !reg.test(requestPath);
-      });
-      if (match) {
-        let data;
-        set.command.some((cmd, index) => {
-          data = cmd(rootDir, requestPath, data);
-          if (set.command.length === index + 1) res.end(data);
+    if (requestPath)
+      opt.some(set => {
+        let match = !set.reqFile.every(reg => {
+          return !reg.test(requestPath);
         });
-      } else {
-        return next();
-      }
-    });
+        if (match) {
+          let data;
+          set.command.some((cmd, index) => {
+            data = cmd.process(requestPath, data, cmd.option);
+            if (set.command.length === index + 1) res.end(data);
+          });
+        } else {
+          return next();
+        }
+      });
   };
 };
 
 // browserSync起動
-if (!isProduction)
+const browserSyncStart = () => {
   browserSync({
     server: {
       baseDir: rootDir,
-      middleware: [
-        mwReqLoader([
-          {
-            reqFile: [/\.html$/],
-            command: [mwEJS, mwSSI]
-          }
-        ])
-      ]
+      middleware: [mwReqLoader(reqLoaderOptions)]
     },
     port: port,
     watch: true,
@@ -57,3 +71,6 @@ if (!isProduction)
     logFileChanges: false,
     open: true
   });
+};
+
+if (!isProduction) browserSyncStart();

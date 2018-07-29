@@ -1,13 +1,7 @@
 const fs = require("fs-extra");
-const path = require("path");
 const ssi = require("ssi");
 
-module.exports = mwSSI = (rootDir, requestPath, data) => {
-  let opt = {
-    baseDir: rootDir,
-    ext: ".html"
-  };
-
+module.exports = mwSSI = (requestPath, data, opt) => {
   // パスの存在判定
   const isExistFile = file => {
     try {
@@ -19,7 +13,7 @@ module.exports = mwSSI = (rootDir, requestPath, data) => {
   };
 
   // ファイルパス変換
-  const filePath = path.join(opt.baseDir, requestPath);
+  const filePath = opt.baseDir + requestPath;
 
   // Dataかファイルが存在するとき
   if (isExistFile(filePath) || data) {
@@ -32,12 +26,10 @@ module.exports = mwSSI = (rootDir, requestPath, data) => {
     try {
       ssiContent = parser.parse(filePath, fileData.toString()).contents;
     } catch (err) {
-      return Buffer.from(
-        `SSI Compile Error\nAfter solving the problem\nPlease reload yourself\n${err}`
-      );
+      return Buffer.from(`SSI Compile Error\n${err}`);
     }
     return Buffer.from(ssiContent);
   } else {
-    return `Not Find ${filePath}\nAfter solving the problem\nPlease reload yourself`;
+    return data || Buffer.from(`Not ${filePath}`);
   }
 };

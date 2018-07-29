@@ -1,14 +1,7 @@
 const fs = require("fs-extra");
-const path = require("path");
 const ejs = require("ejs");
 
-module.exports = mwEJS = (rootDir, requestPath, data) => {
-  let opt = {
-    baseDir: rootDir,
-    ext: ".html",
-    convert: ".ejs"
-  };
-
+module.exports = mwEJS = (requestPath, data, opt) => {
   // パスの存在判定
   const isExistFile = file => {
     try {
@@ -20,10 +13,8 @@ module.exports = mwEJS = (rootDir, requestPath, data) => {
   };
 
   // ejsのパス変換
-  let ejsPath = path.join(
-    opt.baseDir,
-    requestPath.replace(new RegExp(`${opt.ext}$`), opt.convert)
-  );
+  let ejsPath =
+    opt.baseDir + requestPath.replace(new RegExp(`${opt.ext}$`), opt.convert);
 
   // ejsかdataがあるとき
   if (isExistFile(ejsPath) || data) {
@@ -36,12 +27,10 @@ module.exports = mwEJS = (rootDir, requestPath, data) => {
     try {
       ejsContent = ejs.render(ejsStr);
     } catch (err) {
-      return Buffer.from(
-        `EJS Compile Error\nAfter solving the problem\nPlease reload yourself\n${err}`
-      );
+      return Buffer.from(`EJS Compile Error\n${err}`);
     }
     return Buffer.from(ejsContent);
   } else {
-    return data || false;
+    return data || Buffer.from(`Not ${ejsPath}`);
   }
 };

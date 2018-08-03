@@ -17,7 +17,7 @@
 * prettierの正式導入（現在はコマンド起動のみ）
 * eslintの導入（必要ならば）
 
-## 概要
+## npm scripts
 
 gulpなど特定のプラグインに依存しないように npm scripts でタスク管理をしています。  
 

@@ -21,14 +21,22 @@ const filterResult = root => {
       break;
   }
 
-  if (!result) console.log("[EXCLUDE]", root);
   return result;
 };
 
-copyStart = (root = rootDir, dest = destDir) => {
-  fs.copy(root, dest, {
+const copyStart = (root = rootDir, dest = destDir) => {
+  fs.copySync(root, dest, {
     filter: filterResult
   });
 };
 
-if (isProduction) copyStart();
+const removeStart = (delDir = destDir) => {
+  fs.removeSync(delDir);
+};
+
+if (isProduction) {
+  removeStart();
+  copyStart();
+} else {
+  removeStart();
+}

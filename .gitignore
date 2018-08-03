@@ -6,7 +6,3 @@ Thumbs.db
 /.vscode/
 /.fusebox/
 /dist/
-
-# 生成されるビルドファイルを除外
-/src/assets/css/common.css
-/src/assets/js/common.js

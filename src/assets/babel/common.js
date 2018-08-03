@@ -1,18 +1,11 @@
-const prettierStart = data => {
-  return prettier.format(data.toString(), prettierOptions);
+const promise = Promise.resolve();
+
+const testA = () => {
+  console.log("test A");
 };
 
-const readFile = file => {
-  return fs.readFileSync(file);
+const testB = () => {
+  console.log("test B");
 };
 
-const writeFile = (outputFile, data) => {
-  fs.outputFile(outputFile, data);
-};
-
-const promiseStart = (str, func) => {
-  return new Promise((resolve, reject) => {
-    if (!str && !func) reject("Error");
-    else resolve(func(str));
-  });
-};
+promise.then(testA).then(testB);

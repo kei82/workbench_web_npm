@@ -1,7 +1,6 @@
 const fs = require("fs-extra");
 const globby = require("globby");
 const chokidar = require("chokidar");
-const notifier = require("node-notifier");
 const sass = require("node-sass");
 const postcss = require("postcss");
 const mqpacker = require("css-mqpacker");
@@ -10,7 +9,7 @@ const autoprefixer = require("autoprefixer");
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 const hasRootDir = !isProduction ? "src" : "dist"; // 出力先
 const scssPath = "src/assets/sass/"; // scssの読込場所
-const cssPath = hasRootDir + "/assets/css/"; // cssの出力場所
+const cssPath = "dist/assets/css/"; // cssの出力場所
 const scssFiles = [scssPath + "**/!(_)*.scss"]; // scssを読込パターン
 let sassOptions = {
   file: false,
@@ -56,11 +55,6 @@ const sassCompile = (inputFile, outputFile) => {
   sassOptions.file = inputFile;
   sass.render(sassOptions, (err, result) => {
     if (err) {
-      let notifyMessage = {
-        title: "SASSにエラーがあります",
-        message: err.formatted
-      };
-      notifier.notify(notifyMessage);
       console.error(
         "\x1b[41m\x1b[37m",
         "SASSにエラーがあります",

@@ -4,21 +4,11 @@ module.exports = mwRedirect = (requestPath, data, opt) => {
   let srcFilePath = "src" + requestPath;
   let distFilePath = "dist" + requestPath;
 
-  // パスの存在判定
-  const isExistFile = file => {
-    try {
-      fs.statSync(file);
-      return true;
-    } catch (err) {
-      if (err.code === "ENOENT") return false;
-    }
-  };
-
-  if (isExistFile(distFilePath)) {
+  if (fs.pathExistsSync(distFilePath)) {
     return fs.readFileSync(distFilePath);
-  } else if (isExistFile(srcFilePath)) {
+  } else if (fs.pathExistsSync(srcFilePath)) {
     return fs.readFileSync(srcFilePath);
   } else {
-    return Buffer.from(`Not ${distFilePath}`);
+    return Buffer.from(`Not Found ${distFilePath}`);
   }
 };

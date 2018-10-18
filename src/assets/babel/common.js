@@ -9,3 +9,10 @@ const testB = () => {
 };
 
 promise.then(testA).then(testB);
+
+const settime = () => {
+  let data = new Date().getTime();
+  $(".clock").text(data);
+}
+
+setInterval(settime, 1000);

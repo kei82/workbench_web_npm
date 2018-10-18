@@ -14,6 +14,7 @@ const httpsOptions = {
   passphrase: "test" // 証明書のパスワード
 };
 
+// htmlをコンパイル
 const reqLoaderHtml = {
   reqFile: [/\.html$/],
   command: [
@@ -35,6 +36,7 @@ const reqLoaderHtml = {
   ]
 };
 
+// 一部のリクエストをdistにリダイレクト
 const reqLoaderRedirect = {
   reqFile: [/.*\/assets\/.*\.(css|js|map)$/],
   command: [

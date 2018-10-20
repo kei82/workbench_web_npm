@@ -1,0 +1,337 @@
+////////////////////////////////////////////////
+//見出し・文章
+////////////////////////////////////////////////
+
+//見出し
+.hdg-A {
+  margin: 0 0 1em;
+  font-size: 3.2rem;
+  font-weight: bold;
+  line-height: 1.45em;
+  letter-spacing: .05em;
+}
+
+.hdg-B {
+  margin: 0 0 .6em;
+  font-size: 2.8rem;
+  font-weight: bold;
+  line-height: 1.4em;
+  letter-spacing: .05em;
+  @extend .bor-B;
+}
+
+.hdg-C {
+  margin: 0 0 .5em;
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 1.4em;
+  letter-spacing: .05em;
+  @extend .bor-A;
+}
+
+.hdg-D {
+  margin: 0 0 .4em;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.7em;
+}
+
+.hdg-E {
+  margin: 0 0 .4em;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1.7em;
+}
+
+//バッヂ
+.badge {
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin: 0 0 .4em;
+}
+
+.badge-A {
+  padding: .2em .6em;
+  border: solid $color_b_2 1px;
+  color: $color_b_2;
+  border-radius: .3em;
+}
+
+.badge-B {
+  padding: .2em .6em;
+  background: $color_b_2;
+  color: $color_w_1;
+  border-radius: .3em;
+}
+
+////////////////////////////////////////////////
+//装飾
+////////////////////////////////////////////////
+
+.bor-A {
+  border-left: solid $color_b_2 .6rem;
+  padding: .1em 0 .1em .5em;
+  margin: 2em 0 .8em;
+}
+
+.bor-B {
+  border-bottom: solid $color_w_3 1px;
+  padding: 0 0 .35em;
+  margin: 2.5em 0 .8em;
+}
+
+////////////////////////////////////////////////
+//テーブル
+////////////////////////////////////////////////
+
+//シンプルテーブル
+.table_simple {
+  width: 100%;
+  margin: 1em 0 2em;
+  text-align: left;
+  border-collapse: collapse;
+  th,
+  td {
+    padding: .4em .5em;
+    border: solid $color_w_3 1px;
+  }
+  thead {
+    th {
+      text-align: center;
+      color: $color_w_1;
+      border: solid $color_b_3 1px;
+      background: $color_b_3;
+      &:not(:last-child) {
+        border-right: solid $color_b_4 1px;
+      }
+    }
+  }
+  tbody {
+    th {
+      word-break: keep-all;
+    }
+  }
+}
+
+//スクロールテーブル
+@media #{$break_middle} {
+  .scroll_table {
+    overflow-x: scroll;
+    margin: 1em 0 2em;
+    @include scrollbar;
+    table {
+      margin: 0 0 1em;
+      width: $contents_width;
+    }
+  }
+}
+
+////////////////////////////////////////////////
+//スクロールバー
+////////////////////////////////////////////////
+
+.scrollbar-main {
+  @include scrollbar;
+}
+
+////////////////////////////////////////////////
+//リスト
+////////////////////////////////////////////////
+
+//説明リスト
+.list_description {
+  margin: 1em 0 1.6em;
+  dt {
+    margin: 1.6em 0 0;
+    padding: .2em .5em;
+    color: $color_w_1;
+    border: solid $color_b_3;
+    border-width: 1px;
+    border-radius: .3em .3em 0 0;
+    background: $color_b_3;
+    font-weight: bold;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  dd {
+    margin: 0;
+    padding: .5em;
+    border: solid $color_b_3;
+    border-width: 0 1px 1px;
+    border-radius: 0 0 .3em .3em;
+  }
+}
+
+//非順序シンプルリスト
+.list_simple {
+  padding-left: 1em;
+  margin: 1em 0;
+  line-height: 1.6;
+  ul {
+    padding-left: 1.8em;
+    margin: 0 0 .4em;
+  }
+  li {
+    position: relative;
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 5px;
+      background: $color_b_4;
+      transform: translate(-.6em, .6em);
+    }
+  }
+}
+
+//階層構造リスト
+.list_directory {
+  padding: 0;
+  margin: 1em 0;
+  list-style: none;
+  ul {
+    position: relative;
+    padding: 0 0 0 2em;
+    margin: .5em 0;
+    list-style: none;
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: calc(100% - .5em);
+      content: "";
+      transform: translate(.5em, -.3em);
+      border-left: solid $color_b_4 1px;
+    }
+    li {
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1em;
+        height: 0;
+        margin: 0 .2em 0 0;
+        content: "";
+        transform: translate(-150%, .75em);
+        border-top: solid $color_b_4 1px;
+      }
+    }
+  }
+  li {
+    position: relative;
+    line-height: 1.6;
+  }
+}
+
+//順序シンプルリスト
+.list_simple_num {
+  padding: 0;
+  margin: 1em 0;
+  counter-reset: count;
+  ol {
+    padding-left: 1em;
+    margin: 0 0 .4em;
+    list-style: none;
+    counter-reset: count;
+  }
+  li {
+    padding-left: 1.5em;
+    list-style: none;
+    position: relative;
+    &::before {
+      font-weight: bold;
+      padding-right: .2em;
+      content: counters(count, "-") ".";
+      counter-increment: count;
+      position: absolute;
+      transform: translate(-100%, 0);
+    }
+  }
+}
+
+//サークルリスト
+.list_circle {
+  padding: 0;
+  margin: 1em 0;
+  counter-reset: count;
+  ol {
+    margin: 0 0 .4em;
+    list-style: none;
+    counter-reset: count;
+  }
+  li {
+    padding-left: 1.75em;
+    list-style: none;
+    position: relative;
+    &::before {
+      font-size: .6em;
+      font-weight: bold;
+      color: $color_w_1;
+      width: 2rem;
+      text-align: center;
+      content: counters(count, ".");
+      counter-increment: count;
+      position: absolute;
+      transform: translate(-50%, 32%);
+      left: 1em;
+      z-index: 2;
+    }
+    &::after {
+      content: "";
+      width: 2rem;
+      height: 2rem;
+      display: inline-block;
+      background: $color_b_3;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(0, 22%);
+      border-radius: 2em;
+      z-index: 1;
+    }
+  }
+}
+
+////////////////////////////////////////////////
+//引用
+////////////////////////////////////////////////
+
+.quote {
+  position: relative;
+  margin: 1em 0;
+  padding: 0;
+  padding: 1.5em 2em;
+  color: $color_b_2;
+  border-left: solid $color_b_4 .4em;
+  background: $color_w_2;
+  >*:first-child {
+    margin-top: 0;
+  }
+  >*:last-child {
+    margin-bottom: 0;
+  }
+}
+
+////////////////////////////////////////////////
+//ボタン
+////////////////////////////////////////////////
+
+.btn {
+  padding: .5em .65em;
+  text-decoration: none;
+  color: white;
+  border: 0;
+  border-radius: .3em;
+  background: $color_b_2;
+  min-width: 100px;
+  display: inline-block;
+  text-align: center;
+  &:hover {
+    text-decoration: none;
+  }
+}

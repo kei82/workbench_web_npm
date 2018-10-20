@@ -1,0 +1,118 @@
+////////////////////////////////////////////////
+//ボディ
+////////////////////////////////////////////////
+
+:root {
+  font-size: 10px;
+}
+
+html {
+  height: 100%;
+  min-width: 320px;
+}
+
+body {
+  font-size: $font_size;
+  line-height: $line_height;
+  font-family: $font_family;
+  color: $color_b_3;
+  font-size-adjust: normal;
+  overflow-wrap: break-word;
+}
+
+main {
+  margin: 4rem auto;
+  max-width: $contents_width;
+  padding: 0 6%;
+}
+
+////////////////////////////////////////////////
+//リンク
+////////////////////////////////////////////////
+
+a {
+  text-decoration: underline;
+  color: $color_b_2;
+  opacity: 1;
+  transition: opacity .3s;
+  &:hover {
+    text-decoration: none;
+    opacity: .8;
+  }
+}
+
+////////////////////////////////////////////////
+//フォーム
+////////////////////////////////////////////////
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  color: inherit;
+  max-width: 100%;
+}
+
+////////////////////////////////////////////////
+//見出し・文章
+////////////////////////////////////////////////
+
+//文章
+p {
+  margin: 0 0 1.2em;
+}
+
+//ルビ
+ruby {
+  position: relative;
+  rt {
+    display: inline-block;
+    margin: 0 .2em;
+    letter-spacing: -.01em;
+    font-size: .65em;
+    line-height: 1em;
+    &::before {
+      content: "(";
+    }
+    &::after {
+      content: ")";
+    }
+  }
+}
+
+////////////////////////////////////////////////
+//コード・キー
+////////////////////////////////////////////////
+
+code,
+kbd,
+pre {
+  letter-spacing: 0;
+  font-family: $font_family_mono;
+  line-height: 1.5;
+}
+
+code,
+kbd {
+  padding: .15em .5em;
+  margin: 0 .15em;
+  border-radius: .3em;
+  background: $color_w_2;
+}
+
+pre {
+  padding: 1em;
+  margin: 1em 0;
+  white-space: pre-wrap;
+  color: $color_b_2;
+  background: $color_w_2;
+  code {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+}

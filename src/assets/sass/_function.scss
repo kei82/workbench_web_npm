@@ -1,68 +1,18 @@
-@charset "utf-8";
-//width
-$width_full: 100%;
-$width_wrap: 1082px;
-$width_main: 982px;
+////////////////////////////////////////////////
+//function
+////////////////////////////////////////////////
 
-//media width
-$media_middle: "screen and (max-width:1199px)";
-$media_small: "screen and (max-width:768px)";
-
-//path
-$img_path: "../images/";
-
-//color
-$color_default: #333333;
-$color_white: #ffffff;
-$color_black: #000000;
-$color_gray: #4b4b4b;
-$color_gray2: #8a8a8a;
-$color_gray3: #d0d0d0;
-$color_gray4: #f0f0f0;
-$color_greige: #a89a8b;
-$color_greige2: #b9aea2;
-$color_greige3: #cbc2b9;
-$color_greige4: #dcd7d1;
-$color_greige5: #eeebe8;
-$color_red: #bb1f1f;
-$color_main: #004831;
-$color_primary: #c4d700;
-$color_success: #394e73;
-$color_success2: #61718f;
-$color_success3: #8895ab;
-$color_success4: #b0b8c7;
-$color_success5: #d7dce3;
-$color_warning: #f0ad4e;
-$color_danger: #d98827;
-$color_info: #74a2a5;
-$color_info2: #90b5b7;
-$color_info3: #acc7c9;
-$color_info4: #c7dadb;
-$color_info5: #e3eced;
-$color_purple: #e3eced;
-$color_green: #e3eced;
-$color_orange: #e3eced;
-
-//background color
-$bg_default: #f5f5f5;
-$bg_white: #ffffff;
-$bg_black: #000000;
-$bg_red: #bb1f1f;
-$bg_main: #004831;
-$bg_primary: #337ab7;
-$bg_success: #dff0d8;
-$bg_warning: #fcf8e3;
-$bg_danger: #f2dede;
-$bg_info: #d9edf7;
-$bg_attention: #8b577c;
-
-//link color
-$a_link: #004831;
-$a_visited: #004831;
-$a_hover: #939d56;
-$a_active: #939d56;
-
-//font-family
-$fontFamilyRoboto: Roboto, -apple-system, "Arial", "Helvetica", "Helvetica Neue",
-  "Avenir", "Droid Sans", "Hiragino Kaku Gothic ProN", "HiraKakuPro", メイリオ,
-  "MS PGothic", sans-serif, "Meiryo UI";
+@mixin scrollbar($bar-knob:$color_b_4, $bar-back:$color_w_2) {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $bar-knob;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $bar-back;
+    border-radius: 8px;
+  }
+}

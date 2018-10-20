@@ -28,7 +28,7 @@ const htmlhintStart = inputData => {
     errMsg = messages[0];
     command(`git reset HEAD ${inputFiles[0]}`);
     let notifyMessage = {
-      title: "HTMLにエラーがあります",
+      title: "HTML Lint Error",
       message: `@${inputFiles[0]} @${errMsg.message}`
     };
     notifier.notify(notifyMessage, (err, res) => {
@@ -38,7 +38,7 @@ const htmlhintStart = inputData => {
     });
     console.error(
       "\x1b[41m\x1b[37m",
-      "HTMLにエラーがあります",
+      "HTML Lint Error",
       "\x1b[0m\x1b[31m",
       `\n ${inputFiles[0]} \n ${errMsg.message} \n ${errMsg.evidence} \n`,
       "\x1b[0m"

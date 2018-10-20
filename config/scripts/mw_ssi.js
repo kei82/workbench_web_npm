@@ -16,10 +16,16 @@ module.exports = mwSSI = (requestPath, data, opt) => {
     try {
       ssiContent = parser.parse(filePath, fileData.toString()).contents;
     } catch (err) {
+      console.log(
+        "\x1b[41m\x1b[37m",
+        `SSI Compile Error`,
+        "\x1b[0m\x1b[31m",
+        "\n" + err
+      );
       return Buffer.from(`SSI Compile Error\n${err}`);
     }
     return Buffer.from(ssiContent);
   } else {
-    return data || Buffer.from(`Not Found ${filePath}`);
+    return Buffer.from(`Not Found ${filePath}`);
   }
 };

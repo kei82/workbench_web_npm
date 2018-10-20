@@ -6,8 +6,8 @@
 ## 前提環境
 
 Git、Node.js を使用します。  
-[Git](https://git-scm.com/) (ver2.18 推奨)  
-[Node.js](https://nodejs.org/ja/) (Node ver8.11.3, npm 5.6.0 推奨)  
+[Git](https://git-scm.com/) (最新推奨)  
+[Node.js](https://nodejs.org/ja/) (Node 10.11.0, npm 6.1.0 推奨)  
 
 ※Node.jsのバージョン管理を使用しています。上記のバージョンに合わせてください。  
 Winの場合[nodist](https://github.com/marcelklehr/nodist/releases)  

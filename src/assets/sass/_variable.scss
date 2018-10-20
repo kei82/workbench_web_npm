@@ -1,0 +1,38 @@
+////////////////////////////////////////////////
+//サイズ設定
+////////////////////////////////////////////////
+
+$device_max_width: 100%;
+$device_min_width: 320px;
+$contents_width: 960px;
+$media_width_xlarge: 1400px;
+$media_width_large: 1200px;
+$media_width_middle: 960px;
+$media_width_small: 640px;
+$media_width_xsmall: 320px;
+$break_large: "screen and (min-width: #{$media_width_large})";
+$break_middle: "screen and (max-width: #{$media_width_middle})";
+$break_small: "screen and (max-width: #{$media_width_small})";
+$font_size: 16px;
+$line_height: 1.85;
+$letter_spacing: .015em;
+
+////////////////////////////////////////////////
+//色設定
+////////////////////////////////////////////////
+
+$color_w_1: #fff;
+$color_w_2: #eee;
+$color_w_3: #ccc;
+$color_b_1: #000;
+$color_b_2: #222;
+$color_b_3: #333;
+$color_b_4: #666;
+
+////////////////////////////////////////////////
+//フォント設定
+////////////////////////////////////////////////
+
+$font_family: Montserrat, -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans CJK JP", "Noto Sans Japanese", sans-serif;
+$font_family_mincho: "Hiragino Mincho ProN", "Noto Serif Japanese", "Noto Serif CJK JP", "Yu Mincho", YuMincho, HGMinchoE, serif;
+$font_family_mono: Consolas, "Courier New", "Source Code Pro", monospace;

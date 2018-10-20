@@ -19,12 +19,18 @@ module.exports = mwEJS = (requestPath, data, opt) => {
     try {
       ejsContent = ejs.render(ejsStr);
     } catch (err) {
+      console.log(
+        "\x1b[41m\x1b[37m",
+        `EJS Compile Error`,
+        "\x1b[0m\x1b[31m",
+        "\n" + err
+      );
       return Buffer.from(`EJS Compile Error\n${err}`);
     }
     return Buffer.from(ejsContent);
   } else if (fs.pathExistsSync(htmlPath)) {
     return fs.readFileSync(htmlPath);
   } else {
-    return data || Buffer.from(`Not Found ${htmlPath}`);
+    return Buffer.from(`Not Found ${htmlPath}`);
   }
 };

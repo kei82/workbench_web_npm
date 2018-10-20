@@ -3,7 +3,7 @@ const prettier = require("prettier");
 
 let prettierOptions = fs.readJsonSync(".prettierrc");
 let inputFiles = process.argv[2] || false;
-if (!inputFiles) throw "ファイルを設定してください";
+if (!inputFiles) throw "Please set up the file";
 
 const prettierStart = data => {
   return prettier.format(data.toString(), prettierOptions);

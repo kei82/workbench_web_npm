@@ -2,13 +2,14 @@ const browserSync = require("browser-sync");
 
 // ミドルウェア [return Buffer]
 const mwEJS = require("./mw_ejs.js");
+const mwSASS = require("./mw_sass.js");
 const mwSSI = require("./mw_ssi.js");
 const mwRedirect = require("./mw_redirect.js");
 
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
-const rootDir = !isProduction ? "src" : "dist"; // ルートディレクトリ
+const hasRootDir = !isProduction ? "src" : "dist"; // ルートディレクトリ
 const port = 3000; // ポート
-const fileWatch = [rootDir + "/**/*.{html,css,js,ejs}"]; // リロードの監視ファイル
+const fileWatch = [hasRootDir + "/**/*.{html,css,js,ejs}"]; // リロードの監視ファイル
 const httpsOptions = {
   pfx: "config/ssl/ssl.pfx", // 証明書を読込
   passphrase: "test" // 証明書のパスワード
@@ -21,7 +22,7 @@ const reqLoaderHtml = {
     {
       process: mwEJS,
       option: {
-        baseDir: rootDir,
+        baseDir: hasRootDir,
         ext: ".html",
         convert: ".ejs"
       }
@@ -29,8 +30,23 @@ const reqLoaderHtml = {
     {
       process: mwSSI,
       option: {
-        baseDir: rootDir,
+        baseDir: hasRootDir,
         ext: ".html"
+      }
+    }
+  ]
+};
+
+// cssをコンパイル
+const reqLoaderCss = {
+  reqFile: [/\.css$/],
+  command: [
+    {
+      process: mwSASS,
+      option: {
+        baseDir: hasRootDir,
+        ext: ".css",
+        convert: ".scss"
       }
     }
   ]
@@ -38,7 +54,7 @@ const reqLoaderHtml = {
 
 // 一部のリクエストをdistにリダイレクト
 const reqLoaderRedirect = {
-  reqFile: [/.*\/assets\/.*\.(css|js|map)$/],
+  reqFile: [/.*\/assets\/.*\.(js|map)$/],
   command: [
     {
       process: mwRedirect
@@ -80,8 +96,8 @@ const mwReq = opt => {
 const browserSyncStart = () => {
   browserSync({
     server: {
-      baseDir: rootDir,
-      middleware: [mwReq(reqLoaderHtml), mwReq(reqLoaderRedirect)]
+      baseDir: hasRootDir,
+      middleware: [mwReq(reqLoaderHtml), mwReq(reqLoaderCss), mwReq(reqLoaderRedirect)]
     },
     port: port,
     watch: true,
@@ -92,12 +108,4 @@ const browserSyncStart = () => {
   });
 };
 
-if (!isProduction) {
-  Promise.resolve()
-    .then(browserSyncStart())
-    .then(
-      setTimeout(() => {
-        browserSync.reload();
-      }, 3000)
-    );
-}
+if (!isProduction) browserSyncStart();

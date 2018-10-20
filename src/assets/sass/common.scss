@@ -1,39 +1,27 @@
-@charset "utf-8";
+////////////////////////////////////////////////
+//include
+////////////////////////////////////////////////
 
-// function
+//変数
+@import "variable";
+
+//関数
 @import "function";
 
-// ここは変更しないでください
-html {
-  width: 100%;
-  height: 100%;
-}
+//フォント
+@import "font";
 
-body {
-  font-family: $fontFamilyRoboto;
-  color: $color_default;
-}
+//リセット
+@import "reset";
 
-h1 {
-  font-size: 28px;
-}
+//ベース
+@import "base";
 
-p {
-  margin: 0;
-  font-size: 14px;
-}
+//レイアウト
+@import "layout";
 
-.container {
-  margin: 50px 0;
-}
+//モジュール
+@import "module";
 
-.main-content {
-  width: $width_main;
-  margin: 0 auto 40px auto;
-  @media #{$media_middle} {
-    width: auto;
-    padding: 0 8%;
-  }
-}
-
-// ここから下は自由
+//コンポーネント
+@import "component";

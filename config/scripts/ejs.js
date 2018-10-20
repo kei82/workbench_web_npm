@@ -22,16 +22,16 @@ const ejsCompile = path => {
   fs.outputFile(outputPath, ejsContent);
 };
 
-const glob = (pattern, options = globOptions) => {
+const glob = (pattern, func, options = globOptions) => {
   globby(pattern, options).then(files => {
     files.forEach(path => {
-      ejsCompile(path);
+      func(path);
     });
   });
 };
 
 const compileStart = () => {
-  glob(ejsFiles);
+  glob(ejsFiles, ejsCompile);
 };
 
 if (isProduction) compileStart();

@@ -20,6 +20,7 @@ module.exports = mwSSI = (requestPath, data, opt) => {
         "\x1b[41m\x1b[37m",
         `SSI Compile Error`,
         "\x1b[0m\x1b[31m",
+        "\n" + filePath,
         "\n" + err
       );
       return Buffer.from(`SSI Compile Error\n${err}`);

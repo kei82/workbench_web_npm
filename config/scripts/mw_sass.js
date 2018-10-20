@@ -50,10 +50,12 @@ module.exports = mwSASS = (requestPath, data, opt) => {
     try {
       sassContent = postcssCompile(sassCompile(sassStr).css.toString());
     } catch (err) {
-      console.log(
+      console.error
+      (
         "\x1b[41m\x1b[37m",
         `SASS Compile Error`,
         "\x1b[0m\x1b[31m",
+        "\n" + sassPath + " or @import files",
         "\n" + err
       );
       return Buffer.from(`SASS Compile Error\n${err}`);

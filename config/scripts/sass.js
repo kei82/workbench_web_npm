@@ -29,8 +29,12 @@ const toCssPath = path => {
 
 // sassコンパイル
 const sassCompile = (requestPath, data) => {
-  const sassContent = mwSASS(toCssPath(requestPath).replace(new RegExp(`^${cssPath}`), ""), data, mwOptions);
-  if (sassContent) fs.writeFileSync(toCssPath(requestPath), sassContent);
+  const sassContent = mwSASS(
+    toCssPath(requestPath).replace(new RegExp(`^${cssPath}`), ""),
+    data,
+    mwOptions
+  );
+  if (sassContent) fs.outputFile(toCssPath(requestPath), sassContent);
 };
 
 // ファイルの取得

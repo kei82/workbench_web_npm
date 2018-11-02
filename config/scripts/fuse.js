@@ -16,8 +16,8 @@ const fuseOptions = {
     BabelPlugin(babelOptions),
     QuantumPlugin({
       bakeApiIntoBundle: true,
-      uglify: isProduction,
-      treeshake: isProduction
+      treeshake: isProduction,
+      uglify: isProduction
     })
   ]
 };

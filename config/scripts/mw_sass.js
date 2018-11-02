@@ -4,6 +4,8 @@ const postcss = require("postcss");
 const mqpacker = require("css-mqpacker");
 const autoprefixer = require("autoprefixer");
 
+const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
+
 module.exports = mwSASS = (requestPath, data, opt) => {
   // cssのパス変換
   let cssPath = opt.baseDir + requestPath;
@@ -13,11 +15,19 @@ module.exports = mwSASS = (requestPath, data, opt) => {
     requestPath
       .replace(/css\//, "sass/")
       .replace(new RegExp(`${opt.ext}$`), opt.convert);
+
+  let errorPath;
   // sass設定
   let sassOptions = {
     data: false,
-    includePaths: [sassPath.replace(/\/[^/]*$/, "/")],
-    outputStyle: "compressed"
+    outputStyle: "compressed",
+    sourceMap: !isProduction && sassPath.replace(/\/[^/]*$/, "/"),
+    sourceMapEmbed: !isProduction,
+    sourceMapContents: !isProduction,
+    sourceMapRoot: "../",
+    importer: function(url) {
+      errorPath = url;
+    }
   };
   // 使用するPostcssプラグイン
   const postcssPlugin = [
@@ -36,29 +46,52 @@ module.exports = mwSASS = (requestPath, data, opt) => {
   };
 
   // sassコンパイル
-  const sassCompile = data => {
+  const sassDataCompile = data => {
     sassOptions.data = data;
-    return (data = sass.renderSync(sassOptions));
+    sassOptions.includePaths = [sassPath.replace(/\/[^/]*$/, "/")];
+    return sass.renderSync(sassOptions);
+  };
+
+  const sassPathCompile = path => {
+    sassOptions.file = path;
+    return sass.renderSync(sassOptions);
+  };
+
+  const sassCompileError = err => {
+    console.error(
+      "\x1b[41m\x1b[37m",
+      `SASS Compile Error`,
+      "\x1b[0m\x1b[31m",
+      "\n" +
+        sassPath +
+        " OR include file [@import] " +
+        sassPath.replace(/\/[^/]*$/, "/") +
+        "_" +
+        errorPath +
+        ".scss",
+      "\n" + err
+    );
+    return Buffer.from(`SASS Compile Error\n${err}`);
   };
 
   // sassかdataがあるとき
-  if (fs.pathExistsSync(sassPath) || data) {
+  if (fs.pathExistsSync(sassPath) && !data) {
     // ファイル読み込み
-    const sassData = data ? data : fs.readFileSync(sassPath);
-    const sassStr = sassData.toString();
     let sassContent;
     try {
-      sassContent = postcssCompile(sassCompile(sassStr).css.toString());
+      sassContent = postcssCompile(sassPathCompile(sassPath).css.toString());
     } catch (err) {
-      console.error
-      (
-        "\x1b[41m\x1b[37m",
-        `SASS Compile Error`,
-        "\x1b[0m\x1b[31m",
-        "\n" + sassPath + " or @import files",
-        "\n" + err
-      );
-      return Buffer.from(`SASS Compile Error\n${err}`);
+      return sassCompileError(err);
+    }
+    return sassContent;
+  } else if (data) {
+    // Data読み込み
+    const sassStr = data.toString();
+    let sassContent;
+    try {
+      sassContent = postcssCompile(sassDataCompile(sassStr).css.toString());
+    } catch (err) {
+      return sassCompileError(err);
     }
     return sassContent;
   } else if (fs.pathExistsSync(cssPath)) {

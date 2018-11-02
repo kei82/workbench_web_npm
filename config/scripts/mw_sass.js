@@ -31,7 +31,11 @@ module.exports = mwSASS = (requestPath, data, opt) => {
   };
   // 使用するPostcssプラグイン
   const postcssPlugin = [
-    mqpacker(),
+    mqpacker({
+      sort: function (a, b) {
+        return b.localeCompare(a);
+      }
+    }),
     autoprefixer({
       browsers: ["IE 11", "last 2 versions"]
     })

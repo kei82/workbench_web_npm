@@ -22,10 +22,31 @@ const fuseOptions = {
   ]
 };
 
+const birds = (e,r,d) => {
+  console.log(e,r,d);
+
+}
+
 const fuseStart = (outputName, inputFile) => {
   const fuse = FuseBox.init(fuseOptions);
   const fuseSet = fuse.bundle(outputName).instructions(inputFile);
-  if (!isProduction) fuseSet.watch();
+  if (!isProduction) fuseSet.watch().hmr();
+  fuse.dev(
+    {
+      root: cwd + "src",
+      fallback: "index.html",
+      https: {
+        pfx: fs.readFileSync("config/ssl/ssl.pfx"), // 証明書を読込
+        passphrase: "test" // 証明書のパスワード
+      },
+      open: true,
+      port: 4000
+    },
+    server => {
+      const app = server.httpServer.app;
+      app.use("/birds", birds);
+    }
+  );
   fuse.run();
 };
 

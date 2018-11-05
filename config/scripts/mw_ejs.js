@@ -5,8 +5,7 @@ module.exports = mwEJS = (requestPath, data, opt) => {
   // htmlのパス変換
   let htmlPath = opt.baseDir + requestPath;
   // ejsのパス変換
-  let ejsPath =
-    opt.baseDir + requestPath.replace(new RegExp(`${opt.ext}$`), opt.convert);
+  let ejsPath = htmlPath.replace(new RegExp(`${opt.ext}$`), opt.convert);
 
   // ejsかdataがあるとき
   if (fs.pathExistsSync(ejsPath) || data) {

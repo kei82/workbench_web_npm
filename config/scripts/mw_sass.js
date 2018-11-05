@@ -10,11 +10,9 @@ module.exports = mwSASS = (requestPath, data, opt) => {
   // cssのパス変換
   let cssPath = opt.baseDir + requestPath;
   // sassのパス変換
-  let sassPath =
-    opt.baseDir +
-    requestPath
-      .replace(/css\//, "sass/")
-      .replace(new RegExp(`${opt.ext}$`), opt.convert);
+  let sassPath = cssPath
+    .replace(/\/css\//, "/sass/")
+    .replace(new RegExp(`${opt.ext}$`), opt.convert);
 
   let errorPath;
   // sass設定
@@ -32,7 +30,7 @@ module.exports = mwSASS = (requestPath, data, opt) => {
   // 使用するPostcssプラグイン
   const postcssPlugin = [
     mqpacker({
-      sort: function (a, b) {
+      sort: function(a, b) {
         return b.localeCompare(a);
       }
     }),

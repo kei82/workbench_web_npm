@@ -97,7 +97,11 @@ const browserSyncStart = () => {
   browserSync({
     server: {
       baseDir: hasRootDir,
-      middleware: [mwReq(reqLoaderHtml), mwReq(reqLoaderCss), mwReq(reqLoaderRedirect)]
+      middleware: [
+        mwReq(reqLoaderHtml),
+        mwReq(reqLoaderCss),
+        mwReq(reqLoaderRedirect)
+      ]
     },
     port: port,
     watch: true,
@@ -108,4 +112,4 @@ const browserSyncStart = () => {
   });
 };
 
-if (!isProduction) browserSyncStart();
+//if (!isProduction) browserSyncStart();

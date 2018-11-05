@@ -24,7 +24,7 @@ const fuseOptions = {
 
 const birds = (e,r,d) => {
   console.log(e,r,d);
-
+  return "tests"
 }
 
 const fuseStart = (outputName, inputFile) => {
@@ -44,7 +44,7 @@ const fuseStart = (outputName, inputFile) => {
     },
     server => {
       const app = server.httpServer.app;
-      app.use("/birds", birds);
+      app.use("*birds.html", birds);
     }
   );
   fuse.run();

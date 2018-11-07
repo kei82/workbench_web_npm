@@ -6,48 +6,32 @@ const hasRootDir = !isProduction ? "src" : "dist"; // 出力先
 const cwd = process.cwd().replace(/\\/g, "/") + "/";
 const babelDir = "src/assets/babel/"; // babelファイルのディレクトリ
 const jsDir = "dist/assets/js/"; // jsファイルのディレクトリ
+const babelFileName = "common";
 const babelOptions = fs.readJsonSync(".babelrc"); // babel設定ファイルを読込
+babelOptions.sourceRoot = "../babel";
+babelOptions.sourceFileName = babelFileName + ".js";
 const fuseOptions = {
   homeDir: cwd + babelDir,
   output: cwd + jsDir + "$name.js",
   target: "browser",
   useTypescriptCompiler: false,
+  sourceMaps: false,
   plugins: [
     BabelPlugin(babelOptions),
-    QuantumPlugin({
-      bakeApiIntoBundle: true,
-      treeshake: isProduction,
-      uglify: isProduction
-    })
+    isProduction &&
+      QuantumPlugin({
+        bakeApiIntoBundle: true,
+        treeshake: true,
+        uglify: true
+      })
   ]
 };
-
-const birds = (e,r,d) => {
-  console.log(e,r,d);
-  return "tests"
-}
 
 const fuseStart = (outputName, inputFile) => {
   const fuse = FuseBox.init(fuseOptions);
   const fuseSet = fuse.bundle(outputName).instructions(inputFile);
-  if (!isProduction) fuseSet.watch().hmr();
-  fuse.dev(
-    {
-      root: cwd + "src",
-      fallback: "index.html",
-      https: {
-        pfx: fs.readFileSync("config/ssl/ssl.pfx"), // 証明書を読込
-        passphrase: "test" // 証明書のパスワード
-      },
-      open: true,
-      port: 4000
-    },
-    server => {
-      const app = server.httpServer.app;
-      app.use("*birds.html", birds);
-    }
-  );
+  if (!isProduction) fuseSet.watch();
   fuse.run();
 };
 
-fuseStart("common", "> common.js");
+fuseStart(babelFileName, "> " + babelFileName + ".js");

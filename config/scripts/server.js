@@ -112,4 +112,4 @@ const browserSyncStart = () => {
   });
 };
 
-//if (!isProduction) browserSyncStart();
+if (!isProduction) browserSyncStart();

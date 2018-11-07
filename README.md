@@ -7,7 +7,7 @@
 
 Git、Node.js を使用します。  
 [Git](https://git-scm.com/) (最新推奨)  
-[Node.js](https://nodejs.org/ja/) (Node 10.11.0, npm 6.1.0 推奨)  
+[Node.js](https://nodejs.org/ja/) (Node 10.13.0, npm 6.4.1 推奨)  
 
 ※Node.jsのバージョン管理を使用しています。上記のバージョンに合わせてください。  
 Winの場合[nodist](https://github.com/marcelklehr/nodist/releases)  
@@ -30,11 +30,11 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 
 ## おもな機能
 
-* ローカルサーバ機能 (http&https、ssi、自動リロード に対応)
+* ローカルサーバ機能 (http & https、ssi、自動リロード に対応)
 * scssファイルの変更を監視してコンパイルする機能 (autoprefixer、メディアクエリのマージ に対応)
 * Git コミット時にファイルをチェックをして問題があればコミットできないようにする機能 (例外対応でコミットする場合はpackage.jsonの `"husky" {...}` を一旦無効化（削除）することで対応できます)
 * ejsのコンパイル
-* トランスパイラ＋バンドラ (babel、minify に対応)
+* トランスパイラ + バンドラ (babel、minify に対応)
 
 ## ファイル・ディレクトリ構成
 
@@ -42,6 +42,8 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 
 以下のファイルは設定ファイルです。プロジェクトごとに設定することをおすすめします。
 
+* .editorconfig [設定](https://editorconfig.org/)  
+* .babelrc [設定](https://babeljs.io/docs/en/options)  
 * .htmlhintrc (htmlHint) [設定](https://github.com/yaniswang/HTMLHint/wiki/Rules)  
 * .prettierrc (Prettier) [設定](https://prettier.io/docs/en/options.html)  
 * .gitattributes (Git) [設定](https://git-scm.com/docs/gitattributes)  

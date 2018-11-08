@@ -1,9 +1,0 @@
-{
-  "BASIC_USERNAME": "test111",
-  "BASIC_PASSWORD": "seiko_mem",
-  "VIEWPORT": [375, 1550],
-  "DEVICE_SP": 375,
-  "DEVICE_PC": 1550,
-  "INPUT_CSV": "input.csv",
-  "OUTPUT_FOLDER": "output"
-}

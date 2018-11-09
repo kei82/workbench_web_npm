@@ -2,6 +2,7 @@ const fs = require("fs-extra");
 const exec = require("child_process").exec;
 const htmlhint = require("htmlhint").HTMLHint;
 const notifier = require("node-notifier");
+console.log("★", process.env);
 
 if (process.env.HUSKY_GIT_PARAMS) console.log("★", fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString());
 /*

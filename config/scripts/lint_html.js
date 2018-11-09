@@ -55,4 +55,4 @@ const getChangedFile = () => {
   });
 };
 
-if (!gitParams.match("【例外HTML】")) getChangedFile();
+if (!gitParams.match("@例外_HTML")) getChangedFile();

@@ -9,7 +9,6 @@ console.log(
 
 exec("git diff --diff-filter=ACMR --staged --name-only", (error, stdout, stderr) => {
   console.log(stdout);
-
   });
 if (fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString().match("【例外】")){
   throw "NG file"

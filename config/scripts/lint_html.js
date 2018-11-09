@@ -7,7 +7,6 @@ let inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取�
 let errMsg;
 const htmlhintOptions = fs.readJsonSync(".htmlhintrc"); // 設定ファイルを読込
 
-console.error(process.env);
 const outStr = (error, stdout, stderr) => {
   if (error) throw error;
   else return stdout;

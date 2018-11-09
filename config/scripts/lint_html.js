@@ -7,9 +7,12 @@ console.log(
   fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString()
 );
 
-exec("git diff --diff-filter=ACMR --staged --name-only", (error, stdout, stderr) => {
-  console.log(stdout);
-  });
+sar = require("child_process").spawn("git", ["diff", "--diff-filter=ACMR", "--staged", "--name-only"]);
+sar.stdout.setEncoding('utf8'); // .stdout・.stderrは通常のstreamと同じなのでsetEncodingでbufferじゃなくできます。
+sar.stdout.on('data', function(data){
+  console.log(data);
+
+});
 if (fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString().match("【例外】")){
   throw "NG file"
 }

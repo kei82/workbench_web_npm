@@ -51,8 +51,8 @@ const getChangedFile = () => {
     "--name-only"
   ]);
 
-  console.log("★★★");
   spawn.stdout.on("data", function(data) {
+    console.log("★★★");
     let filePath = data.toString();
     if (filePath.match(/\.html$/)) {
       console.log("★");lint(filePath)};

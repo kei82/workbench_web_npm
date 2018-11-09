@@ -22,6 +22,7 @@ const command = (cmd, func) => {
 };
 
 const htmlhintStart = inputData => {
+  console.log(process.env);
   let messages = htmlhint.verify(inputData, htmlhintOptions);
 
   if (messages.length > 0) {

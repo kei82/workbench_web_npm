@@ -9,11 +9,8 @@ let gitParams = process.env.HUSKY_GIT_PARAMS
   : "";
 
 const lint = inputFile => {
-  console.log(inputFile);
-
   let inputData = fs.readFileSync(inputFile).toString();
   let messages = htmlhint.verify(inputData, htmlhintOptions);
-console.log(messages);
 
   if (messages.length > 0) {
     let errTitle = "HTML Lint Error";
@@ -25,7 +22,7 @@ console.log(messages);
     notifier.notify(
       {
         title: errTitle,
-        message: errMsg.replace(/\n/g, " | ")
+        message: errMsg.replace(/\r\n|\r|\n/g, " | ")
       },
       () => {
         setTimeout(() => {
@@ -44,18 +41,17 @@ console.log(messages);
 };
 
 const getChangedFile = () => {
-  let spawn = childProcess.spawn("git", [
+  let spawn = childProcess.spawnSync("git", [
     "diff",
     "--diff-filter=ACMR",
     "--staged",
     "--name-only"
-  ]);
+  ]).stdout;
 
-  spawn.stdout.on("data", function(data) {
-    console.log("★★★");
-    let filePath = data.toString();
-    if (filePath.match(/\.html$/)) {
-      console.log("★");lint(filePath)};
+  let filePaths = spawn.toString().split(/\r\n|\r|\n/);
+  filePaths = filePaths.filter(path => /\.html$/.test(path)); // srcフォルダ内のhtmlを抜き出す
+  filePaths.forEach(filePath => {
+    lint(filePath);
   });
 };
 

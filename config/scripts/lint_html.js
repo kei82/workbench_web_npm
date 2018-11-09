@@ -2,7 +2,10 @@ const fs = require("fs-extra");
 const exec = require("child_process").exec;
 const htmlhint = require("htmlhint").HTMLHint;
 const notifier = require("node-notifier");
-console.log("★", process.env);
+
+console.log(
+  fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString()
+);
 
 if (fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString() === "NG"){
   throw "NG file"

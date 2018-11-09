@@ -11,7 +11,6 @@ sar = require("child_process").spawn("git", ["diff", "--diff-filter=ACMR", "--st
 sar.stdout.setEncoding('utf8'); // .stdout・.stderrは通常のstreamと同じなのでsetEncodingでbufferじゃなくできます。
 sar.stdout.on('data', function(data){
   console.log(data);
-
 });
 if (fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString().match("【例外】")){
   throw "NG file"

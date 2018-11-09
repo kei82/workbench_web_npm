@@ -7,9 +7,22 @@ console.log(
   fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString()
 );
 
-if (fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString().match("NG")){
+if (fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString().match("【例外】")){
+  Promise.resolve().then(()=> {
+    notifier.notify({
+      title: "NG file",
+    });
+  }).then(()=>{
+
   throw "NG file"
+  })
+
 }
+
+exec("git diff --diff-filter=ACMR --staged --name-only", (error, stdout, stderr) => {
+console.log(stdout);
+
+});
 /*
 let inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取る
 let errMsg;

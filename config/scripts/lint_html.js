@@ -9,8 +9,11 @@ let gitParams = process.env.HUSKY_GIT_PARAMS
   : "";
 
 const lint = inputFile => {
+  console.log(inputFile);
+
   let inputData = fs.readFileSync(inputFile).toString();
   let messages = htmlhint.verify(inputData, htmlhintOptions);
+console.log(messages);
 
   if (messages.length > 0) {
     let errTitle = "HTML Lint Error";

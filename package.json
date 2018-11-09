@@ -15,7 +15,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm-run-all -p lint:*",
-      "commit-msg": "npm-run-all -p lint:* HUSKY_GIT_PARAMS"
+      "commit-msg": "echo gitParams $gitParams"
     }
   },
   "devDependencies": {

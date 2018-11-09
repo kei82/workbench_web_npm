@@ -54,7 +54,7 @@ const getChangedFile = () => {
   spawn.stdout.on("data", function(data) {
     let filePath = data.toString();
     if (filePath.match(/\.html$/)) {
-      console.log(data);lint(filePath)};
+      console.log("★");lint(filePath)};
   });
 };
 

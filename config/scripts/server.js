@@ -54,7 +54,7 @@ const reqLoaderCss = {
 
 // 一部のリクエストをdistにリダイレクト
 const reqLoaderRedirect = {
-  reqFile: [/.*\/assets\/.*\.(js|map)$/],
+  reqFile: [/\/assets\/js\/.*\.js$/],
   command: [
     {
       process: mwRedirect

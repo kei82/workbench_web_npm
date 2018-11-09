@@ -1,10 +1,17 @@
+const fs = require("fs-extra");
 const puppeteer = require("puppeteer");
 
 const cwdPath = __dirname + "/";
-let inputData = JSON.parse(process.argv[2].slice(1).slice(0, -1)); // 引数を受取る
+// 引数を受取る
+let width = process.argv[2];
+let url = process.argv[3];
+let filename = process.argv[4];
+let confFile = process.argv[5] || "config.json";
+let conf = fs.readJsonSync(cwdPath + confFile); // 設定ファイル読み込み
 
 // スクリーンショットを撮影
 const screenshot = async (width, url, filename, conf) => {
+  width = parseFloat(width);
   const browser = await puppeteer.launch();
   const browserPage = await browser.newPage();
 
@@ -27,8 +34,9 @@ const screenshot = async (width, url, filename, conf) => {
       `${conf.basic_username}:${conf.basic_password}`
     ).toString("base64")}`
   });
+
   await browserPage.goto(url, { waitUntil: "networkidle0" });
-  let outputPath = conf.output_filename
+  let outputPath = await conf.output_filename
     .replace(/{{name}}/g, filename)
     .replace(/{{device}}/g, device);
   await browserPage.screenshot({
@@ -40,13 +48,4 @@ const screenshot = async (width, url, filename, conf) => {
   await browser.close();
 };
 
-// 撮影を繰り返す
-const screenshotRepeat = conf => {
-  for (let page of conf.page) {
-    for (let width of conf.viewport) {
-      screenshot(width, page["ページURL"], page["ファイル名"], conf);
-    }
-  }
-};
-
-screenshotRepeat(inputData);
+screenshot(width, url, filename, conf);

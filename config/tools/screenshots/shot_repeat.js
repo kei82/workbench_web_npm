@@ -10,40 +10,29 @@ let csvParseOptions = {
 };
 
 // 細分化して子プロセスで実行
-const processRepeat = confPage => {
-  let subdividePage = confPage.reduce(
-    (table, item) => {
-      const last = table[table.length - 1];
-      if (last.length === 3) {
-        table.push([item]);
-        return table;
-      }
-      last.push(item);
-      return table;
-    },
-    [[]]
-  );
+const processRepeat = async pages => {
+  for (let width of conf.viewport) {
+    for (let page of pages) {
+      let cmd = `node ${cwdPath}shot.js ${width} "${page["ページURL"]}" ${
+        page["ファイル名"]
+      }`;
 
-  for (let pack of subdividePage) {
-    conf.page = pack;
-    jsonStr = JSON.stringify(conf).replace(/"/g, '\\"');
-    let cmd = "node " + cwdPath + "shot.js " + "`" + jsonStr + "`";
-
-    childProcess.exec(cmd, (error, stdout, stderr) => {
-      if (error) throw error;
-      console.log(stdout);
-    });
+      let set = await childProcess.exec(cmd, (error, stdout) => {
+        if (error) throw error;
+        console.log(stdout);
+      });
+    }
   }
 };
 
-const processStart = confFile => {
+const processStart = (confFile = "config.json") => {
   conf = fs.readJsonSync(cwdPath + confFile); // 設定ファイル読み込み
-  conf.page = csvParse(
+  let pages = csvParse(
     fs.readFileSync(cwdPath + conf.input_csv),
     csvParseOptions
   ); // CSVファイル読み込み
   fs.mkdirsSync(cwdPath + conf.output_folder); // 出力フォルダ作成
-  processRepeat(conf.page); // 撮影
+  processRepeat(pages); // 撮影
 };
 
-processStart("config.json");
+processStart();

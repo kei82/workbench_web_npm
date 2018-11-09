@@ -2,7 +2,6 @@ const fs = require("fs-extra");
 const { FuseBox, BabelPlugin, QuantumPlugin } = require("fuse-box");
 
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
-const hasRootDir = !isProduction ? "src" : "dist"; // 出力先
 const cwd = process.cwd().replace(/\\/g, "/") + "/";
 const babelDir = "src/assets/babel/"; // babelファイルのディレクトリ
 const jsDir = "dist/assets/js/"; // jsファイルのディレクトリ

@@ -7,7 +7,7 @@ console.log(
   fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString()
 );
 
-if (fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString() === "NG"){
+if (fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString().match("NG")){
   throw "NG file"
 }
 /*

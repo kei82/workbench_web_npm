@@ -3,7 +3,7 @@ const exec = require("child_process").exec;
 const htmlhint = require("htmlhint").HTMLHint;
 const notifier = require("node-notifier");
 
-console.log(process.argv.slice(2));
+console.log(process.env);
 
 let inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取る
 let errMsg;

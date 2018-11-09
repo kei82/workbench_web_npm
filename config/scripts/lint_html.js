@@ -54,11 +54,8 @@ let spawn = childProcess.spawnSync("git", [
   "--diff-filter=ACMR",
   "--staged",
   "--name-only"
-]);
-spawn.stdout.on("data", function(data) {
-  console.log(data.toString());
-  lint(data.toString());
-});
+]).stdout;
+console.log(spawn.toString());
 
 if (gitParams.match("【例外HTML】")) {
   throw "NG file";

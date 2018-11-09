@@ -4,7 +4,9 @@ const htmlhint = require("htmlhint").HTMLHint;
 const notifier = require("node-notifier");
 console.log("★", process.env);
 
-if (process.env.HUSKY_GIT_PARAMS) console.log("★", fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString());
+if (fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString() === "NG"){
+  throw "NG file"
+}
 /*
 let inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取る
 let errMsg;

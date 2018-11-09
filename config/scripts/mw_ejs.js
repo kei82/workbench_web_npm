@@ -23,7 +23,8 @@ module.exports = mwEJS = (requestPath, data, opt) => {
         `EJS Compile Error`,
         "\x1b[0m\x1b[31m",
         "\n" + ejsPath,
-        "\n" + err
+        "\n" + err,
+        "\x1b[0m"
       );
       return Buffer.from(`EJS Compile Error\n${err}`);
     }

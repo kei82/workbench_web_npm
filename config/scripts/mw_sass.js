@@ -71,7 +71,8 @@ module.exports = mwSASS = (requestPath, data, opt) => {
         "_" +
         errorPath +
         ".scss",
-      "\n" + err
+      "\n" + err,
+      "\x1b[0m"
     );
     return Buffer.from(`SASS Compile Error\n${err}`);
   };

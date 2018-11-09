@@ -1,25 +1,13 @@
 const fs = require("fs-extra");
-const exec = require("child_process").exec;
+const childProcess = require("child_process");
 const htmlhint = require("htmlhint").HTMLHint;
 const notifier = require("node-notifier");
 
-console.log(
-  fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString()
-);
-
-sar = require("child_process").spawn("git", ["diff", "--diff-filter=ACMR", "--staged", "--name-only"]);
-sar.stdout.setEncoding('utf8'); // .stdout・.stderrは通常のstreamと同じなのでsetEncodingでbufferじゃなくできます。
-sar.stdout.on('data', function(data){
-  console.log(data);
-});
-if (fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString().match("【例外】")){
-  throw "NG file"
-}
-
-/*
-let inputFiles = process.argv.slice(2) || []; // 引数がある場合は受取る
 let errMsg;
-const htmlhintOptions = fs.readJsonSync(".htmlhintrc"); // 設定ファイルを読込
+let htmlhintOptions = fs.readJsonSync(".htmlhintrc"); // 設定ファイルを読込
+let gitParams = process.env.HUSKY_GIT_PARAMS
+  ? fs.readFileSync(process.env.HUSKY_GIT_PARAMS).toString()
+  : "";
 
 const outStr = (error, stdout, stderr) => {
   if (error) throw error;
@@ -35,7 +23,8 @@ const command = (cmd, func) => {
   });
 };
 
-const htmlhintStart = inputData => {
+const lint = inputFile => {
+  let inputData = fs.readFileSync(inputFile).toString();
   let messages = htmlhint.verify(inputData, htmlhintOptions);
 
   if (messages.length > 0) {
@@ -60,28 +49,17 @@ const htmlhintStart = inputData => {
   }
 };
 
-const lint = inputFiles => {
-  inputFiles.some(file => {
-    if (errMsg) return true;
-    fs.readFile(file, (err, data) => {
-      if (err) console.error(err);
-      else htmlhintStart(data.toString());
-    });
-  });
-};
+let spawn = childProcess.spawnSync("git", [
+  "diff",
+  "--diff-filter=ACMR",
+  "--staged",
+  "--name-only"
+]);
+spawn.stdout.on("data", function(data) {
+  console.log(data.toString());
+  lint(data.toString());
+});
 
-command("git diff --diff-filter=ACMR --staged --name-only", outStr) // Git ステージングされているファイルを読込
-  .then(result => {
-    let paths = result.split(/\r\n|\r|\n/);
-    paths = paths.filter(path => /^src\/.*\.html$/.test(path)); // srcフォルダ内のhtmlを抜き出す
-    if (inputFiles.length < 1) {
-      inputFiles = paths;
-      lint(inputFiles);
-    } else if (inputFiles[1] !== "unlink") {
-      lint([inputFiles[0]]);
-    }
-  })
-  .catch(err => {
-    throw err;
-  });
-*/
+if (gitParams.match("【例外HTML】")) {
+  throw "NG file";
+}

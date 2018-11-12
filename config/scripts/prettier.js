@@ -13,7 +13,7 @@ const readFile = file => {
   return fs.readFileSync(file);
 };
 
-const writeFile = (outputFile, data) => {
+const outputFile = (outputFile, data) => {
   fs.outputFile(outputFile, data);
 };
 
@@ -29,7 +29,7 @@ promiseStart(inputFiles, readFile)
     return prettierStart(result);
   })
   .then(result => {
-    writeFile(inputFiles, result);
+    outputFile(inputFiles, result);
   })
   .catch(err => {
     console.error(err);

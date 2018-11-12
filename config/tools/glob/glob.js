@@ -1,13 +1,12 @@
-const fs = require("fs");
+const fs = require("fs-extra");
 const globby = require("globby");
-const commander = require("commander");
 
-const globFile = cmder => {
-  let pattern = cmder.pattern;
-  let ignore = cmder.ignore;
-  let root = cmder.root;
-  let fileName = cmder.name;
-  let absolutePath = cmder.absolute;
+module.exports = globFile = cmd => {
+  let pattern = cmd.pattern;
+  let ignore = cmd.ignore;
+  let root = cmd.root;
+  let fileName = cmd.name;
+  let absolutePath = cmd.absolute;
   let globOptions = {
     matchBase: true,
     onlyFiles: true
@@ -27,37 +26,7 @@ const globFile = cmder => {
       fileArray.push(file);
       toString += file + "\n";
     });
-    console.log("\x1b[36m%s", toString);
-    if (fileName) fs.writeFile(fileName, toString, () => true);
+    console.log("\x1b[36m%s", toString, "\x1b[0m");
+    if (fileName) fs.outputFileSync(fileName, toString);
   });
 };
-
-commander
-  .command("glob")
-  .description("ワイルドカードでファイルを検索します")
-  .option(
-    "-p --pattern <pattern>",
-    '[必須] ワイルドカードのパターン(例: "**/*.txt")',
-    false
-  )
-  .option(
-    "-i --ignore <ignore>",
-    'ワイルドカードの除外するパターン(例: "**/*.html")',
-    false
-  )
-  .option(
-    "-r --root <root>",
-    'ファイルを探すルートディレクトリ(例: "C:/Users/Desktop/")',
-    false
-  )
-  .option(
-    "-n --name <name>",
-    "出力するファイル名(ファイルが作成されます)",
-    false
-  )
-  .option("-a --absolute", "出力するパスを絶対パスにするオプション", false)
-  .action(function(cmd) {
-    globFile(cmd);
-  });
-
-commander.parse(process.argv);

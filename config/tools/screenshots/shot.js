@@ -1,26 +1,26 @@
 const fs = require("fs-extra");
 const puppeteer = require("puppeteer");
 const csvParse = require("csv-parse/lib/sync");
-require("events").EventEmitter.defaultMaxListeners = 20;
-
-const cwdPath = __dirname + "/";
-let conf = fs.readJsonSync(cwdPath + "config.json"); // 設定ファイル読み込み
-let csvParseOptions = {
-  columns: true,
-  skip_empty_lines: true
-};
-let pages = csvParse(
-  fs.readFileSync(cwdPath + conf.input_csv), // CSVファイル読み込み
-  csvParseOptions
-);
-fs.mkdirsSync(cwdPath + conf.output_folder); // 出力フォルダ作成
-
-process.on("unhandledRejection", error => {
-  console.error(error);
-  process.exit(1);
-});
 
 module.exports = shot = () => {
+  require("events").EventEmitter.defaultMaxListeners = 20;
+  const cwdPath = __dirname + "/";
+  let conf = fs.readJsonSync(cwdPath + "config.json"); // 設定ファイル読み込み
+  let csvParseOptions = {
+    columns: true,
+    skip_empty_lines: true
+  };
+  let pages = csvParse(
+    fs.readFileSync(cwdPath + conf.input_csv), // CSVファイル読み込み
+    csvParseOptions
+  );
+  fs.mkdirsSync(conf.output_folder); // 出力フォルダ作成
+
+  process.on("unhandledRejection", error => {
+    console.error(error);
+    process.exit(1);
+  });
+
   (async () => {
     try {
       const browser = await puppeteer.launch();
@@ -47,7 +47,7 @@ module.exports = shot = () => {
                 .replace(/{{name}}/g, target.filename)
                 .replace(/{{device}}/g, viewport.device);
               await page.screenshot({
-                path: cwdPath + conf.output_folder + "/" + fileName,
+                path: conf.output_folder + "/" + fileName,
                 fullPage: true,
                 type: conf.file_type
               });

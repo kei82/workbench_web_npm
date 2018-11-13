@@ -2,31 +2,21 @@ const fs = require("fs-extra");
 const globby = require("globby");
 
 module.exports = globFile = cmd => {
-  let pattern = cmd.pattern;
-  let ignore = cmd.ignore;
-  let root = cmd.root;
-  let fileName = cmd.name;
-  let absolutePath = cmd.absolute;
   let globOptions = {
     matchBase: true,
     onlyFiles: true
   };
-  if (root) globOptions.cwd = root;
-  if (ignore) {
-    globOptions.ignore = [];
-    globOptions.ignore.push(ignore);
-  }
-  if (absolutePath) globOptions.absolute = true;
+  if (cmd.root) globOptions.cwd = cmd.root;
+  if (cmd.ignore) globOptions.ignore = cmd.ignore.split(",");
+  if (cmd.absolute) globOptions.absolute = true;
 
-  globby(pattern, globOptions).then(files => {
-    let fileArray = [];
+  globby(cmd.pattern.split(","), globOptions).then(files => {
     let toString = "";
     files.forEach(file => {
-      if (!absolutePath && root) file = file.replace(root, "");
-      fileArray.push(file);
+      if (!cmd.absolute && cmd.root) file = file.replace(cmd.root, "");
       toString += file + "\n";
     });
     console.log("\x1b[36m%s", toString, "\x1b[0m");
-    if (fileName) fs.outputFileSync(fileName, toString);
+    if (cmd.output) fs.outputFileSync(cmd.name, toString);
   });
 };

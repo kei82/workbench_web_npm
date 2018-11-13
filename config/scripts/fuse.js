@@ -7,6 +7,7 @@ const babelDir = "src/assets/babel/"; // babelファイルのディレクトリ
 const jsDir = "dist/assets/js/"; // jsファイルのディレクトリ
 const babelFileName = "common";
 const babelOptions = fs.readJsonSync(".babelrc"); // babel設定ファイルを読込
+babelOptions.sourceMaps = isProduction ? false : "inline";
 babelOptions.sourceRoot = "../babel";
 babelOptions.sourceFileName = babelFileName + ".js";
 const fuseOptions = {

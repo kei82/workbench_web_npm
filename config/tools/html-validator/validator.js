@@ -5,34 +5,36 @@ let globOptions = {
   matchBase: true,
   onlyFiles: true
 };
-let errText;
+let outputFile = "output_html-validator.md";
 
 const writeValidate = path => {
   validate(path).then(result => {
     if (result.messages.length > 0) {
-      errText += "# " + path + "\n\n";
-      for (let err of result.messages)
-        errText +=
-          "* [" +
-          err.type +
-          "] " +
-          path +
-          ":" +
-          err.lastLine +
-          ":" +
-          err.firstColumn +
-          "  \n" +
-          err.message +
-          "\n```html\n" +
-          err.extract +
-          "\n```\n";
-      console.log(errText);
+      var errText = "";
+      errText += `## ${path}\n\n`;
+      for (let err of result.messages) {
+        errText += `* [${err.type}] ${path}:${err.lastLine}:${
+          err.firstColumn
+        }  \n`;
+        errText += `|| \`${err.message}\`  \n`;
+        errText += `|| \`${err.extract.replace(/\n/g, "")}\`\n\n`;
+      }
+      fs.appendFileSync(outputFile, errText);
     }
   });
 };
 
-globby(["src/**/*.html"], globOptions).then(files => {
-  files.forEach(path => {
-    writeValidate(path);
+const glob = () => {
+  globby(["src/**/*.html", "!**/includes"], globOptions).then(files => {
+    for (let path of files) {
+      writeValidate(path);
+    }
   });
-});
+};
+
+const outputValidate = () => {
+  fs.outputFileSync(outputFile, "# html-validator\n\n");
+  glob();
+};
+
+outputValidate();

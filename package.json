@@ -25,6 +25,7 @@
     "babel-preset-env": "1.7.0",
     "browser-sync": "2.26.3",
     "chokidar": "2.0.4",
+    "compress-images": "1.4.6",
     "cross-env": "5.2.0",
     "css-mqpacker": "7.0.0",
     "csv-parse": "3.2.0",

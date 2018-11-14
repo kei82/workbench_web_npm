@@ -22,7 +22,7 @@ const lint = inputFile => {
     notifier.notify(
       {
         title: errTitle,
-        message: errMsg.replace(/\r\n|\r|\n/g, " | ")
+        message: errMsg.replace(/\n/g, " | ")
       },
       () => {
         setTimeout(() => {
@@ -47,9 +47,10 @@ const getChangedFile = () => {
     "--staged",
     "--name-only"
   ]).stdout;
-
-  let filePaths = spawn.toString().split(/\r\n|\r|\n/);
-  filePaths = filePaths.filter(path => /\.html$/.test(path)); // srcフォルダ内のhtmlを抜き出す
+  let filePaths = spawn
+    .toString()
+    .split(/\r\n|\r|\n/)
+    .filter(path => /\.html$/.test(path)); // srcフォルダ内のhtmlを抜き出す
   if (filePaths.length > 0) {
     filePaths.forEach(filePath => {
       lint(filePath);

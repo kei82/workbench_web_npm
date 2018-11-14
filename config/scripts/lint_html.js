@@ -50,9 +50,11 @@ const getChangedFile = () => {
 
   let filePaths = spawn.toString().split(/\r\n|\r|\n/);
   filePaths = filePaths.filter(path => /\.html$/.test(path)); // srcフォルダ内のhtmlを抜き出す
-  filePaths.forEach(filePath => {
-    lint(filePath);
-  });
+  if (filePaths.length > 0) {
+    filePaths.forEach(filePath => {
+      lint(filePath);
+    });
+  }
 };
 
 if (!gitParams.match("@例外_HTML")) getChangedFile();

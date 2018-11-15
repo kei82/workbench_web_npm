@@ -1,19 +1,21 @@
 // DEMO
-const promise = Promise.resolve();
-
 const testA = () => {
-  console.log("test A");
+  return new Promise((resolve, rej) => {
+    setTimeout(() => {
+      resolve("test A");
+    }, 2000);
+  });
 };
 
 const testB = () => {
   console.log("test B");
 };
 
-promise.then(testA).then(testB);
+(async () => {
+  await testA().then(resolve => {
+    console.log(resolve);
+  });
+  testB();
+})();
 
-const settime = () => {
-  let data = new Date().getTime();
-  $(".clock").text(data);
-};
-
-setInterval(settime, 10);
+$(".test").text("TEXT");

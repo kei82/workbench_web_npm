@@ -1,7 +1,7 @@
-const fs = require("fs-extra");
-const globby = require("globby");
-
 module.exports = globFile = cmd => {
+  const fs = require("fs-extra");
+  const globby = require("globby");
+
   let globOptions = {
     matchBase: true,
     onlyFiles: true

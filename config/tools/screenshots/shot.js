@@ -1,9 +1,9 @@
-const fs = require("fs-extra");
-const puppeteer = require("puppeteer");
-const csvParse = require("csv-parse/lib/sync");
-
 module.exports = shot = () => {
-  require("events").EventEmitter.defaultMaxListeners = 20;
+  const fs = require("fs-extra");
+  const puppeteer = require("puppeteer");
+  const csvParse = require("csv-parse/lib/sync");
+
+  require("events").EventEmitter.defaultMaxListeners = 30;
   const cwdPath = __dirname + "/";
   let conf = fs.readJsonSync(cwdPath + "config.json"); // 設定ファイル読み込み
   let csvParseOptions = {

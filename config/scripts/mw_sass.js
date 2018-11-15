@@ -7,19 +7,17 @@ const autoprefixer = require("autoprefixer");
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 
 module.exports = mwSASS = (requestPath, data, opt) => {
-  // cssのパス変換
-  let cssPath = opt.baseDir + requestPath;
-  // sassのパス変換
+  let cssPath = opt.baseDir + requestPath; // cssのパス変換
   let sassPath = cssPath
     .replace(/\/css\//, "/sass/")
-    .replace(new RegExp(`${opt.ext}$`), opt.convert);
+    .replace(new RegExp(`${opt.ext}$`), opt.convert); // sassのパス変換
 
   let errorPath;
   // sass設定
   let sassOptions = {
     data: false,
     outputStyle: "compressed",
-    sourceMap: !isProduction && sassPath.replace(/\/[^/]*$/, "/"),
+    sourceMap: !isProduction && sassPath.replace(/\/[^\/]*$/, "/"),
     sourceMapEmbed: !isProduction,
     sourceMapContents: !isProduction,
     sourceMapRoot: "../",
@@ -50,7 +48,7 @@ module.exports = mwSASS = (requestPath, data, opt) => {
   // sassコンパイル
   const sassDataCompile = data => {
     sassOptions.data = data;
-    sassOptions.includePaths = [sassPath.replace(/\/[^/]*$/, "/")];
+    sassOptions.includePaths = [sassPath.replace(/\/[^\/]*$/, "/")];
     return sass.renderSync(sassOptions);
   };
 
@@ -67,7 +65,7 @@ module.exports = mwSASS = (requestPath, data, opt) => {
       "\n" +
         sassPath +
         " OR include file [@import] " +
-        sassPath.replace(/\/[^/]*$/, "/") +
+        sassPath.replace(/\/[^\/]*$/, "/") +
         "_" +
         errorPath +
         ".scss",

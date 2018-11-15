@@ -4,7 +4,7 @@ const browserSync = require("browser-sync");
 const mwEJS = require("./mw_ejs.js");
 const mwSASS = require("./mw_sass.js");
 const mwSSI = require("./mw_ssi.js");
-const mwRedirect = require("./mw_redirect.js");
+const mwBABEL = require("./mw_babel");
 
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 const hasRootDir = !isProduction ? "src" : "dist"; // ルートディレクトリ
@@ -52,12 +52,15 @@ const reqLoaderCss = {
   ]
 };
 
-// 一部のリクエストをdistにリダイレクト
-const reqLoaderRedirect = {
+// jsをコンパイル
+const reqLoaderJs = {
   reqFile: [/\/assets\/js\/.*\.js$/],
   command: [
     {
-      process: mwRedirect
+      process: mwBABEL,
+      option: {
+        baseDir: hasRootDir
+      }
     }
   ]
 };
@@ -83,8 +86,17 @@ const mwReq = opt => {
     if (match) {
       let data;
       opt.command.some((cmd, index) => {
-        data = cmd.process(requestPath, data, cmd.option);
-        if (opt.command.length === index + 1) res.end(data);
+        (async () => {
+          data = cmd.process(requestPath, data, cmd.option);
+          if (data.toString() === "[object Promise]") {
+            await data.then(() => {
+              data = mwBABEL.promiseResult; // babel用
+            });
+          }
+          if (opt.command.length === index + 1) {
+            res.end(data);
+          }
+        })();
       });
     } else {
       next();
@@ -100,7 +112,7 @@ const browserSyncStart = () => {
       middleware: [
         mwReq(reqLoaderHtml),
         mwReq(reqLoaderCss),
-        mwReq(reqLoaderRedirect)
+        mwReq(reqLoaderJs)
       ]
     },
     port: port,

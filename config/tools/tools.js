@@ -4,6 +4,8 @@ const commander = require("commander");
 const glob = require("./glob/glob.js");
 const shot = require("./screenshots/shot.js");
 const fs = require("./file-system/fs.js");
+const imgmin = require("./imgmin/imgmin.js");
+const htmlValidate = require("./html-validator/validator.js");
 
 // glob
 commander
@@ -41,7 +43,7 @@ commander
 commander
   .command("shot")
   .description(
-    "input.csvファイルを元にスクリーンショットを撮影します。設定ファイルはconfig.jsonです。(例: npm run tools -- shot)"
+    "input.csvを元にスクリーンショットを撮影します。設定ファイルはconfig.jsonです。(例: npm run tools -- shot)"
   )
   .action(function(cmd) {
     shot();
@@ -68,6 +70,42 @@ commander
   )
   .action(function(cmd) {
     fs(cmd);
+  });
+
+// img-min
+commander
+  .command("imgmin")
+  .description(
+    "jpg, png, svg, gif の画像ファイルサイズを圧縮します。(例: npm run tools -- imgmin)"
+  )
+  .option(
+    "-r --root <root>",
+    "ファイルの入力元のディレクトリ(例: src/)",
+    "src/"
+  )
+  .option(
+    "-o --output <output>",
+    "ファイルの出力先のディレクトリ(例: output_imgmin/)",
+    "output_imgmin/"
+  )
+  .action(function(cmd) {
+    imgmin(cmd);
+  });
+
+// html-validator
+commander
+  .command("html-validate")
+  .alias("hv")
+  .description(
+    "HTMLをW3Cに基づきバリデーションチェックします。(例: npm run tools -- hv)"
+  )
+  .option(
+    "-p --pattern <pattern>",
+    "ファイルの入力元のディレクトリ ワイルドカードが使えます コンマ(,)で区切ることができます(例: src/**/*.html,!**/includes)",
+    "src/**/*.html,!**/includes"
+  )
+  .action(function(cmd) {
+    htmlValidate(cmd);
   });
 
 commander.usage("[command] [options]").parse(process.argv);

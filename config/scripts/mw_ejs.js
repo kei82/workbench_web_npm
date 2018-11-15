@@ -2,10 +2,8 @@ const fs = require("fs-extra");
 const ejs = require("ejs");
 
 module.exports = mwEJS = (requestPath, data, opt) => {
-  // htmlのパス変換
-  let htmlPath = opt.baseDir + requestPath;
-  // ejsのパス変換
-  let ejsPath = htmlPath.replace(new RegExp(`${opt.ext}$`), opt.convert);
+  let htmlPath = opt.baseDir + requestPath; // htmlのパス変換
+  let ejsPath = htmlPath.replace(new RegExp(`${opt.ext}$`), opt.convert); // ejsのパス変換
 
   // ejsかdataがあるとき
   if (fs.pathExistsSync(ejsPath) || data) {

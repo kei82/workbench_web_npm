@@ -2,16 +2,13 @@ const fs = require("fs-extra");
 const ssi = require("ssi");
 
 module.exports = mwSSI = (requestPath, data, opt) => {
-  // ファイルパス変換
-  const filePath = opt.baseDir + requestPath;
+  const filePath = opt.baseDir + requestPath; // ファイルパス変換
 
   // Dataかファイルが存在するとき
   if (fs.pathExistsSync(filePath) || data) {
-    // ファイル読み込み
-    const fileData = !data ? fs.readFileSync(filePath) : data;
+    const fileData = !data ? fs.readFileSync(filePath) : data; // ファイル読み込み
+    const parser = new ssi(opt.baseDir, opt.baseDir, "/**/*" + opt.ext, true); // ssiコンパイル
 
-    // ssiコンパイル
-    const parser = new ssi(opt.baseDir, opt.baseDir, "/**/*" + opt.ext);
     let ssiContent;
     try {
       ssiContent = parser.parse(filePath, fileData.toString()).contents;

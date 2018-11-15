@@ -1,6 +1,6 @@
-const fs = require("fs-extra");
-
 module.exports = fsTools = cmd => {
+  const fs = require("fs-extra");
+
   let fileList = fs
     .readFileSync(cmd.name)
     .toString()

@@ -13,10 +13,10 @@ const filterResult = root => {
     case /.*\.ejs$/.test(root):
       result = false;
       break;
-    case /(\/babel$|\/babel\/)/.test(root):
+    case /(\/babel$|\/babel\/.*\.js$)/.test(root):
       result = false;
       break;
-    case /(\/sass$|\/sass\/)/.test(root):
+    case /(\/sass$|\/sass\/.*\.scss$)/.test(root):
       result = false;
       break;
   }

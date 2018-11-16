@@ -35,9 +35,7 @@ const ejsCompile = path => {
 
 const glob = (pattern, func, options = globOptions) => {
   globby(pattern, options).then(files => {
-    files.forEach(path => {
-      func(path);
-    });
+    for (let path of files) func(path);
   });
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "coding-boilerplate",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "scripts": {
     "start": "cross-env NODE_ENV=development npm-run-all -p dev:*",
     "build": "cross-env NODE_ENV=production npm-run-all -s dev:*",

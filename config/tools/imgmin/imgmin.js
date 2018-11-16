@@ -14,7 +14,7 @@ module.exports = imgmin = cmd => {
     { png: { engine: "pngout", command: ["--quality=70-80"] } },
     { svg: { engine: "svgo", command: "--multipass" } },
     { gif: { engine: "gifsicle", command: false } },
-    function(error, completed, statistic) {
+    (error, completed, statistic) => {
       if (error) console.error(error.engine, error.input);
     }
   );

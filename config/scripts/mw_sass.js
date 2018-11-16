@@ -21,14 +21,14 @@ module.exports = mwSASS = (requestPath, data, opt) => {
     sourceMapEmbed: !isProduction,
     sourceMapContents: !isProduction,
     sourceMapRoot: "../",
-    importer: function(url) {
+    importer: url => {
       errorPath = url;
     }
   };
   // 使用するPostcssプラグイン
   const postcssPlugin = [
     mqpacker({
-      sort: function(a, b) {
+      sort: (a, b) => {
         return b.localeCompare(a);
       }
     }),

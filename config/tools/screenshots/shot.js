@@ -1,4 +1,4 @@
-module.exports = shot = () => {
+module.exports = shot = cmd => {
   const fs = require("fs-extra");
   const puppeteer = require("puppeteer");
   const csvParse = require("csv-parse/lib/sync");
@@ -16,57 +16,62 @@ module.exports = shot = () => {
   );
   fs.mkdirsSync(conf.output_folder); // 出力フォルダ作成
 
-  process.on("unhandledRejection", error => {
-    console.error(error);
-    process.exit(1);
-  });
+  if (cmd.config) {
+    console.log(conf);
+  } else {
+    process.on("unhandledRejection", error => {
+      console.error(error);
+      process.exit(1);
+    });
 
-  (async () => {
-    try {
-      const browser = await puppeteer.launch();
-      promiseList = [];
-      conf.viewport.forEach(viewport => {
-        pages.forEach(target => {
-          promiseList.push(
-            (async () => {
-              const page = await browser.newPage();
-              await page.setExtraHTTPHeaders({
-                Authorization: `Basic ${Buffer.from(
-                  `${conf.basic_username}:${conf.basic_password}`
-                ).toString("base64")}`
-              });
-              await page.setViewport({ width: viewport.width, height: 1 });
-              const response = await page.goto(target.url);
-              await page.waitFor(2000);
+    (async () => {
+      try {
+        const browser = await puppeteer.launch();
+        promiseList = [];
+        for (let viewport of conf.viewport) {
+          for (let target of pages) {
+            promiseList.push(
+              (async () => {
+                const page = await browser.newPage();
+                await page.setExtraHTTPHeaders({
+                  Authorization: `Basic ${Buffer.from(
+                    `${conf.basic_username}:${conf.basic_password}`
+                  ).toString("base64")}`
+                });
+                await page.setViewport({ width: viewport.width, height: 1 });
+                const response = await page.goto(target.url);
+                await page.waitFor(2000);
 
-              if (response.status() !== 200) {
-                return [];
-              }
+                if (response.status() !== 200) {
+                  return [];
+                }
 
-              const fileName = conf.output_filename
-                .replace(/{{name}}/g, target.filename)
-                .replace(/{{device}}/g, viewport.device);
-              await page.screenshot({
-                path: conf.output_folder + "/" + fileName,
-                fullPage: true,
-                type: conf.file_type
-              });
-              await page.close();
+                const fileName = conf.output_filename
+                  .replace(/{{name}}/g, target.filename)
+                  .replace(/{{device}}/g, viewport.device);
+                await page.screenshot({
+                  path: conf.output_folder + "/" + fileName,
+                  fullPage: true,
+                  type: conf.file_type
+                });
+                await page.close();
 
-              console.log(fileName);
-              return fileName;
-            })()
-          );
-        });
-      });
+                console.log(fileName);
+                return fileName;
+              })()
+            );
+          }
+        }
 
-      await Promise.all(promiseList);
-      await browser.close();
-    } catch (error) {
-      throw error;
-    }
-  })().catch(error => {
-    console.error(error);
-    process.exit(1);
-  });
+        await Promise.all(promiseList);
+        await browser.close();
+        console.log("\nCompletion!");
+      } catch (error) {
+        throw error;
+      }
+    })().catch(error => {
+      console.error(error);
+      process.exit(1);
+    });
+  }
 };

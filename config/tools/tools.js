@@ -31,11 +31,11 @@ commander
   .option(
     "-n --name <name>",
     "出力するファイル名(ファイルが作成されます)",
-    "filelist.txt"
+    "output_filelist.txt"
   )
   .option("-o --output", "検索結果をファイルに出力する", false)
   .option("-a --absolute", "出力するパスを絶対パスにするオプション", false)
-  .action(function(cmd) {
+  .action(cmd => {
     glob(cmd);
   });
 
@@ -45,8 +45,9 @@ commander
   .description(
     "input.csvを元にスクリーンショットを撮影します。設定ファイルはconfig.jsonです。(例: npm run tools -- shot)"
   )
-  .action(function(cmd) {
-    shot();
+  .option("-c --config", "設定ファイルを表示して終了します", false)
+  .action(cmd => {
+    shot(cmd);
   });
 
 // fs
@@ -55,7 +56,7 @@ commander
   .description(
     "ファイルリストを元にコピーや削除を行います。(例: npm run tools -- fs)"
   )
-  .option("-n --name <name>", "読み込むファイルリストの名前", "filelist.txt")
+  .option("-n --name <name>", "読み込むファイルリストの名前", "output_filelist.txt")
   .option("-r --root <root>", "ファイルのコピー元のディレクトリ(例: src/)", "")
   .option(
     "-o --output <output>",
@@ -68,7 +69,7 @@ commander
     /^(copy|delete)$/i,
     "copy"
   )
-  .action(function(cmd) {
+  .action(cmd => {
     fs(cmd);
   });
 
@@ -88,7 +89,7 @@ commander
     "ファイルの出力先のディレクトリ(例: output_imgmin/)",
     "output_imgmin/"
   )
-  .action(function(cmd) {
+  .action(cmd => {
     imgmin(cmd);
   });
 
@@ -104,7 +105,7 @@ commander
     "ファイルの入力元のディレクトリ ワイルドカードが使えます コンマ(,)で区切ることができます(例: src/**/*.html,!**/includes)",
     "src/**/*.html,!**/includes"
   )
-  .action(function(cmd) {
+  .action(cmd => {
     htmlValidate(cmd);
   });
 

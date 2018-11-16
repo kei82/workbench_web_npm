@@ -52,9 +52,7 @@ const getChangedFile = () => {
     .split(/\r\n|\r|\n/)
     .filter(path => /\.html$/.test(path)); // srcフォルダ内のhtmlを抜き出す
   if (filePaths.length > 0) {
-    filePaths.forEach(filePath => {
-      lint(filePath);
-    });
+    for (let filePath of filePaths) lint(filePath);
   }
 };
 

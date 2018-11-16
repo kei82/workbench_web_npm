@@ -35,8 +35,9 @@ module.exports = htmlValidate = cmd => {
           if (files[files.length - 1] === path) {
             if (errNum == 0) {
               fs.appendFileSync(outputFile, "No issues!");
+              console.log("No issues!");
             } else {
-              console.error("\x1b[41m\x1b[37m", `${errNum} issues!`, "\x1b[0m");
+              console.error("\x1b[41m\x1b[37m", `${errNum} issues`, "\x1b[0m");
             }
           }
         });

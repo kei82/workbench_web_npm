@@ -40,9 +40,7 @@ const sassCompile = (requestPath, data) => {
 // ファイルの取得
 const glob = (pattern, func, options = globOptions) => {
   globby(pattern, options).then(files => {
-    files.forEach(path => {
-      func(path, fs.readFileSync(path));
-    });
+    for (let path of files) func(path, fs.readFileSync(path));
   });
 };
 

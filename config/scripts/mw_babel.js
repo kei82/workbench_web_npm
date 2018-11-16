@@ -43,9 +43,9 @@ module.exports = mwBABEL = (requestPath, data, opt) => {
       const fuse = FuseBox.init(fuseOptions);
       const fuseSet = fuse.bundle(outputName).instructions(inputFile);
       return fuse.run().then(producer => {
-        producer.bundles.forEach(bundle => {
-          module.exports.promiseResult = bundle.generatedCode;
-        });
+        for (let [key, obj] of producer.bundles) {
+          module.exports.promiseResult = obj.generatedCode;
+        }
       });
     };
     return fuseStart(babelFileName, "> " + babelFilePath);

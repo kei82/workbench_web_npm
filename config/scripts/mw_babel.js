@@ -26,6 +26,7 @@ module.exports = mwBABEL = (requestPath, data, opt) => {
       output: "$name.js",
       target: "browser",
       useTypescriptCompiler: false,
+      tsConfig: false,
       sourceMaps: false,
       writeBundles: false,
       plugins: [

@@ -11,21 +11,21 @@ const htmlValidate = require("./html-validator/validator.js");
 commander
   .command("glob")
   .description(
-    "ワイルドカードでファイルを検索します。(例: npm run tools -- glob -p **/*.js,**/*.css -i node_modules)"
+    `ワイルドカードでファイルを検索します。(例: npm run tools -- glob -p "**/*.js,**/*.css" -i "node_modules")`
   )
   .option(
     "-p --pattern <pattern>",
-    "[必須] ワイルドカードのパターン コンマ(,)で区切ることができます(例: **/*.txt)",
+    `ワイルドカードのパターン コンマ(,)で区切ることができます(例: "**/*.txt")`,
     "*"
   )
   .option(
     "-i --ignore <ignore>",
-    "ワイルドカードの除外するパターン コンマ(,)で区切ることができます(例: **/*.html)",
+    `ワイルドカードの除外するパターン コンマ(,)で区切ることができます(例: "**/*.html")`,
     false
   )
   .option(
     "-r --root <root>",
-    "ファイルを探すルートディレクトリ(例: C:/Users/Desktop/)",
+    `ファイルを探すルートディレクトリ(例: "C:/Users/Desktop/")`,
     false
   )
   .option(
@@ -57,15 +57,15 @@ commander
     "ファイルリストを元にコピーや削除を行います。(例: npm run tools -- fs)"
   )
   .option("-n --name <name>", "読み込むファイルリストの名前", "output_filelist.txt")
-  .option("-r --root <root>", "ファイルのコピー元のディレクトリ(例: src/)", "")
+  .option("-r --root <root>", `ファイルのコピー元のディレクトリ(例: "src/")`, "")
   .option(
     "-o --output <output>",
-    "ファイルのコピー先のディレクトリ(例: output/)",
+    `ファイルのコピー先のディレクトリ(例: "output/")`,
     "output_fs/"
   )
   .option(
     "-w --work <work>",
-    "動作の指定をする copy | delete",
+    "動作の指定をする",
     /^(copy|delete)$/i,
     "copy"
   )
@@ -81,12 +81,12 @@ commander
   )
   .option(
     "-r --root <root>",
-    "ファイルの入力元のディレクトリ(例: src/)",
+    `ファイルの入力元のディレクトリ(例: "src/")`,
     "src/"
   )
   .option(
     "-o --output <output>",
-    "ファイルの出力先のディレクトリ(例: output_imgmin/)",
+    `ファイルの出力先のディレクトリ(例: "output_imgmin/")`,
     "output_imgmin/"
   )
   .action(cmd => {
@@ -102,7 +102,7 @@ commander
   )
   .option(
     "-p --pattern <pattern>",
-    "ファイルの入力元のディレクトリ ワイルドカードが使えます コンマ(,)で区切ることができます(例: src/**/*.html,!**/includes)",
+    `ファイルの入力元のディレクトリ ワイルドカードが使えます コンマ(,)で区切ることができます(例: "src/**/*.html,!**/includes")`,
     "src/**/*.html,!**/includes"
   )
   .action(cmd => {

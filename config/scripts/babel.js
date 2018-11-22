@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 const globby = require("globby");
 
 // ミドルウェア [return Buffer]
-const mwBABEL = require("./mw_babel.js");
+const mwBABEL = require("./modules/mw_babel.js");
 
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 let mwOptions = {

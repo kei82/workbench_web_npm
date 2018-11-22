@@ -15,7 +15,6 @@ module.exports = mwBABEL = (requestPath, data, opt) => {
     const babelDir = jsPath
       .replace(/\/[^\/]*$/, "/")
       .replace(/\/js\//g, "/babel/"); // babelファイルのディレクトリ
-    const jsDir = jsPath.replace(/\/[^\/]*$/, "/").replace(/^src\//, "dist/"); // jsファイルのディレクトリ
     const babelFilePath = jsPath.replace(/.*\//, "");
     const babelFileName = babelFilePath.replace(/\.[^\.]*$/, "");
     babelOptions.sourceMaps = isProduction ? false : "inline";
@@ -45,7 +44,7 @@ module.exports = mwBABEL = (requestPath, data, opt) => {
       const fuseSet = fuse.bundle(outputName).instructions(inputFile);
       return fuse.run().then(producer => {
         for (let [key, obj] of producer.bundles) {
-          module.exports.promiseResult = obj.generatedCode;
+          return obj.generatedCode;
         }
       });
     };

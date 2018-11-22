@@ -56,19 +56,22 @@ commander
   .description(
     "ファイルリストを元にコピーや削除を行います。(例: npm run tools -- fs)"
   )
-  .option("-n --name <name>", "読み込むファイルリストの名前", "output_filelist.txt")
-  .option("-r --root <root>", `ファイルのコピー元のディレクトリ(例: "src/")`, "")
+  .option(
+    "-n --name <name>",
+    "読み込むファイルリストの名前",
+    "output_filelist.txt"
+  )
+  .option(
+    "-r --root <root>",
+    `ファイルのコピー元のディレクトリ(例: "src/")`,
+    ""
+  )
   .option(
     "-o --output <output>",
     `ファイルのコピー先のディレクトリ(例: "output/")`,
     "output_fs/"
   )
-  .option(
-    "-w --work <work>",
-    "動作の指定をする",
-    /^(copy|delete)$/i,
-    "copy"
-  )
+  .option("-w --work <work>", "動作の指定をする", /^(copy|delete)$/i, "copy")
   .action(cmd => {
     fs(cmd);
   });

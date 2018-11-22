@@ -10,7 +10,7 @@ const filterResult = root => {
 
   // 除外対象
   switch (true) {
-    case /.*\.ejs$/.test(root):
+    case /\.ejs$/.test(root):
       result = false;
       break;
     case /(\/babel$|\/babel\/.*\.js$)/.test(root):

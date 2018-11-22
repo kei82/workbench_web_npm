@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 const globby = require("globby");
 
 // ミドルウェア [return Buffer]
-const mwSASS = require("./mw_sass.js");
+const mwSASS = require("./modules/mw_sass.js");
 
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 const hasRootDir = !isProduction ? "src" : "dist"; // 出力先

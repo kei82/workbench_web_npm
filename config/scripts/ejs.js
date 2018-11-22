@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 const globby = require("globby");
 
 // ミドルウェア [return Buffer]
-const mwEJS = require("./mw_ejs.js");
+const mwEJS = require("./modules/mw_ejs.js");
 
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 let mwOptions = {

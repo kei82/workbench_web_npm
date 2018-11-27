@@ -2,6 +2,7 @@ const browserSync = require("browser-sync");
 
 // ミドルウェアを読み込んで直列処理する
 const reqSeries = require("./modules/req_series.js");
+
 // ミドルウェア [return Buffer]
 const mwEJS = require("./modules/mw_ejs.js");
 const mwSASS = require("./modules/mw_sass.js");

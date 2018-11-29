@@ -17,5 +17,3 @@ const testB = () => {
   });
   testB();
 })();
-
-$(".test").text("TEXT");

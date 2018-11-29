@@ -43,6 +43,7 @@ module.exports = shot = cmd => {
                 await page.waitFor(2000);
 
                 if (response.status() !== 200) {
+                  console.error("Not status 200", target.url);
                   return [];
                 }
 

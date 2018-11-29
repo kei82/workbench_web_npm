@@ -19,8 +19,9 @@ const babelCompile = path => {
     .replace(mwOptions.baseDir, "/")
     .replace(/\/babel\//g, "/js/");
   outputPath = inputPath.replace(/^\//, "dist/");
-  mwBABEL(inputPath, false, mwOptions).then(() => {
-    fs.outputFileSync(outputPath, mwBABEL.promiseResult);
+
+  mwBABEL(inputPath, false, mwOptions).then((result) => {
+    fs.outputFileSync(outputPath, result);
   });
 };
 

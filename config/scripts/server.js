@@ -65,7 +65,7 @@ const reqLoaderJs = {
 // browserSync 設定
 const bsOptions = {
   server: {
-    baseDir: hasRootDir,
+    baseDir: hasRootDir
   },
   middleware: [
     reqSeries(reqLoaderHtml),
@@ -73,8 +73,6 @@ const bsOptions = {
     reqSeries(reqLoaderJs)
   ],
   port: 3000,
-  watch: true,
-  files: [hasRootDir + "/**/*.{html,css,js,ejs}"], // 監視ファイル
   https: {
     pfx: "config/ssl/ssl.pfx", // 証明書を読込
     passphrase: "test" // 証明書のパスワード
@@ -85,6 +83,7 @@ const bsOptions = {
 
 // browserSync起動
 const browserSyncStart = () => {
+  browserSync.watch(hasRootDir + "/**/*.{html,css,js,ejs}", browserSync.reload);
   browserSync.init(bsOptions);
 };
 

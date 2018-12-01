@@ -1,6 +1,6 @@
 const browserSync = require("browser-sync");
 
-// ミドルウェアを読み込んで直列処理する
+// ミドルウェアを直列処理する
 const reqSeries = require("./modules/req_series.js");
 
 // ミドルウェア [return Buffer]
@@ -11,12 +11,6 @@ const mwBABEL = require("./modules/mw_babel");
 
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 const hasRootDir = !isProduction ? "src" : "dist"; // ルートディレクトリ
-const port = 3000; // ポート
-const fileWatch = [hasRootDir + "/**/*.{html,css,js,ejs}"]; // リロードの監視ファイル
-const httpsOptions = {
-  pfx: "config/ssl/ssl.pfx", // 証明書を読込
-  passphrase: "test" // 証明書のパスワード
-};
 
 // htmlをコンパイル
 const reqLoaderHtml = {
@@ -68,25 +62,31 @@ const reqLoaderJs = {
   ]
 };
 
+// browserSync 設定
+const bsOptions = {
+  server: {
+    baseDir: hasRootDir,
+    directory: true,
+    middleware: [
+      reqSeries(reqLoaderHtml),
+      reqSeries(reqLoaderCss),
+      reqSeries(reqLoaderJs)
+    ]
+  },
+  port: 3000,
+  watch: true,
+  files: [hasRootDir + "/**/*.{html,css,js,ejs}"], // 監視ファイル
+  https: {
+    pfx: "config/ssl/ssl.pfx", // 証明書を読込
+    passphrase: "test" // 証明書のパスワード
+  }, // httpの場合はfalseにする
+  logFileChanges: false,
+  open: true
+};
+
 // browserSync起動
 const browserSyncStart = () => {
-  browserSync({
-    server: {
-      baseDir: hasRootDir,
-      directory: true,
-      middleware: [
-        reqSeries(reqLoaderHtml),
-        reqSeries(reqLoaderCss),
-        reqSeries(reqLoaderJs)
-      ]
-    },
-    port: port,
-    watch: true,
-    files: fileWatch,
-    https: httpsOptions, // httpの場合はfalseにする
-    logFileChanges: false,
-    open: true
-  });
+  browserSync(bsOptions);
 };
 
 if (!isProduction) browserSyncStart();

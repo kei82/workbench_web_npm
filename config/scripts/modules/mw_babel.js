@@ -1,11 +1,11 @@
-const fs = require("fs-extra");
-const { FuseBox, BabelPlugin, QuantumPlugin } = require("fuse-box");
-
-const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
-const cwd = process.cwd().replace(/\\/g, "/") + "/";
-const babelOptions = fs.readJsonSync(".babelrc"); // babel設定ファイルを読込
-
 module.exports = mwBABEL = (requestPath, data, opt) => {
+  const fs = require("fs-extra");
+  const { FuseBox, BabelPlugin, QuantumPlugin } = require("fuse-box");
+
+  const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
+  const cwd = process.cwd().replace(/\\/g, "/") + "/";
+  const babelOptions = fs.readJsonSync(".babelrc"); // babel設定ファイルを読込
+
   if (!requestPath) throw requestPath;
   let jsPath = opt.baseDir + requestPath; // jsのパス変換
 

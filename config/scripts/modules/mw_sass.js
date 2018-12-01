@@ -1,12 +1,12 @@
-const fs = require("fs-extra");
-const sass = require("node-sass");
-const postcss = require("postcss");
-const mqpacker = require("css-mqpacker");
-const autoprefixer = require("autoprefixer");
-
-const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
-
 module.exports = mwSASS = (requestPath, data, opt) => {
+  const fs = require("fs-extra");
+  const sass = require("node-sass");
+  const postcss = require("postcss");
+  const mqpacker = require("css-mqpacker");
+  const autoprefixer = require("autoprefixer");
+
+  const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
+
   let cssPath = opt.baseDir + requestPath; // cssのパス変換
   let sassPath = cssPath
     .replace(/\/css\//, "/sass/")

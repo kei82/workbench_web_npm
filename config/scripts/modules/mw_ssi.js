@@ -1,7 +1,7 @@
-const fs = require("fs-extra");
-const ssi = require("ssi");
-
 module.exports = mwSSI = (requestPath, data, opt) => {
+  const fs = require("fs-extra");
+  const ssi = require("ssi");
+
   const filePath = opt.baseDir + requestPath; // ファイルパス変換
 
   // Dataかファイルが存在するとき

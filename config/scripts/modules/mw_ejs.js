@@ -1,7 +1,7 @@
-const fs = require("fs-extra");
-const ejs = require("ejs");
-
 module.exports = mwEJS = (requestPath, data, opt) => {
+  const fs = require("fs-extra");
+  const ejs = require("ejs");
+
   let htmlPath = opt.baseDir + requestPath; // htmlのパス変換
   let ejsPath = htmlPath.replace(new RegExp(`${opt.ext}$`), opt.convert); // ejsのパス変換
 

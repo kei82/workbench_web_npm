@@ -4,11 +4,11 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development npm-run-all -p dev:*",
     "build": "cross-env NODE_ENV=production npm-run-all -s dev:*",
+    "dev:server": "node config/scripts/server.js",
     "dev:copy": "node config/scripts/copy.js",
     "dev:ejs": "node config/scripts/ejs.js",
     "dev:sass": "node config/scripts/sass.js",
     "dev:babel": "node config/scripts/babel.js",
-    "dev:server": "node config/scripts/server.js",
     "lint:html": "node config/scripts/lint_html.js",
     "format:prettier": "node config/scripts/prettier.js",
     "tools": "node config/tools/tools.js"

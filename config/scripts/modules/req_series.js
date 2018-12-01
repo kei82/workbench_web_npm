@@ -17,6 +17,8 @@ module.exports = mwReq = opt => {
             });
           }
           if (opt.command.length === index + 1) {
+            if (/\.css$/.test(requestPath)) res.writeHead(200, {'Content-Type': 'text/css'});
+            if (/\.js$/.test(requestPath)) res.writeHead(200, {'Content-Type': 'text/javascript'});
             res.end(data);
           }
         })();

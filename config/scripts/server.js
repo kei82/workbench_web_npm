@@ -1,4 +1,4 @@
-const browserSync = require("browser-sync");
+const browserSync = require("browser-sync").create();
 
 // ミドルウェアを直列処理する
 const reqSeries = require("./modules/req_series.js");
@@ -66,13 +66,12 @@ const reqLoaderJs = {
 const bsOptions = {
   server: {
     baseDir: hasRootDir,
-    directory: true,
-    middleware: [
-      reqSeries(reqLoaderHtml),
-      reqSeries(reqLoaderCss),
-      reqSeries(reqLoaderJs)
-    ]
   },
+  middleware: [
+    reqSeries(reqLoaderHtml),
+    reqSeries(reqLoaderCss),
+    reqSeries(reqLoaderJs)
+  ],
   port: 3000,
   watch: true,
   files: [hasRootDir + "/**/*.{html,css,js,ejs}"], // 監視ファイル
@@ -86,7 +85,7 @@ const bsOptions = {
 
 // browserSync起動
 const browserSyncStart = () => {
-  browserSync(bsOptions);
+  browserSync.init(bsOptions);
 };
 
 if (!isProduction) browserSyncStart();

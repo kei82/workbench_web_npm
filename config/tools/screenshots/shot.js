@@ -1,6 +1,6 @@
 module.exports = shot = cmd => {
   const fs = require("fs-extra");
-  const puppeteer = require("puppeteer");
+  const puppeteer = require("puppeteer-core");
   const csvParse = require("csv-parse/lib/sync");
 
   require("events").EventEmitter.defaultMaxListeners = 30;
@@ -26,7 +26,7 @@ module.exports = shot = cmd => {
 
     (async () => {
       try {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({executablePath: conf.chromium_path});
         promiseList = [];
         for (let viewport of conf.viewport) {
           for (let target of pages) {
@@ -66,7 +66,7 @@ module.exports = shot = cmd => {
 
         await Promise.all(promiseList);
         await browser.close();
-        console.log("\nCompletion!");
+        console.log("\nScreenshots Completion!");
       } catch (error) {
         throw error;
       }

@@ -1,21 +1,56 @@
 module.exports = imgmin = cmd => {
-  let compress_images = require("compress-images");
+  const imagemin = require("imagemin");
+  const imageminMozjpeg = require("imagemin-mozjpeg");
+  const imageminPngquant = require("imagemin-pngquant");
+  const imageminSvgo = require("imagemin-svgo");
 
-  let pattern = "**/*.{jpg,JPG,jpeg,JPEG,png,PNG,svg,gif,GIF}";
+  let pattern = "**/*.{jpg,JPG,jpeg,JPEG,png,PNG,svg}";
   let inputPath = cmd.root + pattern;
   let outputPath = cmd.output;
 
-  compress_images(
-    inputPath,
-    outputPath,
-    { compress_force: false, statistic: true, autoupdate: true },
-    false,
-    { jpg: { engine: "mozjpeg", command: ["-quality", "70"] } },
-    { png: { engine: "pngout", command: ["--quality=70-80"] } },
-    { svg: { engine: "svgo", command: "--multipass" } },
-    { gif: { engine: "gifsicle", command: false } },
-    (error, completed, statistic) => {
-      if (error) console.error(error.engine, error.input);
-    }
-  );
+  (async () => {
+    await imagemin([inputPath], outputPath, {
+      use: [
+        imageminMozjpeg({
+          quality: 80
+        }),
+        imageminPngquant({
+          quality: "70-80",
+          speed: 1,
+          strip: true
+        }),
+        imageminSvgo({
+          plugins: [
+            {
+              cleanupNumericValues: {
+                floatPrecision: 5
+              }
+            },
+            {
+              convertPathData: {
+                floatPrecision: 5
+              }
+            },
+            {
+              transformsWithOnePath: {
+                floatPrecision: 5
+              }
+            },
+            {
+              convertTransform: {
+                floatPrecision: 5
+              }
+            },
+            {
+              cleanupListOfValues: {
+                floatPrecision: 5
+              }
+            }
+          ]
+        })
+      ]
+    });
+
+    console.log("Images optimized");
+  })();
 };

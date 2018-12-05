@@ -31,6 +31,6 @@ promiseStart(inputFiles, readFile)
   .then(result => {
     outputFile(inputFiles, result);
   })
-  .catch(err => {
-    console.error(err);
+  .catch(error => {
+    console.error(error);
   });

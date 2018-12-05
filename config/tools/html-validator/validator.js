@@ -1,31 +1,36 @@
 module.exports = htmlValidate = cmd => {
   const fs = require("fs-extra");
   const globby = require("globby");
-  const validate = require("html5-validator");
-
+  const validator = require("html-validator");
+  let outputFile = "output_html-validate.md";
   let globOptions = {
     matchBase: true,
     onlyFiles: true
   };
-  let outputFile = "output_html-validate.md";
   let errNum = 0;
 
   const writeValidate = path => {
-    return validate(path).then(result => {
-      if (result.messages.length > 0) {
-        errNum += 1;
-        var errText = "";
-        errText += `## ${path}\n\n`;
-        for (let err of result.messages) {
-          errText += `* [${err.type}] ${path}:${err.lastLine}:${
-            err.firstColumn
-          }  \n`;
-          errText += `|| \`${err.message}\`  \n`;
-          errText += `|| \`${err.extract.replace(/\n/g, "")}\`\n\n`;
+    return validator({ data: fs.readFileSync(path) })
+      .then(data => {
+        let result = "";
+        let messages = JSON.parse(data).messages;
+
+        if (messages.length) {
+          errNum++;
+          result += `## ${path}\n\n`;
+          for (let e of messages) {
+            result += `**[${e.type}] ${path}:${e.lastLine}:${
+              e.lastColumn
+            }**  \n`;
+            result += `* ${e.message}  \n`;
+            result += `* \`${e.extract}\`\n\n`;
+          }
+          fs.appendFileSync(outputFile, result);
         }
-        fs.appendFileSync(outputFile, errText);
-      }
-    });
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   const glob = () => {
@@ -33,11 +38,10 @@ module.exports = htmlValidate = cmd => {
       for (let path of files) {
         writeValidate(path).then(() => {
           if (files[files.length - 1] === path) {
-            if (errNum == 0) {
-              fs.appendFileSync(outputFile, "No issues!");
-              console.log("No issues!");
+            if (errNum) {
+              console.error(`${errNum} issues!`);
             } else {
-              console.error("\x1b[41m\x1b[37m", `${errNum} issues`, "\x1b[0m");
+              console.log("No issues!");
             }
           }
         });

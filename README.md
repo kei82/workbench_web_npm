@@ -8,7 +8,7 @@
 
 Git、Node.js を使用します。  
 [Git](https://git-scm.com/) (最新推奨)  
-[Node.js](https://nodejs.org/ja/) (Node,npmはpackage.jsonにあるバージョン 推奨)  
+[Node.js](https://nodejs.org/ja/) (Node,npmはpackage.jsonに記載のバージョン推奨)  
 
 ※Node.jsのバージョン管理を使用しています。上記のバージョンに合わせてください。  
 Winの場合[nodist](https://github.com/marcelklehr/nodist/releases)  

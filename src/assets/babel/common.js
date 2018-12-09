@@ -1,6 +1,6 @@
 // DEMO
 const testA = () => {
-  return new Promise((resolve, rej) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve("test A");
     }, 2000);

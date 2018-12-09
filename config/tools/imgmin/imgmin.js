@@ -1,4 +1,4 @@
-module.exports = imgmin = cmd => {
+module.exports = cmd => {
   const imagemin = require("imagemin");
   const imageminMozjpeg = require("imagemin-mozjpeg");
   const imageminPngquant = require("imagemin-pngquant");

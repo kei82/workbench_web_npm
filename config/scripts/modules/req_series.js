@@ -1,4 +1,4 @@
-module.exports = mwReq = opt => {
+module.exports = opt => {
   return (req, res, next) => {
     let requestPath = req ? req.url : false;
     if (/\/$/.test(requestPath)) requestPath += "index.html";

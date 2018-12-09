@@ -1,4 +1,4 @@
-module.exports = fsTools = cmd => {
+module.exports = cmd => {
   const fs = require("fs-extra");
 
   let fileList = fs

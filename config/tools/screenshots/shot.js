@@ -1,4 +1,4 @@
-module.exports = shot = cmd => {
+module.exports = cmd => {
   const fs = require("fs-extra");
   const puppeteer = require("puppeteer-core");
   const csvParse = require("csv-parse/lib/sync");
@@ -27,7 +27,7 @@ module.exports = shot = cmd => {
     (async () => {
       try {
         const browser = await puppeteer.launch({executablePath: conf.chromium_path});
-        promiseList = [];
+        let promiseList = [];
         for (let viewport of conf.viewport) {
           for (let target of pages) {
             promiseList.push(

@@ -1,4 +1,4 @@
-module.exports = htmlValidate = cmd => {
+module.exports = cmd => {
   const fs = require("fs-extra");
   const globby = require("globby");
   const validator = require("html-validator");

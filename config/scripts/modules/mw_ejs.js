@@ -1,4 +1,4 @@
-module.exports = mwEJS = (requestPath, data, opt) => {
+module.exports = (requestPath, data, opt) => {
   const fs = require("fs-extra");
   const ejs = require("ejs");
 

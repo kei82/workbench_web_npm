@@ -1,4 +1,3 @@
-const fs = require("fs-extra");
 const globby = require("globby");
 
 // ミドルウェア [return Buffer]
@@ -15,10 +14,9 @@ let globOptions = {
 };
 
 const babelCompile = path => {
-  inputPath = path
+  let inputPath = path
     .replace(mwOptions.baseDir, "/")
     .replace(/\/babel\//g, "/js/");
-  outputPath = inputPath.replace(/^\//, "dist/");
 
   mwBABEL(inputPath, false, mwOptions);
 };

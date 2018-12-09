@@ -1,4 +1,4 @@
-module.exports = globFile = cmd => {
+module.exports = cmd => {
   const fs = require("fs-extra");
   const globby = require("globby");
 

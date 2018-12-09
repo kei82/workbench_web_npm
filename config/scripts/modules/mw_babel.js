@@ -1,4 +1,4 @@
-module.exports = mwBABEL = (requestPath, data, opt) => {
+module.exports = (requestPath, data, opt) => {
   const fs = require("fs-extra");
   const webpack = require("webpack");
   const webpackConfig = require(process.cwd() + "/webpack.config.js");
@@ -10,7 +10,7 @@ module.exports = mwBABEL = (requestPath, data, opt) => {
   if (fs.pathExistsSync(jsPath)) {
     return fs.readFileSync(jsPath);
   } else {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       webpackConfig.entry[requestPath] = babelPath;
       const compiler = webpack(webpackConfig);
       compiler.run((err, stats) => {

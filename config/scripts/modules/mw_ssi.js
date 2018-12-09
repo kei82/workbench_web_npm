@@ -1,4 +1,4 @@
-module.exports = mwSSI = (requestPath, data, opt) => {
+module.exports = (requestPath, data, opt) => {
   const fs = require("fs-extra");
   const ssi = require("ssi");
 

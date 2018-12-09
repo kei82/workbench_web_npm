@@ -1,4 +1,4 @@
-module.exports = mwSASS = (requestPath, data, opt) => {
+module.exports = (requestPath, data, opt) => {
   const fs = require("fs-extra");
   const sass = require("node-sass");
   const postcss = require("postcss");
@@ -17,7 +17,7 @@ module.exports = mwSASS = (requestPath, data, opt) => {
   let sassOptions = {
     data: false,
     outputStyle: "compressed",
-    sourceMap: !isProduction && sassPath.replace(/\/[^\/]*$/, "/"),
+    sourceMap: !isProduction && sassPath.replace(/\/[^/]*$/, "/"),
     sourceMapEmbed: !isProduction,
     sourceMapContents: !isProduction,
     sourceMapRoot: "../",
@@ -48,7 +48,7 @@ module.exports = mwSASS = (requestPath, data, opt) => {
   // sassコンパイル
   const sassDataCompile = data => {
     sassOptions.data = data;
-    sassOptions.includePaths = [sassPath.replace(/\/[^\/]*$/, "/")];
+    sassOptions.includePaths = [sassPath.replace(/\/[^/]*$/, "/")];
     return sass.renderSync(sassOptions);
   };
 
@@ -65,7 +65,7 @@ module.exports = mwSASS = (requestPath, data, opt) => {
       "\n" +
         sassPath +
         " OR include file [@import] " +
-        sassPath.replace(/\/[^\/]*$/, "/") +
+        sassPath.replace(/\/[^/]*$/, "/") +
         "_" +
         errorPath +
         ".scss",

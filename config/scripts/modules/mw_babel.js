@@ -2,7 +2,7 @@ module.exports = mwBABEL = (requestPath, data, opt) => {
   const fs = require("fs-extra");
   const webpack = require("webpack");
   const webpackConfig = require(process.cwd() + "/webpack.config.js");
-  const filePath = requestPath.replace(/.*\//, ""); // ファイルパス変換
+
   const jsPath = opt.baseDir + requestPath; // jsのパス変換
   const babelPath = "./" + jsPath.replace(/\/js\//, "/babel/"); // babelのパス変換
 
@@ -11,12 +11,11 @@ module.exports = mwBABEL = (requestPath, data, opt) => {
     return fs.readFileSync(jsPath);
   } else {
     return new Promise((resolve, reject) => {
-      webpackConfig.entry = babelPath;
-      webpackConfig.output.filename = filePath;
+      webpackConfig.entry[requestPath] = babelPath;
       const compiler = webpack(webpackConfig);
       compiler.run((err, stats) => {
         if (err) throw err;
-        resolve(stats.compilation.assets[filePath].source());
+        resolve(stats.compilation.assets[requestPath].source());
       });
     });
   }

@@ -20,9 +20,7 @@ const babelCompile = path => {
     .replace(/\/babel\//g, "/js/");
   outputPath = inputPath.replace(/^\//, "dist/");
 
-  mwBABEL(inputPath, false, mwOptions).then((result) => {
-    fs.outputFileSync(outputPath, result);
-  });
+  mwBABEL(inputPath, false, mwOptions);
 };
 
 const glob = (pattern, func, options = globOptions) => {

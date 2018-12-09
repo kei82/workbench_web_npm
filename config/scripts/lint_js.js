@@ -34,9 +34,9 @@ if (report.errorCount || report.warningCount) {
   report.warningCount ? errNum.push(report.warningCount + " warnings") : false;
   console.error(
     "\x1b[31m",
-    `\n✖ ${errSum} problems (${errNum.join(", ")})`,
+    `\n\u274C ${errSum} problems (${errNum.join(", ")})`,
     "\x1b[0m"
   );
 } else {
-  console.error("\x1b[32m", "\n✔️  No Error!", "\x1b[0m");
+  console.error("\x1b[32m", "\n\u2714 No Error!", "\x1b[0m");
 }

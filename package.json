@@ -10,6 +10,7 @@
     "dev:sass": "node config/scripts/sass.js",
     "dev:babel": "node config/scripts/babel.js",
     "lint:html": "node config/scripts/lint_html.js",
+    "lint:js": "node config/scripts/lint_js.js",
     "format:prettier": "node config/scripts/prettier.js",
     "tools": "node config/tools/tools.js"
   },

@@ -34,6 +34,7 @@ const errResult = report => {
     `\n\u274C ${errSum} problems (${errNum.join(", ")})`,
     "\x1b[0m"
   );
+  let AnimationEffect;
   notifier.notify(
     {
       title: "JS Lint Error",

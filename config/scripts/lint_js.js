@@ -34,7 +34,6 @@ const errResult = report => {
     `\n\u274C ${errSum} problems (${errNum.join(", ")})`,
     "\x1b[0m"
   );
-  TextTrack;
   notifier.notify(
     {
       title: "JS Lint Error",

@@ -24,6 +24,29 @@ const errPrint = result => {
   }
 };
 
+const errResult = report => {
+  let errSum = report.errorCount + report.warningCount;
+  let errNum = [];
+  report.errorCount ? errNum.push(report.errorCount + " errors") : false;
+  report.warningCount ? errNum.push(report.warningCount + " warnings") : false;
+  console.error(
+    "\x1b[31m",
+    `\n\u274C ${errSum} problems (${errNum.join(", ")})`,
+    "\x1b[0m"
+  );
+  notifier.notify(
+    {
+      title: "JS Lint Error",
+      message: `\u274C ${errSum} problems (${errNum.join(", ")})`
+    },
+    () => {
+      setTimeout(() => {
+        throw "JS Lint Error";
+      }, 1000);
+    }
+  );
+};
+
 const lint = filePaths => {
   const report = cli.executeOnFiles(filePaths);
   if (report.errorCount || report.warningCount) {
@@ -32,30 +55,7 @@ const lint = filePaths => {
         errPrint(result);
       }
     }
-
-    let errSum = report.errorCount + report.warningCount;
-    let errNum = [];
-    report.errorCount ? errNum.push(report.errorCount + " errors") : false;
-    report.warningCount
-      ? errNum.push(report.warningCount + " warnings")
-      : false;
-    console.error(
-      "\x1b[31m",
-      `\n\u274C ${errSum} problems (${errNum.join(", ")})`,
-      "\x1b[0m"
-    );
-
-    notifier.notify(
-      {
-        title: "JS Lint Error",
-        message: `\u274C ${errSum} problems (${errNum.join(", ")})`
-      },
-      () => {
-        setTimeout(() => {
-          throw "JS Lint Error";
-        }, 500);
-      }
-    );
+    errResult(report);
   } else {
     console.error("\x1b[32m", "\n\u2714 No Error!", "\x1b[0m");
   }

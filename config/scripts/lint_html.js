@@ -1,7 +1,7 @@
 const fs = require("fs-extra");
 const childProcess = require("child_process");
-const htmlhint = require("htmlhint").HTMLHint;
 const notifier = require("node-notifier");
+const htmlhint = require("htmlhint").HTMLHint;
 
 let htmlhintOptions = fs.readJsonSync(".htmlhintrc"); // 設定ファイルを読込
 let gitParams = process.env.HUSKY_GIT_PARAMS
@@ -50,7 +50,7 @@ const getChangedFile = () => {
   let filePaths = spawn
     .toString()
     .split(/\r\n|\r|\n/)
-    .filter(path => /\.html$/.test(path)); // srcフォルダ内のhtmlを抜き出す
+    .filter(path => /\.html$/.test(path)); // htmlを抜き出す
   if (filePaths.length > 0) {
     for (let filePath of filePaths) lint(filePath);
   }

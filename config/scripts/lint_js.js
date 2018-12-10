@@ -37,7 +37,7 @@ const errResult = report => {
   notifier.notify(
     {
       title: "JS Lint Error",
-      message: `\u274C ${errSum} problems (${errNum.join(", ")})`
+      message: `${errSum} problems (${errNum.join(", ")})`
     },
     () => {
       setTimeout(() => {

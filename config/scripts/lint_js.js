@@ -39,6 +39,11 @@ const errResult = report => {
     {
       title: "JS Lint Error",
       message: `www`
+    },
+    () => {
+      setTimeout(() => {
+        throw "JS Lint Error";
+      }, 500);
     }
   );
 };

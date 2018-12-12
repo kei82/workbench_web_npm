@@ -1,9 +1,9 @@
 // DEMO
 const testA = () => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
-      resolve("test A");
-    }, 2000);
+      resolve(console.log("test A"));
+    }, 3000);
   });
 };
 
@@ -12,8 +12,6 @@ const testB = () => {
 };
 
 (async () => {
-  await testA().then(resolve => {
-    console.log(resolve);
-  });
+  await testA();
   testB();
 })();

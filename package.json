@@ -1,6 +1,6 @@
 {
   "name": "coding-boilerplate",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "scripts": {
     "start": "cross-env NODE_ENV=development npm-run-all -p dev:*",
     "build": "cross-env NODE_ENV=production npm-run-all -s dev:*",
@@ -19,8 +19,7 @@
   "lint-staged": {
     "*.js": [
       "npx eslint --fix",
-      "npx prettier --write",
-      "git add"
+      "npx prettier --write"
     ],
     "*.html": [
       "npx htmlhint"

@@ -1,4 +1,4 @@
-# 新規用Web開発環境（Git、Node.js）
+# 新規用Web開発環境 (Git、Node.js)
 
 新規サイト制作用に使えるようにしたWeb開発環境です。  
 使う際はそのプロジェクト用に変更することが可能です。  
@@ -73,7 +73,7 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 * [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag) 自動で対になったタグ名をリネーム
 * [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2) カッコを色付け
 * [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) Git機能サポート
-* [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) babel
+* [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) babelで書いてもブレークポイントを貼れる
 * [IntelliSense for CSS class names in HTML](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion) CSS class名 補完
 * [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme) 見やすい配色テーマ
 
@@ -94,7 +94,7 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 ### 今後の予定
 
 * typescriptの導入予定
-* Dev時にwebpackからファイルを出力させないようにする（できなさそう）
+* Dev時にwebpackからファイルを出力させないようにする (できなさそう)
 
 ## npm scripts + node API
 
@@ -137,5 +137,5 @@ package.json で設定するものは以下とします。
 
 #### タスク名
 
-* dev:*（開発機能全般）
-* tools（細かい作業改善ツール群）
+* dev:* (開発機能全般)
+* tools (細かい作業改善ツール群)

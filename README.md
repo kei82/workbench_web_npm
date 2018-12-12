@@ -6,9 +6,9 @@
 
 ## 前提環境
 
-Git、Node.js を使用します。  
-[Git](https://git-scm.com/) (最新推奨)  
-[Node.js](https://nodejs.org/ja/) (Node,npmはpackage.jsonに記載のバージョン推奨)  
+GitとGit Bash、Node.jsとnpm を使用します。  
+[Git](https://git-scm.com/) (Git Bashもインストールされる,最新推奨)  
+[Node.js](https://nodejs.org/ja/) (npmもインストールされる,package.jsonに記載のバージョン推奨)  
 
 ※Node.jsのバージョン管理を使用しています。上記のバージョンに合わせてください。  
 Winの場合[nodist](https://github.com/marcelklehr/nodist/releases)  
@@ -19,7 +19,7 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 以下の作業は最初の一回だけ行います。
 
 1. `gitリポジトリのURL` からリポジトリを任意のディレクトリへクローンする。
-2. クローンが終わったら、クローンしたディレクトリで `npm install` をコマンド実行する。 (Winは任意の場所を右クリックで「Git Bash Here」が出ます)
+2. クローンが終わったら、クローンしたディレクトリで `npm install` をコマンド実行する。 (任意の場所を右クリックで「Git Bash Here」が出ます)
 3. クローンしたディレクトリで `npm start` をコマンド実行して、エラー(Err)が出なければ完了。
 
 ## 基本的な使い方
@@ -32,12 +32,19 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 
 * ローカルサーバ機能 (https、ssi、自動リロード に対応)
 * scssの変更を監視してコンパイルする機能 (autoprefixer、メディアクエリのマージ に対応)
-* HTMLに問題があればGitコミットできないようにする機能  
-  (例外対応でコミットする場合は`@例外_HTML`とメッセージを入れるとそのコミットはチェックされません)
+* HTMLのリンター
 * ejsのコンパイル
 * babelのトランスパイラ + バンドラ (babel、minify に対応)
+* JSのリンター + コード整形
 
-## ファイル・ディレクトリ構成
+## ファイル・フォルダ構造
+
+### フォルダ構造
+
+* srcフォルダに開発ファイルを格納します。  
+* src/assetsフォルダ内にサイト全体で使われるファイルを格納します。  
+* src/assets/sassフォルダ内にscssファイルを格納します(ファイル名はsrc/assets/cssと比較して一意のものにする)。ビルドで同階層のcssフォルダに出力されます。  
+* src/assets/babelフォルダ内にbabelファイルを格納します(ファイル名はsrc/assets/jsと比較して一意のものにする)。ビルドで同階層のbabelフォルダに出力されます。  
 
 ### ファイル
 
@@ -49,13 +56,6 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 * .prettierrc (Prettier) [設定](https://prettier.io/docs/en/options.html)  
 * .gitattributes (Git) [設定](https://git-scm.com/docs/gitattributes)  
 * .gitignore (Git) [設定](https://git-scm.com/docs/gitignore)  
-
-### ディレクトリ
-
-* srcフォルダ内に開発ファイルを入れます。  
-* src/assetsフォルダ内にサイト全体で使われるファイルを入れます。  
-* src/assets/sassフォルダ内にscssファイルを入れます。ビルドで同階層のcssフォルダに出力されます。  
-* src/assets/babelフォルダ内にbabelファイルを入れます。ビルドで同階層のbabelフォルダに出力されます。  
 
 ## エディタ
 
@@ -72,6 +72,7 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 * [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag) 自動で対になったタグ名をリネーム
 * [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2) カッコを色付け
 * [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) Git機能サポート
+* [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) babel
 * [IntelliSense for CSS class names in HTML](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion) CSS class名 補完
 * [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme) 見やすい配色テーマ
 
@@ -91,29 +92,24 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 
 ### 今後の予定
 
-* prettierの導入予定
-* eslintの導入予定
 * typescriptの導入予定
-* babelのバージョンアップ
+* Dev時にwebpackからファイルを出力させないようにする（できなさそう）
 
 ## npm scripts + node API
 
-gulpなど特定のパッケージに依存しないように npm scripts でタスク管理・制御をしています。  
+特定のパッケージになるべく依存しないように npm scripts でタスク管理・制御をしています。  
 
-### gulpよりnpm scripts + node APIで管理する主な理由
+## ファイル・フォルダ構造
 
-#### メリット
+### フォルダ構造
 
-* npmはnode.jsの標準機能なのでgulp等のようにパッケージがタスクランナーに依存しない
-* gulp等で使えるパッケージより数が多い
-* gulp等よりnpm自体は学習コストが低め
-* apiを使って細かく処理を制御できる
-* gulp等より実行速度が速いのでトライアル&エラーしやすい
+* config/scriptsフォルダにnode実行用jsを格納します。
+* config/scripts/modulesフォルダにエクスポート用jsを格納します。
+* config/toolsフォルダに細かい作業改善ツール群の実行用jsを格納します。
 
-#### デメリット
+### ファイル
 
-* 細かく処理を制御できる反面、（apiを使った場合）gulp等より設定を書く量が少し多め
-* package.json（パッケージの設定ファイル）が少し多め
+記載中
 
 ## 使っているパッケージ
 
@@ -131,7 +127,7 @@ package.json で設定するものは以下とします。
 細かい設定(入出力場所、パッケージの設定 など)は config/scripts/ 内のjsのようにapiで設定を管理します。
 
 * 標準タスク
-* git hooks(husky)のタスク
+* git hooks(husky,lint-staged)のタスク
 
 #### メインタスク
 
@@ -141,6 +137,4 @@ package.json で設定するものは以下とします。
 #### タスク名
 
 * dev:*（開発機能全般）
-* lint:*（リント機能全般）
-* format:*（フォーマット機能全般）
-* tools（細かい機能のツール群）
+* tools（細かい作業改善ツール群）

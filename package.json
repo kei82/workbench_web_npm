@@ -9,15 +9,22 @@
     "dev:ejs": "node config/scripts/ejs.js",
     "dev:sass": "node config/scripts/sass.js",
     "dev:babel": "node config/scripts/babel.js",
-    "lint:html": "node config/scripts/lint_html.js",
-    "lint:js": "node config/scripts/lint_js.js",
-    "format:prettier": "node config/scripts/prettier.js",
     "tools": "node config/tools/tools.js"
   },
   "husky": {
     "hooks": {
-      "commit-msg": "npm-run-all -p lint:*"
+      "commit-msg": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npx eslint --fix",
+      "npx prettier --write",
+      "git add"
+    ],
+    "*.html": [
+      "npx htmlhint"
+    ]
   },
   "devDependencies": {
     "@babel/core": "7.2.0",

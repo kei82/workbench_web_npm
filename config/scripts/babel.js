@@ -1,4 +1,4 @@
-"use strict";
+"use strict";ttt
 const globby = require("globby");
 
 // ミドルウェア [return Buffer]

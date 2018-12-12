@@ -1,3 +1,4 @@
+"use strict";
 const browserSync = require("browser-sync").create();
 
 // ミドルウェアを直列処理する
@@ -74,7 +75,7 @@ const bsOptions = {
   ],
   port: 3000,
   https: {
-    pfx: "config/ssl/ssl.pfx", // 証明書を読込
+    pfx: "config/keys/ssl.pfx", // 証明書を読込
     passphrase: "test" // 証明書のパスワード
   }, // httpの場合はfalseにする
   logFileChanges: false,

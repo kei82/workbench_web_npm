@@ -17,13 +17,17 @@
     }
   },
   "lint-staged": {
+    "*.html": [
+      "npx htmlhint"
+    ],
+    "*.scss": [
+      "npx prettier --write",
+      "git add"
+    ],
     "*.js": [
       "npx eslint --fix",
       "npx prettier --write",
       "git add"
-    ],
-    "*.html": [
-      "npx htmlhint"
     ]
   },
   "devDependencies": {

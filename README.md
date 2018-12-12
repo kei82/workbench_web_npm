@@ -65,7 +65,8 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 必須
 
 * [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) エディタ設定を統一
-* [HTMLHint](https://marketplace.visualstudio.com/items?itemName=mkaufman.HTMLHint) チェックの結果をエディタ上に表示
+* [HTMLHint](https://marketplace.visualstudio.com/items?itemName=mkaufman.HTMLHint) リントの結果をエディタ上に表示
+* [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) リントの結果をエディタ上に表示
 * [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) コードをフォーマットする
 
 おすすめ

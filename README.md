@@ -36,6 +36,7 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 * ejsのコンパイル
 * babelのトランスパイラ + バンドラ (babel、minify に対応)
 * JSのリンター + コード整形
+* 細かい作業改善ツール群
 
 ## ファイル・フォルダ構造
 

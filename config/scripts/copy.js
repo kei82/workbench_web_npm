@@ -1,3 +1,4 @@
+"use strict";
 const fs = require("fs-extra");
 
 const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定

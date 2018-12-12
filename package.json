@@ -20,9 +20,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
-      "npx eslint"
-    ]
+    "*.js": "node t"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",

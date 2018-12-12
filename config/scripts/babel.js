@@ -1,4 +1,4 @@
-"use strict";d
+"use strict";
 const globby = require("globby");
 
 // ミドルウェア [return Buffer]

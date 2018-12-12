@@ -1,6 +1,6 @@
 {
   "name": "coding-boilerplate",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "scripts": {
     "start": "cross-env NODE_ENV=development npm-run-all -p dev:*",
     "build": "cross-env NODE_ENV=production npm-run-all -s dev:*",
@@ -16,11 +16,8 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "lint-staged"
+      "commit-msg": "npm-run-all -p lint:*"
     }
-  },
-  "lint-staged": {
-    "*.js": "node t"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",

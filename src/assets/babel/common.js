@@ -1,14 +1,14 @@
 // DEMO
-const testA = () => {
+const testA = (text = "test A") => {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve(console.log("test A"));
+      resolve(console.log(text));
     }, 3000);
   });
 };
 
-const testB = () => {
-  console.log("test B");
+const testB = (text = "test B") => {
+  console.log(text);
 };
 
 (async () => {

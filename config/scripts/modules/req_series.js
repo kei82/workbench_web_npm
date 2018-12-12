@@ -1,3 +1,4 @@
+"use strict";
 module.exports = opt => {
   return (req, res, next) => {
     let requestPath = req ? req.url : false;

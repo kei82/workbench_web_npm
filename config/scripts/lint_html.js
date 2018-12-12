@@ -1,3 +1,4 @@
+"use strict";
 const fs = require("fs-extra");
 const childProcess = require("child_process");
 const notifier = require("node-notifier");

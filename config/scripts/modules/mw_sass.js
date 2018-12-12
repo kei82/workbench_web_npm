@@ -1,3 +1,4 @@
+"use strict";
 module.exports = (requestPath, data, opt) => {
   const fs = require("fs-extra");
   const sass = require("node-sass");

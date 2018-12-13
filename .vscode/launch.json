@@ -1,17 +1,17 @@
 {
   "configurations": [
     {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Node.js Program",
-      "program": "${workspaceFolder}/config/scripts/server.js"
-    },
-    {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
       "url": "https://localhost:3000/",
       "webRoot": "${workspaceFolder}/src/"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Node.js Program",
+      "program": "${workspaceFolder}/config/scripts/server.js"
     }
   ]
 }

@@ -11,6 +11,20 @@
     "build:ejs": "node config/scripts/ejs.js",
     "tools": "node config/tools/tools.js"
   },
+  "lint-staged": {
+    "*.html": [
+      "htmlhint"
+    ],
+    "*.scss": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "7.2.0",
     "@babel/polyfill": "7.0.0",

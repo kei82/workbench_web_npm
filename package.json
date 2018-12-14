@@ -11,6 +11,11 @@
     "build:ejs": "node config/scripts/ejs.js",
     "tools": "node config/tools/tools.js"
   },
+  "husky": {
+    "hooks": {
+      "commit-msg": ""
+    }
+  },
   "lint-staged": {
     "*.html": [
       "htmlhint"

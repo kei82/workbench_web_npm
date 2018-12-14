@@ -1,11 +1,5 @@
 // DEMO
-const testA = (text = "test A") => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(console.log(text));
-    }, 3000);
-  });
-};
+import testA from './lib/test_a';
 
 const testB = (text = "test B") => {
   console.log(text);

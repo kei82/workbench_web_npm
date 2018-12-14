@@ -5,14 +5,13 @@ const globby = require("globby");
 // ミドルウェア [return Buffer]
 const mwEJS = require("./modules/mw_ejs.js");
 
-const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 let mwOptions = {
   baseDir: "src/",
   distDir: "dist/",
   ext: ".html",
   convert: ".ejs"
 };
-const ejsFiles = [mwOptions.baseDir + "**/*" + mwOptions.convert]; // ejsを読込パターン
+const ejsFiles = [mwOptions.baseDir + "**/!(_)*" + mwOptions.convert]; // ejsを読込パターン
 let globOptions = {
   matchBase: true,
   onlyFiles: true
@@ -44,4 +43,4 @@ const compileStart = () => {
   glob(ejsFiles, ejsCompile);
 };
 
-if (isProduction) compileStart();
+compileStart();

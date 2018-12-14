@@ -1,7 +1,6 @@
 "use strict";
 const fs = require("fs-extra");
 
-const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
 const rootDir = "src"; // コピー元
 const destDir = "dist"; // コピー先
 
@@ -11,13 +10,16 @@ const filterResult = root => {
 
   // 除外対象
   switch (true) {
+    case fs.statSync(root).isDirectory():
+      result = false;
+      break;
     case /\.ejs$/.test(root):
       result = false;
       break;
-    case /(\/babel$|\/babel\/.*\.js$)/.test(root):
+    case /\/babel\/.*\.js$/.test(root):
       result = false;
       break;
-    case /(\/sass$|\/sass\/.*\.scss$)/.test(root):
+    case /\/sass\/.*\.scss$/.test(root):
       result = false;
       break;
   }
@@ -35,9 +37,5 @@ const removeStart = (delDir = destDir) => {
   fs.removeSync(delDir);
 };
 
-if (isProduction) {
-  removeStart();
-  copyStart();
-} else {
-  removeStart();
-}
+removeStart();
+copyStart();

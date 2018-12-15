@@ -20,11 +20,11 @@
     "*.html": [
       "htmlhint"
     ],
-    "**/scss/*.scss": [
+    "**/scss/**/*.scss": [
       "prettier --write",
       "git add"
     ],
-    "**/bable/*.js": [
+    "**/bable/**/*.js": [
       "eslint --fix",
       "prettier --write",
       "git add"

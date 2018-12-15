@@ -13,21 +13,12 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": ""
+      "commit-msg": "echo TEST"
     }
   },
   "lint-staged": {
-    "*.html": [
-      "htmlhint"
-    ],
-    "*.scss": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.js": [
-      "eslint --fix",
-      "prettier --write",
-      "git add"
+    "*.json": [
+      "echo TEST"
     ]
   },
   "devDependencies": {

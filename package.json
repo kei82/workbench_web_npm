@@ -17,8 +17,17 @@
     }
   },
   "lint-staged": {
-    "*": [
-      "ls -l"
+    "*.html": [
+      "htmlhint"
+    ],
+    "**/scss/*.scss": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/bable/*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
     ]
   },
   "devDependencies": {

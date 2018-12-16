@@ -20,7 +20,8 @@ module.exports = (requestPath, data) => {
     let ejsContent = ejs.render(ejsStr, err => {
       if (err) throw err;
     });
+    ejsContent = Promise.resolve(Buffer.from(ejsContent))
 
-    return Buffer.from(ejsContent);
+    return ejsContent;
   }
 };

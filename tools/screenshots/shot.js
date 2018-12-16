@@ -4,14 +4,13 @@ module.exports = async cmd => {
   const csvParse = require("csv-parse/lib/sync");
 
   require("events").EventEmitter.defaultMaxListeners = 30;
-  const cwdPath = __dirname + "/";
-  let conf = fs.readJsonSync(cwdPath + "config.json"); // 設定ファイル読み込み
+  let conf = fs.readJsonSync("config.json"); // 設定ファイル読み込み
   let csvParseOptions = {
     columns: true,
     skip_empty_lines: true
   };
   let pages = csvParse(
-    fs.readFileSync(cwdPath + conf.input_csv), // CSVファイル読み込み
+    fs.readFileSync(conf.input_csv), // CSVファイル読み込み
     csvParseOptions
   );
   fs.mkdirsSync(conf.output_folder); // 出力フォルダ作成

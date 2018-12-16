@@ -14,16 +14,14 @@ module.exports = async () => {
   };
 
   // babelをエントリーポイントに追加
-  const replacePathBabel = path => {
+  await addEntryPoint(["src/**/babel/**/!(_)*.js"], path => {
     return path.replace("/babel/", "/js/");
-  };
-  await addEntryPoint(["src/**/babel/**/!(_)*.js"], replacePathBabel);
+  });
 
   // sassをエントリーポイントに追加
-  const replacePathSass = path => {
+  await addEntryPoint(["src/**/sass/**/!(_)*.scss"], path => {
     return path.replace("/sass/", "/css/");
-  };
-  await addEntryPoint(["src/**/sass/**/!(_)*.scss"], replacePathSass);
+  });
 
   return entryPoint;
 };

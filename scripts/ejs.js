@@ -3,7 +3,7 @@ const fs = require("fs-extra");
 const globby = require("globby");
 
 // ミドルウェア [return Buffer]
-const mwEJS = require("./modules/mw_ejs.js");
+const mwEJS = require("./lib/mw_ejs.js");
 
 let opt = {
   baseDir: "src/",

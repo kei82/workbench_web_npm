@@ -3,13 +3,14 @@
   "version": "1.9.2",
   "scripts": {
     "start": "cross-env NODE_ENV=development npm-run-all server",
-    "build": "cross-env NODE_ENV=production npm-run-all -s build:*",
+    "build": "cross-env NODE_ENV=production npm-run-all -s build:*" ,
     "server": "webpack-dev-server",
-    "build:copy": "",
+    "build:clean": "trash dist",
     "build:webpack": "webpack",
-    "build:ejs": "node config/scripts/ejs.js",
-    "build:trash": "",
-    "tools": "node config/tools/tools.js"
+    "build:copy": "cpy **/* !**/*.ejs !**/babel/** !**/sass/** ../dist --parents --cwd=src",
+    "build:disuse": "trash dist/**/css/**/*.css.js",
+    "build:ejs": "node scripts/ejs.js",
+    "tools": "node tools/tools.js"
   },
   "husky": {
     "hooks": {

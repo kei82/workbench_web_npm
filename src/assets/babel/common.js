@@ -1,5 +1,5 @@
 // DEMO
-import testA from "./lib/test_a";
+import testA from "./lib/_test_a";
 
 const testB = (text = "test B") => {
   console.log(text);

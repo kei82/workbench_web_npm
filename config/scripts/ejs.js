@@ -5,13 +5,13 @@ const globby = require("globby");
 // ミドルウェア [return Buffer]
 const mwEJS = require("./modules/mw_ejs.js");
 
-let mwOptions = {
+let opt = {
   baseDir: "src/",
   distDir: "dist/",
   ext: ".html",
   convert: ".ejs"
 };
-const ejsFiles = [mwOptions.baseDir + "**/!(_)*" + mwOptions.convert]; // ejsを読込パターン
+const ejsFiles = [opt.baseDir + "**/!(_)*" + opt.convert]; // ejsを読込パターン
 let globOptions = {
   matchBase: true,
   onlyFiles: true
@@ -20,15 +20,15 @@ let globOptions = {
 const ejsCompile = path => {
   const ejsContent = mwEJS(
     path
-      .replace(new RegExp(`^${mwOptions.baseDir}`), "")
-      .replace(new RegExp(`${mwOptions.convert}$`), mwOptions.ext),
+      .replace(new RegExp(`^${opt.baseDir}`), "")
+      .replace(new RegExp(`${opt.convert}$`), opt.ext),
     false,
-    mwOptions
+    opt
   );
   fs.outputFile(
     path
-      .replace(new RegExp(`^${mwOptions.baseDir}`), mwOptions.distDir)
-      .replace(new RegExp(`${mwOptions.convert}$`), mwOptions.ext),
+      .replace(new RegExp(`^${opt.baseDir}`), opt.distDir)
+      .replace(new RegExp(`${opt.convert}$`), opt.ext),
     ejsContent
   );
 };

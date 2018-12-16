@@ -12,7 +12,7 @@ gitsetup.sh          export-ignore
 .keep                export-ignore
 package.json         export-ignore
 package-lock.json    export-ignore
-/config              export-ignore
+/scripts             export-ignore
 .eslintrc            export-ignore
 .htmlhintrc          export-ignore
 .jsbeautifyrc        export-ignore

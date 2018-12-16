@@ -1,15 +1,20 @@
 {
-  "name": "coding-boilerplate",
-  "version": "1.9.2",
+  "name": "web-coding-boilerplate",
+  "version": "2.0.0",
+  "engines": {
+    "node": "10.14.1",
+    "npm": "6.4.1"
+  },
   "scripts": {
-    "start": "cross-env NODE_ENV=development npm-run-all -p dev:*",
-    "build": "cross-env NODE_ENV=production npm-run-all -s dev:*",
-    "dev:copy": "node config/scripts/copy.js",
-    "dev:server": "node config/scripts/server.js",
-    "dev:ejs": "node config/scripts/ejs.js",
-    "dev:sass": "node config/scripts/sass.js",
-    "dev:babel": "node config/scripts/babel.js",
-    "tools": "node config/tools/tools.js"
+    "start": "cross-env NODE_ENV=development npm-run-all server",
+    "build": "cross-env NODE_ENV=production npm-run-all -s build:*" ,
+    "server": "webpack-dev-server",
+    "build:clean": "trash dist",
+    "build:webpack": "webpack",
+    "build:copy": "cpy **/* !**/*.ejs !**/babel/** !**/sass/** ../dist --parents --cwd=src",
+    "build:disuse": "trash dist/**/css/**/*.css.js",
+    "build:ejs": "node scripts/ejs.js",
+    "tools": "node tools/tools.js"
   },
   "husky": {
     "hooks": {
@@ -17,52 +22,58 @@
     }
   },
   "lint-staged": {
-    "*.html": [
-      "npx htmlhint"
-    ],
-    "*.scss": [
-      "npx prettier --write",
-      "git add"
-    ],
-    "*.js": [
-      "npx eslint --fix",
-      "npx prettier --write",
-      "git add"
-    ]
+    "linters": {
+      "*.html": [
+        "htmlhint"
+      ],
+      "*.scss": [
+        "prettier --write",
+        "git add"
+      ],
+      "*.js": [
+        "eslint --fix",
+        "prettier --write",
+        "git add"
+      ]
+    }
   },
   "devDependencies": {
-    "@babel/core": "7.2.0",
+    "@babel/core": "7.2.2",
     "@babel/polyfill": "7.0.0",
     "@babel/preset-env": "7.2.0",
     "autoprefixer": "9.4.2",
     "babel-loader": "8.0.4",
-    "browser-sync": "2.26.3",
+    "cpy-cli": "2.0.0",
     "cross-env": "5.2.0",
+    "css-loader": "2.0.1",
     "css-mqpacker": "7.0.0",
-    "csv-parse": "4.1.0",
     "ejs": "2.6.1",
     "eslint": "5.10.0",
     "fs-extra": "7.0.1",
     "globby": "8.0.1",
-    "html-validator": "3.1.3",
     "htmlhint": "0.10.1",
-    "husky": "1.2.0",
+    "husky": "1.2.1",
+    "lint-staged": "8.1.0",
+    "mini-css-extract-plugin": "0.5.0",
+    "node-sass": "4.11.0",
+    "npm-run-all": "4.1.5",
+    "postcss": "7.0.6",
+    "postcss-loader": "3.0.0",
+    "prettier": "1.15.3",
+    "sass-loader": "7.1.0",
+    "ssi": "0.3.0",
+    "trash-cli": "1.4.0",
+    "webpack": "4.27.1",
+    "webpack-cli": "3.1.2",
+    "webpack-dev-server": "3.1.10"
+  },
+  "optionalDependencies": {
+    "puppeteer-core": "1.11.0",
     "imagemin": "6.0.0",
     "imagemin-mozjpeg": "8.0.0",
     "imagemin-pngquant": "6.0.0",
     "imagemin-svgo": "7.0.0",
-    "lint-staged": "8.1.0",
-    "node-notifier": "5.3.0",
-    "node-sass": "4.11.0",
-    "npm-run-all": "4.1.5",
-    "postcss": "7.0.6",
-    "prettier": "1.15.3",
-    "puppeteer-core": "1.11.0",
-    "ssi": "0.3.0",
-    "webpack": "4.27.1"
-  },
-  "engines": {
-    "node": "10.14.1",
-    "npm": "6.4.1"
+    "html-validator": "3.1.3",
+    "csv-parse": "4.2.0"
   }
 }

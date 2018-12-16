@@ -6,9 +6,9 @@
 
 ## 前提環境
 
-GitとGit Bash、Node.jsとnpm を使用します。  
-[Git](https://git-scm.com/) (Git Bashもインストールされる,最新推奨)  
-[Node.js](https://nodejs.org/ja/) (npmもインストールされる,package.jsonに記載のバージョン推奨)  
+Git、Node.jsとnpm を使用します。(npmは基本デフォルトでインストールされます)  
+[Git](https://git-scm.com/) (最新推奨)  
+[Node.js](https://nodejs.org/ja/) (package.jsonに記載のバージョン推奨)  
 
 ※Node.jsのバージョン管理を使用しています。上記のバージョンに合わせてください。  
 Winの場合[nodist](https://github.com/marcelklehr/nodist/releases)  
@@ -18,13 +18,13 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 
 以下の作業は最初の一回だけ行います。
 
-1. `gitリポジトリのURL` からリポジトリを任意のディレクトリへクローンする。
-2. クローンが終わったら、クローンしたディレクトリで `npm install` をコマンド実行する。 (任意の場所を右クリックで「Git Bash Here」が出ます)
-3. クローンしたディレクトリで `npm start` をコマンド実行して、エラー(Err)が出なければ完了。
+1. リポジトリのクローン：gitリポジトリのURLからリポジトリを任意のフォルダへクローンする。
+2. パッケージのインストール：クローンが終わったら、クローンしたフォルダで `npm install` をコマンドラインを実行する。
+3. エラーが無いか確認：クローンしたフォルダで `npm start` をコマンド実行して、エラー(Err)が出ず、ブラウザが起動すれば完了。
 
 ## 基本的な使い方
 
-リポジトリをクローンしたディレクトリで `npm start` または `npm run start` をコマンド実行すると設定されている開発用機能が使えます。
+リポジトリをクローンしたフォルダで `npm start` または `npm run start` をコマンド実行すると設定されている開発用機能が使えます。
 
 `npm run build` をコマンド実行すると、distフォルダにファイルがビルド出力されます。
 
@@ -42,21 +42,28 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 
 ### フォルダ構造
 
-* srcフォルダに開発ファイルを格納します。  
-* src/assetsフォルダ内にサイト全体で使われるファイルを格納します。  
-* src/assets/sassフォルダ内にscssファイルを格納します(ファイル名はsrc/assets/cssと比較して一意のものにする)。ビルドで同階層のcssフォルダに出力されます。  
-* src/assets/babelフォルダ内にbabelファイルを格納します(ファイル名はsrc/assets/jsと比較して一意のものにする)。ビルドで同階層のbabelフォルダに出力されます。  
+* srcフォルダに開発ファイルを格納します。
+* srcフォルダ配下にejsファイルを格納します。  
+  ワイルドカード表記：`src/**/*.ejs`
+* src/assetsフォルダ内にサイト全体で使われるファイルを格納します。
+* src/assets/sassフォルダ内にscssファイルを格納します(ファイル名はsrc/assets/cssと比較して一意のものにする)。  
+  ビルドで同階層のcssフォルダに出力されます。  
+  ワイルドカード表記：`src/**/sass/**/*.scss`
+* src/assets/babelフォルダ内にbabelファイルを格納します(ファイル名はsrc/assets/jsと比較して一意のものにする)。  
+  ビルドで同階層のbabelフォルダに出力されます。  
+  ワイルドカード表記：`src/**/babel/**/*.js`
 
 ### ファイル
 
 以下のファイルは設定ファイルです。プロジェクトごとに設定することをおすすめします。
 
-* .editorconfig [設定](https://editorconfig.org/)  
-* .babelrc [設定](https://babeljs.io/docs/en/options)  
-* .htmlhintrc (HTMLHint) [設定](https://github.com/yaniswang/HTMLHint/wiki/Rules)  
-* .prettierrc (Prettier) [設定](https://prettier.io/docs/en/options.html)  
-* .gitattributes (Git) [設定](https://git-scm.com/docs/gitattributes)  
-* .gitignore (Git) [設定](https://git-scm.com/docs/gitignore)  
+* .editorconfig [設定](https://editorconfig.org/)
+* .babelrc [設定](https://babeljs.io/docs/en/options)
+* webpack.config.js [設定](https://webpack.js.org/configuration/)
+* .htmlhintrc (HTMLHint) [設定](https://github.com/yaniswang/HTMLHint/wiki/Rules)
+* .prettierrc (Prettier) [設定](https://prettier.io/docs/en/options.html)
+* .gitattributes (Git) [設定](https://git-scm.com/docs/gitattributes)
+* .gitignore (Git) [設定](https://git-scm.com/docs/gitignore)
 
 ## エディタ
 
@@ -74,9 +81,8 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 * [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag) 自動で対になったタグ名をリネーム
 * [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2) カッコを色付け
 * [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) Git機能サポート
-* [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) babelで書いてもブレークポイントを貼れる
-* [IntelliSense for CSS class names in HTML](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion) CSS class名 補完
-* [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme) 見やすい配色テーマ
+* [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) AltJSで書いてもブレークポイントを貼れる
+* [IntelliSense for CSS class names in HTML](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion) CSS class名を補完
 
 # 開発環境について (編集者向け)
 
@@ -85,17 +91,12 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 ## 現在の進捗
 
 人の手で一つずつ確認作業をすると漏れが出たりするのでツールで補うことを趣旨としています  
-マルチプラットフォーム&npm installで開発環境が使えるようになるのが理想
-
-### 課題
-
-* 実装面でやり残しているものは「今後の予定」に記載
-* ガイドラインを設計してそれに合わせてツールの設定を変える
+マルチプラットフォーム & npm installで開発環境が使えるようになるのが理想
 
 ### 今後の予定
 
-* typescriptの導入予定
-* Dev時にwebpackからファイルを出力させないようにする (できなさそう)
+* typescriptの導入調査
+* stylelintの導入調査
 
 ## npm scripts + node API
 
@@ -105,28 +106,30 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 
 ### フォルダ構造
 
-* config/scriptsフォルダにnode実行用jsを格納します。
-* config/scripts/modulesフォルダにエクスポート用jsを格納します。
-* config/toolsフォルダに細かい作業改善ツール群の実行用jsを格納します。
+* scriptsフォルダにnode実行用jsを格納します。
+* scripts/libフォルダにエクスポートモジュール用jsを格納します。
+* toolsフォルダに細かい作業改善ツール群の実行用jsを格納します。
 
 ### ファイル
 
-記載中
+* scripts/lib/entry_point.js webpackのエントリーポイントを設定する
+* scripts/lib/server_middlewares.js webpack-dev-serverのミドルウェア設定
+* scripts/ejs.js ejsをコンパイルする
 
 ## 使っているパッケージ
 
-インストールしているパッケージは package.json を確認してください
+インストールしているパッケージは package.json を参照してください
 
 ### ビルドについて
 
-scss、babel、ejsはリクエストがあったときのみレンダリング結果を返します。
+ejsはリクエストがあったときのみレンダリング結果をサーバーに返します。
 
 ## 設定ルール
 
 ### タスク
 
 package.json で設定するものは以下とします。  
-細かい設定(入出力場所、パッケージの設定 など)は config/scripts/ 内のjsのようにapiで設定を管理します。
+細かい設定(コンパイル、モジュール など)は scriptsフォルダのjsのようにapiで設定を管理します。
 
 * 標準タスク
 * git hooks(husky,lint-staged)のタスク
@@ -138,5 +141,5 @@ package.json で設定するものは以下とします。
 
 #### タスク名
 
-* dev:* (開発機能全般)
+* build:* (ビルド機能全般)
 * tools (細かい作業改善ツール群)

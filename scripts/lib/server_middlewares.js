@@ -4,16 +4,16 @@ module.exports = (req, res) => {
   if (/\/$/.test(req.url)) req.url += "index.html";
 
   // ミドルウェアを直列処理する
-  const reqSeries = (req, res, middlewares) => {
+  const reqSeries = async (req, res, middlewares) => {
     let data;
     for (let cmd of middlewares) {
-      data = cmd(req.url, data, cmd.option);
+      data = await cmd(req.url, data, cmd.option);
     }
     if (data) res.status(200).end(data);
     else res.status(404).end("Not found " + req.url);
   };
 
-  // ミドルウェア [return Buffer]
+  // ミドルウェア [return Promise Buffer]
   const mwEjs = require("./mw_ejs");
   const mwSsi = require("./mw_ssi");
 

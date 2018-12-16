@@ -2,45 +2,25 @@
 const fs = require("fs-extra");
 const globby = require("globby");
 
-// ミドルウェア [return Buffer]
+// ミドルウェア [return Promise Buffer]
 const mwEJS = require("./lib/mw_ejs.js");
 
-let opt = {
-  baseDir: "src/",
-  distDir: "dist/",
-  ext: ".html",
-  convert: ".ejs"
-};
-const ejsFiles = [opt.baseDir + "**/!(_)*" + opt.convert]; // ejsを読込パターン
-let globOptions = {
-  matchBase: true,
-  onlyFiles: true
-};
+const ejsFiles = ["src/**/!(_)*.ejs"]; // ejsを読込パターン
 
-const ejsCompile = path => {
-  const ejsContent = mwEJS(
-    path
-      .replace(new RegExp(`^${opt.baseDir}`), "")
-      .replace(new RegExp(`${opt.convert}$`), opt.ext),
-    false,
-    opt
+const ejsCompile = async path => {
+  const ejsContent = await mwEJS(
+    path.replace(/^src\//, "/").replace(/\.ejs$/, ".html")
   );
   fs.outputFile(
-    path
-      .replace(new RegExp(`^${opt.baseDir}`), opt.distDir)
-      .replace(new RegExp(`${opt.convert}$`), opt.ext),
+    path.replace(/^src\//, "dist/").replace(/\.ejs$/, ".html"),
     ejsContent
   );
 };
 
-const glob = (pattern, func, options = globOptions) => {
-  globby(pattern, options).then(files => {
+const compileStart = (pattern, func) => {
+  globby(pattern).then(files => {
     for (let path of files) func(path);
   });
 };
 
-const compileStart = () => {
-  glob(ejsFiles, ejsCompile);
-};
-
-compileStart();
+compileStart(ejsFiles, ejsCompile);

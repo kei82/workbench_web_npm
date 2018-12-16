@@ -20,7 +20,7 @@ module.exports = (requestPath, data) => {
     } catch (err) {
       throw err;
     }
-    ssiContent = Promise.resolve(Buffer.from(ssiContent))
+    ssiContent = Promise.resolve(Buffer.from(ssiContent));
 
     return ssiContent;
   }

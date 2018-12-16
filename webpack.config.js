@@ -1,13 +1,11 @@
 "use strict";
 
-const isProduction = process.env.NODE_ENV === "production"; // プロダクションビルド判定
-
+// プロダクションビルド判定
+const isProduction = process.env.NODE_ENV === "production";
 // エントリーポイント
 const entryPoint = require("./config/scripts/modules/entry_point");
-
 // ミドルウェア
 const serverMiddlewares = require("./config/scripts/modules/server_middlewares");
-
 // プラグイン
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const mqpacker = require("css-mqpacker");

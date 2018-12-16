@@ -9,7 +9,6 @@ module.exports = async (requestPath, data) => {
 
   // ejsかdataがあるとき
   if (fs.pathExistsSync(ejsPath) || data) {
-
     // ファイル読み込み
     const ejsData = data ? await data : fs.readFileSync(ejsPath);
 

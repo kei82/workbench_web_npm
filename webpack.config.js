@@ -82,7 +82,7 @@ module.exports = () => {
       overlay: true,
       stats: "minimal",
       before: app => {
-        app.get(/(\/|\.html|\.php)$/, (req, res) =>
+        app.get(/(\/|\.html)$/, (req, res) =>
           serverMiddlewares(req, res)
         );
       }

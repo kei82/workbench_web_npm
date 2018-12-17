@@ -15,7 +15,6 @@ module.exports = (req, res) => {
   // ミドルウェア [return Promise Buffer]
   const mwEjs = require("./mw_ejs");
   const mwSsi = require("./mw_ssi");
-  const mwPhp = require("./mw_php");
 
   // リクエストで判定
   switch (true) {
@@ -23,10 +22,7 @@ module.exports = (req, res) => {
     case /\.html$/.test(req.url):
       reqSeries(req, res, [mwEjs, mwSsi]);
       break;
-    // phpをコンパイル
-    case /\.php$/.test(req.url):
-      reqSeries(req, res, [mwPhp, mwSsi]);
-      break;
+
     default:
       throw "Unknown Type";
   }

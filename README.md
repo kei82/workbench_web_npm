@@ -36,7 +36,6 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 * ejsのコンパイル
 * babelのトランスパイラ + バンドラ (babel、minify に対応)
 * JSのリンター + コード整形
-* 細かい作業改善ツール群
 
 ## ファイル・フォルダ構造
 
@@ -108,7 +107,6 @@ Macの場合[ndenv](https://github.com/riywo/ndenv)
 
 * scriptsフォルダにnode実行用jsを格納します。
 * scripts/libフォルダにエクスポートモジュール用jsを格納します。
-* toolsフォルダに細かい作業改善ツール群の実行用jsを格納します。
 
 ### ファイル
 
@@ -141,5 +139,6 @@ package.json で設定するものは以下とします。
 
 #### タスク名
 
+* build (最終ビルドを実行する)
+* server (開発サーバーを起動する)
 * build:* (ビルド機能全般)
-* tools (細かい作業改善ツール群)

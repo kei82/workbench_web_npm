@@ -82,9 +82,7 @@ module.exports = () => {
       overlay: true,
       stats: "minimal",
       before: app => {
-        app.get(/(\/|\.html)$/, (req, res) =>
-          serverMiddlewares(req, res)
-        );
+        app.get(/(\/|\.html)$/, (req, res) => serverMiddlewares(req, res));
       }
     },
     plugins: [

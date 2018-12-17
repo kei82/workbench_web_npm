@@ -3,9 +3,7 @@ const fs = require("fs-extra");
 const globby = require("globby");
 
 // ミドルウェア [return Promise Buffer]
-const mwEJS = require("./lib/mw_ejs.js");
-
-const ejsFiles = ["src/**/!(_)*.ejs"]; // ejsを読込パターン
+const mwEJS = require("./lib/mw_ejs");
 
 const ejsCompile = async path => {
   const ejsContent = await mwEJS(
@@ -23,4 +21,4 @@ const compileStart = (pattern, func) => {
   });
 };
 
-compileStart(ejsFiles, ejsCompile);
+compileStart(["src/**/!(_)*.ejs"], ejsCompile);

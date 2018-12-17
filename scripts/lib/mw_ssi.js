@@ -1,5 +1,4 @@
 "use strict";
-
 module.exports = async (requestPath, data) => {
   const fs = require("fs-extra");
   const ssi = require("ssi");

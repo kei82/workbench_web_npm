@@ -1,5 +1,4 @@
 "use strict";
-
 module.exports = (req, res) => {
   if (/\/$/.test(req.url)) req.url += "index.html";
 

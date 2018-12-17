@@ -6,7 +6,7 @@ module.exports = (req, res) => {
   const reqSeries = async (req, res, middlewares) => {
     let data;
     for (let cmd of middlewares) {
-      data = await cmd(req.url, data, cmd.option);
+      data = await cmd(req.url, data);
     }
     if (data) res.end(data);
     else res.status(404).end(`Not found ${req.url}`);

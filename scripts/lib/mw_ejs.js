@@ -3,8 +3,8 @@ module.exports = async (requestPath, data) => {
   const fs = require("fs-extra");
   const ejs = require("ejs");
 
-  let htmlPath = "src" + requestPath; // htmlのパス変換
-  let ejsPath = htmlPath.replace(/\.html/, ".ejs"); // ejsのパス変換
+  const htmlPath = "src" + requestPath; // htmlのパス変換
+  const ejsPath = htmlPath.replace(/\.html/, ".ejs"); // ejsのパス変換
 
   // ejsかdataがあるとき
   if (fs.pathExistsSync(ejsPath) || data) {

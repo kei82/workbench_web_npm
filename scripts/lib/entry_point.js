@@ -1,7 +1,7 @@
 "use strict";
-module.exports = async () => {
-  const globby = require("globby");
+const globby = require("globby");
 
+module.exports = async () => {
   // エントリーポイント作成
   let entryPoint = {};
   const addEntryPoint = async (patterns, replacePath) => {

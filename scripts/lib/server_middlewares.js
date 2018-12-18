@@ -1,4 +1,8 @@
 "use strict";
+// ミドルウェア [return Promise Buffer]
+const mwEjs = require("./mw_ejs");
+const mwSsi = require("./mw_ssi");
+
 module.exports = (req, res) => {
   if (/\/$/.test(req.url)) req.url += "index.html";
 
@@ -11,10 +15,6 @@ module.exports = (req, res) => {
     if (data) res.end(data);
     else res.status(404).end(`Not found ${req.url}`);
   };
-
-  // ミドルウェア [return Promise Buffer]
-  const mwEjs = require("./mw_ejs");
-  const mwSsi = require("./mw_ssi");
 
   // リクエストで判定
   switch (true) {

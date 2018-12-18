@@ -12,7 +12,7 @@
     "build:clean": "trash dist",
     "build:webpack": "webpack",
     "build:copy": "cpy **/* !**/*.ejs !**/babel/** !**/sass/** ../dist --parents --cwd=src",
-    "build:disuse": "trash dist/**/css/**/*.css.js",
+    "build:disuse": "trash dist/**/css/**/*.js",
     "build:ejs": "node scripts/ejs.js"
   },
   "husky": {

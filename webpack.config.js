@@ -14,19 +14,13 @@ const autoprefixer = require("autoprefixer");
 // Babel
 const moduleBabel = {
   test: /\.js$/,
-  use: [
-    {
-      loader: "babel-loader?cacheDirectory"
-    }
-  ]
+  use: ["babel-loader?cacheDirectory"]
 };
 // Sass
 const moduleSass = {
   test: /\.scss$/,
   use: [
-    {
-      loader: MiniCssExtractPlugin.loader
-    },
+    MiniCssExtractPlugin.loader,
     {
       loader: "css-loader",
       options: {
@@ -37,7 +31,7 @@ const moduleSass = {
       }
     },
     {
-      loader: "postcss-loader",
+      loader: "postcss-loader?cacheDirectory",
       options: {
         sourceMap: true,
         plugins: [
@@ -53,7 +47,7 @@ const moduleSass = {
       }
     },
     {
-      loader: "sass-loader",
+      loader: "sass-loader?cacheDirectory",
       options: {
         outputStyle: "compressed",
         sourceMap: true
@@ -62,37 +56,35 @@ const moduleSass = {
   ]
 };
 
-// オプションを返す
-module.exports = () => {
-  return {
-    target: "web",
-    mode: process.env.NODE_ENV,
-    devtool: isProduction ? "none" : "source-map",
-    context: process.cwd(),
-    entry: entryPoint,
-    output: {
-      filename: "[name].js",
-      path: process.cwd() + "/dist"
-    },
-    devServer: {
-      contentBase: "./src",
-      watchContentBase: true,
-      open: true,
-      https: true,
-      overlay: true,
-      stats: "minimal",
-      before: app => {
-        app.get(/(\/|\.html)$/, (req, res) => serverMiddlewares(req, res));
-      }
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: "[name].css",
-        chunkFilename: "[id].css"
-      })
-    ],
-    module: {
-      rules: [moduleBabel, moduleSass]
+// オプションをエクスポート
+module.exports = {
+  target: "web",
+  mode: process.env.NODE_ENV,
+  devtool: isProduction ? false : "source-map",
+  context: process.cwd(),
+  entry: entryPoint,
+  output: {
+    filename: "[name].js",
+    path: process.cwd() + "/dist"
+  },
+  devServer: {
+    contentBase: "./src",
+    watchContentBase: true,
+    open: true,
+    https: true,
+    overlay: true,
+    stats: "minimal",
+    before: app => {
+      app.get(/(\/|\.html)$/, (req, res) => serverMiddlewares(req, res));
     }
-  };
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
+  ],
+  module: {
+    rules: [moduleBabel, moduleSass]
+  }
 };

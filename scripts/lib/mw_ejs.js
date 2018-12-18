@@ -1,8 +1,8 @@
 "use strict";
-module.exports = async (requestPath, data) => {
-  const fs = require("fs-extra");
-  const ejs = require("ejs");
+const fs = require("fs-extra");
+const ejs = require("ejs");
 
+module.exports = async (requestPath, data) => {
   const htmlPath = "src" + requestPath; // htmlのパス変換
   const ejsPath = htmlPath.replace(/\.html/, ".ejs"); // ejsのパス変換
 

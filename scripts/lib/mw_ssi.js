@@ -1,8 +1,8 @@
 "use strict";
-module.exports = async (requestPath, data) => {
-  const fs = require("fs-extra");
-  const ssi = require("ssi");
+const fs = require("fs-extra");
+const ssi = require("ssi");
 
+module.exports = async (requestPath, data) => {
   const filePath = "src" + requestPath; // ファイルパス変換
 
   // Dataかファイルが存在するとき

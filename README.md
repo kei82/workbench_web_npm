@@ -19,8 +19,10 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 以下の作業は最初の一回だけ行います。
 
 1. リポジトリのクローン：git リポジトリの URL からリポジトリを任意のフォルダへクローンする。
-2. パッケージのインストール：クローンが終わったら、クローンしたフォルダで `npm install` をコマンドラインを実行する。
-3. エラーが無いか確認：クローンしたフォルダで `npm start` をコマンド実行して、エラー(Err)が出ず、ブラウザが起動すれば完了。
+2. パッケージのインストール：クローンが終わったら、クローンしたフォルダで `npm install` をコマンドラインを実行する。  
+   (コマンドが苦手な方は Visual Studio Code のターミナル＞タスクの実行から`npm: install`が実行できます。)
+3. エラーが無いか確認：クローンしたフォルダで `npm start` をコマンド実行して、エラー(Err)が出ず、ブラウザが起動すれば完了。  
+   (同じく Visual Studio Code からも起動できます。)
 
 ## 基本的な使い方
 
@@ -31,7 +33,7 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 ## おもな機能
 
 - ローカルサーバー機能 (https、ssi、自動リロード に対応)
-- sass のコンパイル (autoprefixer、メディアクエリのマージ に対応)※scss 記法のみサポート
+- sass のコンパイル (autoprefixer、メディアクエリのマージ に対応) ※scss 記法のみサポート
 - HTML のリンター
 - ejs のコンパイル
 - babel のトランスパイル + バンドラ (babel、minify に対応)
@@ -69,14 +71,16 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 
 [Visual Studio Code](https://code.visualstudio.com/) を使用することで、よりこの開発環境が使いやすくなります。
 
-必須
+### Visual Studio Code 拡張機能
+
+#### 必須
 
 - [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) エディタ設定を統一
 - [HTMLHint](https://marketplace.visualstudio.com/items?itemName=mkaufman.HTMLHint) リントの結果をエディタ上に表示
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) リントの結果をエディタ上に表示
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) コードをフォーマットする
 
-おすすめ
+#### おすすめ
 
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag) 自動で対になったタグ名をリネーム
 - [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2) カッコを色付け

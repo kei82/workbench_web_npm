@@ -1,6 +1,7 @@
-// DEMO async/await
+// DEMO import
 import testA from "./lib/_test_a";
 
+// DEMO async/await
 const testB = (text = "test B") => {
   console.log(text);
 };

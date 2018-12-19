@@ -4,10 +4,10 @@ const globby = require("globby");
 module.exports = async () => {
   // エントリーポイント作成
   let entryPoint = {};
-  const addEntryPoint = async (patterns, replacePath) => {
+  const addEntryPoint = async (patterns, replaceFunc) => {
     let entryFiles = await globby(patterns);
     for (let path of entryFiles) {
-      let accessPath = replacePath(path)
+      let accessPath = replaceFunc(path)
         .replace(/^src\//, "")
         .replace(/\.[^.]*$/, "");
       entryPoint[accessPath] = "./" + path;

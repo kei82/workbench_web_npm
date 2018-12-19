@@ -7,11 +7,9 @@ module.exports = (req, res) => {
   if (/\/$/.test(req.url)) req.url += "index.html";
 
   // ミドルウェアを直列処理する
-  const reqSeries = async (req, res, middlewares) => {
+  const reqSeries = async middlewares => {
     let data;
-    for (let cmd of middlewares) {
-      data = await cmd(req.url, data);
-    }
+    for (let cmd of middlewares) data = await cmd(req.url, data);
     if (data) res.end(data);
     else res.status(404).end(`Not found ${req.url}`);
   };
@@ -20,7 +18,7 @@ module.exports = (req, res) => {
   switch (true) {
     // htmlをコンパイル
     case /\.html$/.test(req.url):
-      reqSeries(req, res, [mwEjs, mwSsi]);
+      reqSeries([mwEjs, mwSsi]);
       break;
 
     default:

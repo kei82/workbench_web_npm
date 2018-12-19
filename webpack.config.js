@@ -82,10 +82,7 @@ module.exports = {
     }
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
+    new MiniCssExtractPlugin()
   ],
   module: {
     rules: [moduleBabel, moduleSass]

@@ -81,9 +81,7 @@ module.exports = {
       app.get(/(\/|\.html)$/, (req, res) => serverMiddlewares(req, res));
     }
   },
-  plugins: [
-    new MiniCssExtractPlugin()
-  ],
+  plugins: [new MiniCssExtractPlugin()],
   module: {
     rules: [moduleBabel, moduleSass]
   }

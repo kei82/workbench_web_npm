@@ -1,14 +1,18 @@
 "use strict";
 // プロダクションビルド判定
 const isProduction = process.env.NODE_ENV === "production";
+
 // エントリーポイント
 const entryPoint = require("./scripts/lib/entry_point");
+
 // ミドルウェア
 const serverMiddlewares = require("./scripts/lib/server_middlewares");
+
 // プラグイン
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const mqpacker = require("css-mqpacker");
 const autoprefixer = require("autoprefixer");
+
 // モジュール
 // Babel
 const moduleBabel = {

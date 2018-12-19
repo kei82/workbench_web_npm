@@ -15,10 +15,9 @@ const ejsCompile = async path => {
   );
 };
 
-const compileStart = (pattern, func) => {
-  globby(pattern).then(files => {
-    for (let path of files) func(path);
-  });
+const compileStart = async (pattern, func) => {
+  const files = await globby(pattern)
+  for (let path of files) func(path);
 };
 
 compileStart(["src/**/!(_)*.ejs"], ejsCompile);

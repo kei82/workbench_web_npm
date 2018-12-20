@@ -5,19 +5,22 @@ const globby = require("globby");
 // ミドルウェア [return Promise Buffer]
 const mwEJS = require("./lib/mw_ejs");
 
+const ejsOutput = (path, content) => {
+  let outputPath = path.replace(/^src\//, "dist/").replace(/\.ejs$/, ".html");
+  fs.outputFile(outputPath, content);
+};
+
 const ejsCompile = async path => {
-  const ejsContent = await mwEJS(
-    path.replace(/^src\//, "/").replace(/\.ejs$/, ".html")
-  );
-  fs.outputFile(
-    path.replace(/^src\//, "dist/").replace(/\.ejs$/, ".html"),
-    ejsContent
-  );
+  let htmlPath = path.replace(/^src\//, "/").replace(/\.ejs$/, ".html");
+  return await mwEJS(htmlPath);
 };
 
-const compileStart = async (pattern, func) => {
-  const files = await globby(pattern);
-  for (let path of files) func(path);
+const compileStart = async (pattern, func, output) => {
+  let files = await globby(pattern);
+  for (let path of files) {
+    let content = await func(path);
+    if (output) output(path, content);
+  }
 };
 
-compileStart(["src/**/!(_)*.ejs"], ejsCompile);
+compileStart(["src/**/!(_)*.ejs"], ejsCompile, ejsOutput);

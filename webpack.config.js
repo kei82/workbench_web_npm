@@ -9,7 +9,7 @@ const entryPoint = require("./scripts/lib/entry_point");
 const serverMiddlewares = require("./scripts/lib/server_middlewares");
 
 // プラグイン
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const miniCssExtractPlugin = require("mini-css-extract-plugin");
 const mqpacker = require("css-mqpacker");
 const autoprefixer = require("autoprefixer");
 
@@ -23,7 +23,7 @@ const moduleBabel = {
 const moduleSass = {
   test: /\.scss$/,
   use: [
-    MiniCssExtractPlugin.loader,
+    miniCssExtractPlugin.loader,
     {
       loader: "css-loader",
       options: {
@@ -78,10 +78,10 @@ module.exports = {
     overlay: true,
     stats: "minimal",
     before: app => {
-      app.get(/(\/|\.html)$/, (req, res) => serverMiddlewares(req, res));
+      app.get(/(\/|\.html)$/, serverMiddlewares);
     }
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [new miniCssExtractPlugin()],
   module: {
     rules: [moduleBabel, moduleSass]
   }

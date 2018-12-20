@@ -6,7 +6,7 @@ module.exports = async (requestPath, data) => {
   const htmlPath = "src" + requestPath; // htmlのパス変換
   const ejsPath = htmlPath.replace(/\.html/, ".ejs"); // ejsのパス変換
 
-  // ejsかdataがあるとき
+  // Dataかファイルが存在するとき
   if (fs.pathExistsSync(ejsPath) || data) {
     // ファイル読み込み
     const ejsData = data ? await data : fs.readFileSync(ejsPath);

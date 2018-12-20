@@ -7,10 +7,11 @@ module.exports = async (requestPath, data) => {
 
   // Dataかファイルが存在するとき
   if (fs.pathExistsSync(filePath) || data) {
-    const fileData = data ? await data : fs.readFileSync(filePath); // ファイル読み込み
-    const ssiParser = new ssi("src", "src", "**/*.html", true); // ssiコンパイル
+    // ファイル読み込み
+    const fileData = data ? await data : fs.readFileSync(filePath);
 
     // ssiコンパイル
+    const ssiParser = new ssi("src", "src", "**/*.html", true);
     let ssiContent = ssiParser.parse(filePath, fileData.toString()).contents;
     ssiContent = Promise.resolve(Buffer.from(ssiContent));
 

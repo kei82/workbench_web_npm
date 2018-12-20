@@ -1,6 +1,6 @@
 {
   "name": "web-coding-boilerplate",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "engines": {
     "node": "10.14.2",
     "npm": "6.4.1"
@@ -11,7 +11,7 @@
     "server": "webpack-dev-server",
     "build:clean": "trash dist",
     "build:webpack": "webpack",
-    "build:copy": "cpy **/* !**/*.ejs !**/babel/** !**/sass/** ../dist --parents --cwd=src",
+    "build:copy": "cpy ** !**/*.ejs !**/babel/**/*.js !**/sass/**/*.scss ../dist --parents --cwd=src",
     "build:disuse": "trash dist/**/css/**/*.js",
     "build:ejs": "node scripts/ejs.js"
   },

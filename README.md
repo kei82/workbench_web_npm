@@ -20,9 +20,9 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 
 1. リポジトリのクローン：git リポジトリの URL からリポジトリを任意のフォルダへクローンする。
 2. パッケージのインストール：クローンが終わったら、クローンしたフォルダで `npm install` をコマンドラインを実行する。  
-   (コマンドが苦手な方は Visual Studio Code のターミナル＞タスクの実行から`npm: install`が実行できます。)
+   (黒い画面が苦手な方は Visual Studio Code の ターミナル>タスクの実行 から `npm: install` が実行できます。)
 3. エラーが無いか確認：クローンしたフォルダで `npm start` をコマンド実行して、エラー(Err)が出ず、ブラウザが起動すれば完了。  
-   (同じく Visual Studio Code からも起動できます。)
+   (同じく Visual Studio Code からも実行できます。)
 
 ## 基本的な使い方
 
@@ -33,7 +33,7 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 ## おもな機能
 
 - ローカルサーバー機能 (https、ssi、自動リロード に対応)
-- sass のコンパイル (autoprefixer、メディアクエリのマージ に対応) ※scss 記法のみサポート
+- sass のコンパイル (autoprefixer、メディアクエリのマージ、minify に対応) ※SCSS 記法のみサポート
 - HTML のリンター
 - ejs のコンパイル
 - babel のトランスパイル + バンドラ (babel、minify に対応)

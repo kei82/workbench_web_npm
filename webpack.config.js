@@ -74,7 +74,7 @@ module.exports = {
     contentBase: "./src",
     watchContentBase: true,
     open: true,
-    https: true,
+    https: false,
     overlay: true,
     stats: "minimal",
     before: app => {

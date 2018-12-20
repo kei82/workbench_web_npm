@@ -1,23 +1,23 @@
 // DEMO import
 import testA from "./lib/_test_a";
 
-// DEMO async/await
+// DEMO def val
 const testB = (text = "test B") => {
   console.log(text);
 };
 
+// DEMO async/await
 (async () => {
   await testA();
   testB();
 })();
 
 // DEMO fetch
-fetch("/assets/babel/lib/_test_a.js", {
-  method: "get"
-}).then(function(response) {
-  response.text().then(e => {
-    document.getElementById("js_text").innerText =
-      "↓JSが入る fetch DEMO\n※IE向け一部自分でポリフィル入れないといけない\nfetchとか判断できない模様\n" +
-      e;
-  });
-});
+(async () => {
+  const getContents = await fetch("/assets/babel/lib/_test_a.js");
+  const responseText = await getContents.text();
+  document.getElementById("js_text").innerText = `↓JSが入る fetch DEMO
+    ※IE向け一部自分でポリフィル入れないといけない
+    fetchとか判断できない模様
+    ${responseText}`;
+})();

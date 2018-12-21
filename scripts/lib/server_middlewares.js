@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
 
   // ミドルウェアを直列処理する
   const mwSeries = async (middlewares, url, data) => {
-    for (let cmd of middlewares) data = await cmd(url, data);
+    for (let mw of middlewares) data = await mw(url, data);
     return data;
   };
 

@@ -14,10 +14,9 @@ const testB = (text = "test B") => {
 
 // DEMO fetch
 (async () => {
-  const getContents = await fetch("/assets/babel/lib/_test_a.js");
-  const responseText = await getContents.text();
-  document.getElementById("js_text").innerText = `↓JSが入る fetch DEMO
-    ※IE向け一部自分でポリフィル入れないといけない
-    fetchとか判断できない模様
-    ${responseText}`;
+  const getContents = await fetch("/assets/js/test.json");
+  const responseJson = await getContents.json();
+  document.getElementById("js_text").innerText = `${responseJson.title}
+  ${responseJson.notes}
+  ${responseJson.name}`;
 })();

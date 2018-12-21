@@ -10,8 +10,6 @@ const serverMiddlewares = require("./scripts/lib/server_middlewares");
 
 // プラグイン
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
-const mqpacker = require("css-mqpacker");
-const autoprefixer = require("autoprefixer");
 
 // モジュール
 // Babel
@@ -36,17 +34,7 @@ const moduleSass = {
     {
       loader: "postcss-loader?cacheDirectory",
       options: {
-        sourceMap: true,
-        plugins: [
-          mqpacker({
-            sort: (a, b) => {
-              return b.localeCompare(a);
-            }
-          }),
-          autoprefixer({
-            browsers: ["IE 11", "last 2 versions"]
-          })
-        ]
+        sourceMap: true
       }
     },
     {

@@ -1,6 +1,6 @@
 {
   "name": "web-coding-boilerplate",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "engines": {
     "node": "10.14.2",
     "npm": "6.5.0"
@@ -17,7 +17,7 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
@@ -44,7 +44,7 @@
     "babel-loader": "8.0.4",
     "cpy-cli": "2.0.0",
     "cross-env": "5.2.0",
-    "css-loader": "2.0.1",
+    "css-loader": "2.0.2",
     "css-mqpacker": "7.0.0",
     "ejs": "2.6.1",
     "eslint": "5.10.0",

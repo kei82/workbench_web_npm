@@ -99,8 +99,8 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 
 ### 今後の予定
 
-- typescript の導入調査
-- stylelint の導入調査
+- [ ] typescript の導入調査
+- [ ] stylelint の導入調査
 
 ## npm scripts + node API
 
@@ -110,8 +110,8 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 
 ### フォルダ構造
 
-- [ ] scripts/ (node 実行用 js を格納します)
-- [ ] scripts/lib/ (エクスポートモジュール用 js を格納します)
+- scripts/ (node 実行用 js を格納します)
+- scripts/lib/ (エクスポートモジュール用 js を格納します)
 
 ### ファイル
 

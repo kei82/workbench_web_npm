@@ -7,7 +7,7 @@ module.exports = async (requestPath, data) => {
 
   // Dataかファイルが存在するとき
   if (fs.pathExistsSync(filePath) || data) {
-    // ファイル読み込み
+    // 読み込み
     const fileData = data ? await data : fs.readFileSync(filePath);
 
     // ssiコンパイル

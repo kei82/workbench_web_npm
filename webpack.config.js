@@ -11,13 +11,13 @@ const serverMiddlewares = require("./scripts/lib/server_middlewares");
 // プラグイン
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
 
-// モジュール
-// Babel
+// モジュール Babel
 const moduleBabel = {
   test: /\.js$/,
   use: ["babel-loader?cacheDirectory"]
 };
-// Sass
+
+// モジュール Sass
 const moduleSass = {
   test: /\.scss$/,
   use: [

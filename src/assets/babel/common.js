@@ -1,7 +1,7 @@
 // DEMO import
 import testA from "./lib/_test_a";
 
-// DEMO def val
+// DEMO initial value
 const testB = (text = "test B") => {
   console.log(text);
 };

@@ -1,5 +1,5 @@
 {
-  "title": "↓JSが入る fetch DEMO",
+  "title": "↓JSONが入る fetch DEMO",
   "notes": "※IE向け一部自分でポリフィル入れないといけない\nfetchとか判断できない",
   "name": "こんにちは 世界"
 }

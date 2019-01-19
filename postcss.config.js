@@ -1,4 +1,3 @@
-"use strict";
 const mqpacker = require("css-mqpacker");
 const autoprefixer = require("autoprefixer");
 

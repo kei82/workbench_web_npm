@@ -1,4 +1,3 @@
-"use strict";
 // プロダクションビルド判定
 const isProduction = process.env.NODE_ENV === "production";
 

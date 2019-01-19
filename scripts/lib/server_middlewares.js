@@ -1,4 +1,3 @@
-"use strict";
 // ミドルウェア [return Promise Buffer]
 const mwEjs = require("./mw_ejs");
 const mwSsi = require("./mw_ssi");

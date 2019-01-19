@@ -8,6 +8,11 @@ const entryPoint = require("./scripts/lib/entry_point");
 // ミドルウェア
 const serverMiddlewares = require("./scripts/lib/server_middlewares");
 
+// サーバーアプリケーション
+const serverApp = app => {
+  app.get(/(\/|\.html)$/, serverMiddlewares);
+};
+
 // プラグイン
 const miniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -65,9 +70,7 @@ module.exports = {
     https: false,
     overlay: true,
     stats: "minimal",
-    before: app => {
-      app.get(/(\/|\.html)$/, serverMiddlewares);
-    }
+    before: serverApp
   },
   plugins: [new miniCssExtractPlugin()],
   module: {

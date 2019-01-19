@@ -8,36 +8,36 @@
   font-size: 3.2rem;
   font-weight: bold;
   line-height: 1.45em;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
 }
 
 .hdg-B {
-  margin: 0 0 .6em;
+  margin: 0 0 0.6em;
   font-size: 2.8rem;
   font-weight: bold;
   line-height: 1.4em;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
   @extend .bor-B;
 }
 
 .hdg-C {
-  margin: 0 0 .5em;
+  margin: 0 0 0.5em;
   font-size: 2.4rem;
   font-weight: bold;
   line-height: 1.4em;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
   @extend .bor-A;
 }
 
 .hdg-D {
-  margin: 0 0 .4em;
+  margin: 0 0 0.4em;
   font-size: 2rem;
   font-weight: bold;
   line-height: 1.7em;
 }
 
 .hdg-E {
-  margin: 0 0 .4em;
+  margin: 0 0 0.4em;
   font-size: 1.8rem;
   font-weight: bold;
   line-height: 1.7em;
@@ -47,21 +47,21 @@
 .badge {
   font-size: 1.6rem;
   font-weight: normal;
-  margin: 0 0 .4em;
+  margin: 0 0 0.4em;
 }
 
 .badge-A {
-  padding: .2em .6em;
+  padding: 0.2em 0.6em;
   border: solid $color_b_2 1px;
   color: $color_b_2;
-  border-radius: .3em;
+  border-radius: 0.3em;
 }
 
 .badge-B {
-  padding: .2em .6em;
+  padding: 0.2em 0.6em;
   background: $color_b_2;
   color: $color_w_1;
-  border-radius: .3em;
+  border-radius: 0.3em;
 }
 
 ////////////////////////////////////////////////
@@ -69,15 +69,15 @@
 ////////////////////////////////////////////////
 
 .bor-A {
-  border-left: solid $color_b_2 .6rem;
-  padding: .1em 0 .1em .5em;
-  margin: 2em 0 .8em;
+  border-left: solid $color_b_2 0.6rem;
+  padding: 0.1em 0 0.1em 0.5em;
+  margin: 2em 0 0.8em;
 }
 
 .bor-B {
   border-bottom: solid $color_w_3 1px;
-  padding: 0 0 .35em;
-  margin: 2.5em 0 .8em;
+  padding: 0 0 0.35em;
+  margin: 2.5em 0 0.8em;
 }
 
 ////////////////////////////////////////////////
@@ -92,7 +92,7 @@
   border-collapse: collapse;
   th,
   td {
-    padding: .4em .5em;
+    padding: 0.4em 0.5em;
     border: solid $color_w_3 1px;
   }
   thead {
@@ -143,11 +143,11 @@
   margin: 1em 0 1.6em;
   dt {
     margin: 1.6em 0 0;
-    padding: .2em .5em;
+    padding: 0.2em 0.5em;
     color: $color_w_1;
     border: solid $color_b_3;
     border-width: 1px;
-    border-radius: .3em .3em 0 0;
+    border-radius: 0.3em 0.3em 0 0;
     background: $color_b_3;
     font-weight: bold;
     &:first-child {
@@ -156,10 +156,10 @@
   }
   dd {
     margin: 0;
-    padding: .5em;
+    padding: 0.5em;
     border: solid $color_b_3;
     border-width: 0 1px 1px;
-    border-radius: 0 0 .3em .3em;
+    border-radius: 0 0 0.3em 0.3em;
   }
 }
 
@@ -170,7 +170,7 @@
   line-height: 1.6;
   ul {
     padding-left: 1.8em;
-    margin: 0 0 .4em;
+    margin: 0 0 0.4em;
   }
   li {
     position: relative;
@@ -183,7 +183,7 @@
       width: 5px;
       height: 5px;
       background: $color_b_4;
-      transform: translate(-.6em, .6em);
+      transform: translate(-0.6em, 0.6em);
     }
   }
 }
@@ -196,16 +196,16 @@
   ul {
     position: relative;
     padding: 0 0 0 2em;
-    margin: .5em 0;
+    margin: 0.5em 0;
     list-style: none;
     &::after {
       position: absolute;
       top: 0;
       left: 0;
       width: 0;
-      height: calc(100% - .5em);
+      height: calc(100% - 0.5em);
       content: "";
-      transform: translate(.5em, -.3em);
+      transform: translate(0.5em, -0.3em);
       border-left: solid $color_b_4 1px;
     }
     li {
@@ -215,9 +215,9 @@
         left: 0;
         width: 1em;
         height: 0;
-        margin: 0 .2em 0 0;
+        margin: 0 0.2em 0 0;
         content: "";
-        transform: translate(-150%, .75em);
+        transform: translate(-150%, 0.75em);
         border-top: solid $color_b_4 1px;
       }
     }
@@ -235,7 +235,7 @@
   counter-reset: count;
   ol {
     padding-left: 1em;
-    margin: 0 0 .4em;
+    margin: 0 0 0.4em;
     list-style: none;
     counter-reset: count;
   }
@@ -245,7 +245,7 @@
     position: relative;
     &::before {
       font-weight: bold;
-      padding-right: .2em;
+      padding-right: 0.2em;
       content: counters(count, "-") ".";
       counter-increment: count;
       position: absolute;
@@ -260,7 +260,7 @@
   margin: 1em 0;
   counter-reset: count;
   ol {
-    margin: 0 0 .4em;
+    margin: 0 0 0.4em;
     list-style: none;
     counter-reset: count;
   }
@@ -269,7 +269,7 @@
     list-style: none;
     position: relative;
     &::before {
-      font-size: .6em;
+      font-size: 0.6em;
       font-weight: bold;
       color: $color_w_1;
       width: 2rem;
@@ -307,12 +307,12 @@
   padding: 0;
   padding: 1.5em 2em;
   color: $color_b_2;
-  border-left: solid $color_b_4 .4em;
+  border-left: solid $color_b_4 0.4em;
   background: $color_w_2;
-  >*:first-child {
+  > *:first-child {
     margin-top: 0;
   }
-  >*:last-child {
+  > *:last-child {
     margin-bottom: 0;
   }
 }
@@ -322,11 +322,11 @@
 ////////////////////////////////////////////////
 
 .btn {
-  padding: .5em .65em;
+  padding: 0.5em 0.65em;
   text-decoration: none;
   color: white;
   border: 0;
-  border-radius: .3em;
+  border-radius: 0.3em;
   background: $color_b_2;
   min-width: 100px;
   display: inline-block;

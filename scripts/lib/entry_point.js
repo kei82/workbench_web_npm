@@ -1,8 +1,15 @@
 const globby = require("globby");
 
 module.exports = async () => {
-  // エントリーポイント作成
   let entryPoint = {};
+
+  /**
+   * エントリーポイント作成
+   * @param {String[]} patterns ファイル検索（ワイルドカード）
+   * @param {replaceFunc} replaceFunc ファイルパスを返すコールバック
+   * @callback replaceFunc
+   * @param {String} path
+   */
   const addEntryPoint = async (patterns, replaceFunc) => {
     let entryFiles = await globby(patterns);
     for (let path of entryFiles) {

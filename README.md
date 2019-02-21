@@ -33,10 +33,10 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 ## おもな機能
 
 - ローカルサーバー機能 (https、ssi、自動リロード に対応)
-- sass のコンパイル (autoprefixer、メディアクエリのマージ、minify に対応) ※SCSS 記法のみサポート
-- HTML のリンター
+- sass のコンパイル + コード整形 (autoprefixer、メディアクエリのマージ、minify に対応) ※SCSS 記法のみサポート
+- HTML のリンター + コード整形
 - ejs のコンパイル
-- babel のトランスパイル + バンドラ (babel、minify に対応)
+- babel のトランスパイル + バンドラ (importバンドル、minify に対応)
 - JS のリンター + コード整形
 
 ## ファイル・フォルダ構造

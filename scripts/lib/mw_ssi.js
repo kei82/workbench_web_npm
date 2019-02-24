@@ -1,6 +1,12 @@
 const fs = require("fs-extra");
 const ssi = require("ssi");
 
+/**
+ * ssiコンパイル
+ * @param {String} requestPath ファイルパス
+ * @param {(Promise<Buffer>|undefined)} data バッファデータを使うとき
+ * @return {Promise<Buffer>} コンパイル結果
+ */
 module.exports = async (requestPath, data) => {
   const filePath = "src" + requestPath; // ファイルパス変換
 

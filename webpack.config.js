@@ -18,12 +18,14 @@ const miniCssExtractPlugin = require("mini-css-extract-plugin");
 // モジュール Babel
 const moduleBabel = {
   test: /\.js$/,
+  exclude: /node_modules/,
   use: ["babel-loader?cacheDirectory"]
 };
 
 // モジュール Sass
 const moduleSass = {
   test: /\.scss$/,
+  exclude: /node_modules/,
   use: [
     miniCssExtractPlugin.loader,
     {

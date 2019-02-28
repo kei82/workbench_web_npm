@@ -62,7 +62,7 @@
     "sass-loader": "7.1.0",
     "ssi": "0.3.0",
     "trash-cli": "1.4.0",
-    "webpack": "4.29.5",
+    "webpack": "4.29.6",
     "webpack-cli": "3.2.3",
     "webpack-dev-server": "3.2.1"
   }

@@ -7,22 +7,22 @@
 }
 
 html {
-  height: 100%;
   min-width: 320px;
+  height: 100%;
 }
 
 body {
-  font-size: $font_size;
-  line-height: $line_height;
-  font-family: $font_family;
   color: $color_b_3;
+  font-size: $font_size;
+  font-family: $font_family;
   font-size-adjust: normal;
+  line-height: $line_height;
   overflow-wrap: break-word;
 }
 
 main {
-  margin: 4rem auto;
   max-width: $contents_width;
+  margin: 4rem auto;
   padding: 0 6%;
 }
 
@@ -31,10 +31,11 @@ main {
 ////////////////////////////////////////////////
 
 a {
-  text-decoration: underline;
   color: $color_b_2;
+  text-decoration: underline;
   opacity: 1;
   transition: opacity 0.3s;
+
   &:hover {
     text-decoration: none;
     opacity: 0.8;
@@ -50,10 +51,10 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit;
-  font-size: 100%;
-  color: inherit;
   max-width: 100%;
+  color: inherit;
+  font-size: 100%;
+  font-family: inherit;
 }
 
 ////////////////////////////////////////////////
@@ -68,15 +69,18 @@ p {
 //ルビ
 ruby {
   position: relative;
+
   rt {
     display: inline-block;
     margin: 0 0.2em;
-    letter-spacing: -0.01em;
     font-size: 0.65em;
     line-height: 1em;
+    letter-spacing: -0.01em;
+
     &::before {
       content: "(";
     }
+
     &::after {
       content: ")";
     }
@@ -90,29 +94,30 @@ ruby {
 code,
 kbd,
 pre {
-  letter-spacing: 0;
   font-family: $font_family_mono;
   line-height: 1.5;
+  letter-spacing: 0;
 }
 
 code,
 kbd {
-  padding: 0.15em 0.5em;
   margin: 0 0.15em;
-  border-radius: 0.3em;
+  padding: 0.15em 0.5em;
   background: $color_w_2;
+  border-radius: 0.3em;
 }
 
 pre {
-  padding: 1em;
   margin: 1em 0;
-  white-space: pre-wrap;
+  padding: 1em;
   color: $color_b_2;
+  white-space: pre-wrap;
   background: $color_w_2;
+
   code {
-    padding: 0;
     margin: 0;
-    border-radius: 0;
+    padding: 0;
     background: transparent;
+    border-radius: 0;
   }
 }

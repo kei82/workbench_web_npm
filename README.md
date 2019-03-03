@@ -1,6 +1,7 @@
 # 新規構築用 Web 開発環境 (Git、Node.js)
 
-新規サイト構築用に使えるようにした Web 開発環境です。  
+クロスプラットフォーム対応  
+新規サイト構築用の Web 開発環境です。  
 使う際はそのプロジェクト用に変更することが可能です。  
 リクエストがあったときのみコンテンツをレンダリングするため比較的動作が軽いのが特徴です。
 
@@ -32,12 +33,28 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 
 ## おもな機能
 
-- ローカルサーバー機能 (https、ssi、自動リロード に対応)
-- sass のコンパイル + コード整形 (autoprefixer、メディアクエリのマージ、minify に対応) ※SCSS 記法のみサポート
-- HTML のリンター + コード整形
-- ejs のコンパイル
-- babel のトランスパイル + バンドラ (importバンドル、minify に対応)
-- JS のリンター + コード整形
+**ローカルサーバー機能**
+
+https、ssi、自動リロード に対応
+
+**sass**
+
+コンパイル + リンター + コード整形  
+(autoprefixer、メディアクエリのマージ、プロパティの並び替え、minify に対応)  
+※SCSS 記法のみサポート
+
+**HTML**
+
+リンター + コード整形
+
+**ejs**
+
+コンパイル
+
+**babel**
+
+トランスパイル + バンドラ + リンター + コード整形  
+(importバンドル、minify に対応)
 
 ## ファイル・フォルダ構造
 
@@ -78,13 +95,15 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 - [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) エディタ設定を統一
 - [HTMLHint](https://marketplace.visualstudio.com/items?itemName=mkaufman.HTMLHint) リントの結果をエディタ上に表示
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) リントの結果をエディタ上に表示
+- [stylelint](https://marketplace.visualstudio.com/items?itemName=shinnn.stylelint) リントの結果をエディタ上に表示
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) コードをフォーマットする
 
 #### おすすめ
 
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag) 自動で対になったタグ名をリネーム
 - [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2) カッコを色付け
-- [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) Git 機能サポート
+- [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) Git機能拡張
+- [Git Tree Compare](https://marketplace.visualstudio.com/items?itemName=letmaik.git-tree-compare) Gitのコミットを比較する
 - [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) AltJS で書いてもブレークポイントを貼れる
 - [IntelliSense for CSS class names in HTML](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion) CSS class 名を補完
 
@@ -99,8 +118,8 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 
 ### 今後の予定
 
-- [ ] typescript の導入調査
-- [ ] stylelint の導入調査
+- 起動速度改善
+- 新規ファイル作成時のwebpack動作改善
 
 ## npm scripts + node API
 

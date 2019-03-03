@@ -103,7 +103,6 @@ https、ssi、自動リロード に対応
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag) 自動で対になったタグ名をリネーム
 - [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2) カッコを色付け
 - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) Git機能拡張
-- [Git Tree Compare](https://marketplace.visualstudio.com/items?itemName=letmaik.git-tree-compare) Gitのコミットを比較する
 - [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) AltJS で書いてもブレークポイントを貼れる
 - [IntelliSense for CSS class names in HTML](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion) CSS class 名を補完
 

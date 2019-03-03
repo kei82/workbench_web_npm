@@ -2,15 +2,17 @@
 //function
 ////////////////////////////////////////////////
 
-@mixin scrollbar($bar-knob:$color_b_4, $bar-back:$color_w_2) {
+@mixin scrollbar($bar-knob: $color_b_4, $bar-back: $color_w_2) {
   &::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
+
   &::-webkit-scrollbar-thumb {
     background-color: $bar-knob;
     border-radius: 8px;
   }
+
   &::-webkit-scrollbar-track {
     background-color: $bar-back;
     border-radius: 8px;

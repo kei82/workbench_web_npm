@@ -15,7 +15,7 @@ $break_middle: "screen and (max-width: #{$media_width_middle})";
 $break_small: "screen and (max-width: #{$media_width_small})";
 $font_size: 16px;
 $line_height: 1.85;
-$letter_spacing: .015em;
+$letter_spacing: 0.015em;
 
 ////////////////////////////////////////////////
 //色設定
@@ -33,6 +33,9 @@ $color_b_4: #666;
 //フォント設定
 ////////////////////////////////////////////////
 
-$font_family: Montserrat, -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans CJK JP", "Noto Sans Japanese", sans-serif;
-$font_family_mincho: "Hiragino Mincho ProN", "Noto Serif Japanese", "Noto Serif CJK JP", "Yu Mincho", YuMincho, HGMinchoE, serif;
+$font_family: Montserrat, -apple-system, BlinkMacSystemFont,
+  "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans CJK JP",
+  "Noto Sans Japanese", sans-serif;
+$font_family_mincho: "Hiragino Mincho ProN", "Noto Serif Japanese",
+  "Noto Serif CJK JP", "Yu Mincho", YuMincho, HGMinchoE, serif;
 $font_family_mono: Consolas, "Courier New", "Source Code Pro", monospace;

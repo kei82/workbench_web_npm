@@ -1,4 +1,4 @@
-# 管理対象外
+# Git管理対象外
 node_modules/
 npm-debug.log*
 .DS_Store

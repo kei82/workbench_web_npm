@@ -96,10 +96,10 @@ https、ssi、自動リロード に対応
 - [HTMLHint](https://marketplace.visualstudio.com/items?itemName=mkaufman.HTMLHint) リントの結果をエディタ上に表示
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) リントの結果をエディタ上に表示
 - [stylelint](https://marketplace.visualstudio.com/items?itemName=shinnn.stylelint) リントの結果をエディタ上に表示
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) コードをフォーマットする
 
 #### おすすめ
 
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) コードをフォーマットする
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag) 自動で対になったタグ名をリネーム
 - [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2) カッコを色付け
 - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) Git機能拡張

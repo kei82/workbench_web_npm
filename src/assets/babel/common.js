@@ -16,7 +16,6 @@ const testB = (text = "test B") => {
 (async () => {
   const getContents = await fetch("/assets/js/test.json");
   const responseJson = await getContents.json();
-  document.getElementById("js_text").innerText = `${responseJson.title}
-  ${responseJson.notes}
-  ${responseJson.name}`;
+  const addArea = document.getElementById("js_text");
+  if (addArea) addArea.innerHTML = responseJson.notes;
 })();

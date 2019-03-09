@@ -5,11 +5,11 @@ const isProduction = process.env.NODE_ENV === "production";
 const entryPoint = require("./scripts/lib/entry_point");
 
 // ミドルウェア
-const serverMiddlewares = require("./scripts/lib/server_middlewares");
+const mwReqHtml = require("./scripts/lib/mw_req_html");
 
 // サーバーアプリケーション
 const serverApp = app => {
-  app.get(/(\/|\.html)$/, serverMiddlewares);
+  app.get(/(\/|\.html)$/, mwReqHtml);
 };
 
 // プラグイン

@@ -17,8 +17,9 @@ module.exports = async (requestPath, data) => {
 
     // ssiコンパイル
     const ssiParser = new ssi("src", "src", "**/*.html");
-    let ssiContent = ssiParser.parse(filePath, fileData.toString()).contents;
-    ssiContent = Promise.resolve(Buffer.from(ssiContent));
+    let ssiContent = Buffer.from(
+      ssiParser.parse(filePath, fileData.toString()).contents
+    );
 
     return ssiContent;
   }

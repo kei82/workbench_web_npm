@@ -17,8 +17,7 @@ module.exports = async (requestPath, data) => {
     const ejsData = data ? await data : fs.readFileSync(ejsPath);
 
     // ejsコンパイル
-    let ejsContent = ejs.render(ejsData.toString());
-    ejsContent = Promise.resolve(Buffer.from(ejsContent));
+    let ejsContent = Buffer.from(ejs.render(ejsData.toString()));
 
     return ejsContent;
   }

@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
    * ミドルウェアを直列処理する
    * @param {Function[]} middlewares ミドルウェア群
    * @param {String} requestPath ファイルパス
-   * @param {(Promise<Buffer>|undefined)} data バッファデータを使うとき
+   * @param {(Promise<Buffer>|undefined)} data バッファデータを使うとき渡す
    * @return {(Promise<Buffer>} 直列処理結果
    */
   const mwSeries = async (middlewares, requestPath, data) => {

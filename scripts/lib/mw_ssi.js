@@ -4,7 +4,7 @@ const ssi = require("ssi");
 /**
  * ssiコンパイル
  * @param {String} requestPath ファイルパス
- * @param {(Promise<Buffer>|undefined)} data バッファデータを使うとき
+ * @param {(Promise<Buffer>|undefined)} data バッファデータを使うとき渡す
  * @return {Promise<Buffer>} コンパイル結果
  */
 module.exports = async (requestPath, data) => {

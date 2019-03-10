@@ -57,7 +57,7 @@ const moduleSass = {
 module.exports = {
   target: "web",
   mode: process.env.NODE_ENV,
-  devtool: isProduction ? false : "source-map",
+  devtool: isProduction ? false : "inline-source-map",
   context: process.cwd(),
   entry: entryPoint,
   output: {

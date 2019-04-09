@@ -41,7 +41,7 @@
     "@babel/core": "7.4.3",
     "@babel/polyfill": "7.4.3",
     "@babel/preset-env": "7.4.3",
-    "autoprefixer": "9.5.0",
+    "autoprefixer": "9.5.1",
     "babel-loader": "8.0.5",
     "cpy-cli": "2.0.0",
     "cross-env": "5.2.0",
@@ -70,6 +70,6 @@
     "trash-cli": "1.4.0",
     "webpack": "4.29.6",
     "webpack-cli": "3.3.0",
-    "webpack-dev-server": "3.2.1"
+    "webpack-dev-server": "3.3.0"
   }
 }

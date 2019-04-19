@@ -23,7 +23,9 @@
   "lint-staged": {
     "linters": {
       "*.html": [
-        "htmlhint"
+        "htmlhint",
+        "prettier --write",
+        "git add"
       ],
       "*.scss": [
         "stylelint --fix",

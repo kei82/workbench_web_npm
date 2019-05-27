@@ -1,11 +1,11 @@
-const globby = require("globby");
+const glob = require("glob");
 
 /**
  * エントリーポイント作成
  * @param {Object} entryPoint 初期値
  * @return {Object} エントリーポイント
  */
-module.exports = async (entryPoint = {}) => {
+module.exports = (entryPoint = {}) => {
   /**
    * エントリーポイント追加
    * @param {String[]} patterns ファイル検索（ワイルドカード）
@@ -14,8 +14,8 @@ module.exports = async (entryPoint = {}) => {
    * @param {String} path
    * @return {Void}
    */
-  const addEntryPoint = async (patterns, replaceFunc) => {
-    let entryFiles = await globby(patterns);
+  const addEntryPoint = (patterns, replaceFunc) => {
+    let entryFiles = glob.sync(patterns);
     for (let path of entryFiles) {
       let accessPath = replaceFunc(path)
         .replace(/^src\//, "")
@@ -25,12 +25,12 @@ module.exports = async (entryPoint = {}) => {
   };
 
   // babelをエントリーポイントに追加
-  await addEntryPoint(["src/**/babel/**/!(_)*.js"], path => {
+  addEntryPoint("src/**/babel/**/!(_)*.js", path => {
     return path.replace("/babel/", "/js/");
   });
 
   // sassをエントリーポイントに追加
-  await addEntryPoint(["src/**/sass/**/!(_)*.scss"], path => {
+  addEntryPoint("src/**/sass/**/!(_)*.scss", path => {
     return path.replace("/sass/", "/css/");
   });
 

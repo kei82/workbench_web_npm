@@ -1,5 +1,5 @@
 const fs = require("fs-extra");
-const globby = require("globby");
+const glob = require("glob");
 
 // ミドルウェア
 const mwEJS = require("./lib/mw_ejs");
@@ -33,11 +33,11 @@ const ejsCompile = async path => {
  * @return {Void}
  */
 const compileStart = async (pattern, compile, output) => {
-  let files = await globby(pattern);
+  let files = glob.sync(pattern);
   for (let path of files) {
     let content = await compile(path);
     if (output) output(path, content);
   }
 };
 
-compileStart(["src/**/!(_)*.ejs"], ejsCompile, ejsOutput);
+compileStart("src/**/!(_)*.ejs", ejsCompile, ejsOutput);

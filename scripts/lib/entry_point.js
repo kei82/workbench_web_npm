@@ -15,7 +15,7 @@ module.exports = (entryPoint = {}) => {
    * @return {Void}
    */
   const addEntryPoint = (patterns, replaceFunc) => {
-    let entryFiles = glob.sync(patterns);
+    let entryFiles = glob.sync(patterns, { nodir: true });
     for (let path of entryFiles) {
       let accessPath = replaceFunc(path)
         .replace(/^src\//, "")

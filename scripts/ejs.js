@@ -33,7 +33,7 @@ const ejsCompile = async path => {
  * @return {Void}
  */
 const compileStart = async (pattern, compile, output) => {
-  let files = glob.sync(pattern);
+  let files = glob.sync(pattern, { nodir: true });
   for (let path of files) {
     let content = await compile(path);
     if (output) output(path, content);

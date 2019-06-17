@@ -9,7 +9,6 @@ module.exports = () => ({
       }
     }),
     autoprefixer({
-      browsers: ["IE 11", "last 2 versions"],
       grid: true
     })
   ]

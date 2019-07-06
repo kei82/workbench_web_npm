@@ -1,3 +1,3 @@
 {
-  "notes": "<b>↓JSONが入る fetch DEMO</b><br>※IE向けに一部自分でポリフィル入れないといけない<br>window.fetch polyfill"
+  "notes": "<b>↓JSONが入る fetch DEMO</b><br>※IE向けに一部自分でポリフィル入れないといけない<br><a href=https://github.com/github/fetch>window.fetch polyfill</a>"
 }

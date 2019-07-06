@@ -4,16 +4,21 @@ const isProduction = process.env.NODE_ENV === "production";
 // エントリーポイント
 const entryPoint = require("./scripts/lib/entry_point");
 
-// ミドルウェア
-const mwReqHtml = require("./scripts/lib/mw_req_html");
+// プラグイン
+const miniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // サーバーアプリケーション
 const serverApp = app => {
-  app.get(/(\/|\.html)$/, mwReqHtml);
-};
+  // ミドルウェア
+  const connectSSI = require("connect-ssi");
 
-// プラグイン
-const miniCssExtractPlugin = require("mini-css-extract-plugin");
+  app.use(
+    connectSSI({
+      baseDir: __dirname + "/src",
+      ext: ".html"
+    })
+  );
+};
 
 // モジュール Babel
 const moduleBabel = {
@@ -58,11 +63,11 @@ module.exports = {
   target: "web",
   mode: process.env.NODE_ENV,
   devtool: isProduction ? false : "inline-source-map",
-  context: process.cwd(),
+  context: __dirname,
   entry: entryPoint,
   output: {
     filename: "[name].js",
-    path: process.cwd() + "/dist"
+    path: __dirname + "/dist"
   },
   devServer: {
     contentBase: "./src",

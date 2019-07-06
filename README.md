@@ -27,8 +27,7 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 
 ## 基本的な使い方
 
-リポジトリをクローンしたフォルダで `npm start` または `npm run start` をコマンド実行すると設定されている開発用機能が使えます。
-
+リポジトリをクローンしたフォルダで `npm start` または `npm run start` をコマンド実行すると設定されている開発用機能が使えます。  
 `npm run build` をコマンド実行すると、dist フォルダにファイルがビルド出力されます。
 
 ## おもな機能
@@ -37,21 +36,17 @@ Mac の場合 [ndenv](https://github.com/riywo/ndenv)
 
 https、ssi、自動リロード に対応
 
-**sass**
+**HTML**
+
+リンター + コード整形
+
+**SASS**
 
 コンパイル + リンター + コード整形  
 (ソースマップ、autoprefixer、メディアクエリのマージ、プロパティの並び替え、minify に対応)  
 ※SCSS 記法のみサポート
 
-**HTML**
-
-リンター + コード整形
-
-**ejs**
-
-コンパイル
-
-**babel**
+**js**
 
 トランスパイル + バンドラ + リンター + コード整形  
 (ソースマップ、importバンドル、minify に対応)
@@ -62,8 +57,7 @@ https、ssi、自動リロード に対応
 
 - src/ (開発ファイルを格納します)
 - dist/ (ビルドされたファイルが格納されます)
-- src/ (より配下に ejs ファイルを格納します)  
-  ワイルドカード表記：`src/**/!(_)*.ejs`
+- src/ (より配下に html ファイルを格納します)
 - src/assets/ (サイト全体で使われるファイルを格納します)
 - src/assets/sass/ (sass ファイルを格納します)  
   ビルドで同階層の css フォルダに出力されるためファイル名は一意のものにする  
@@ -106,6 +100,7 @@ https、ssi、自動リロード に対応
 - [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) AltJS で書いてもブレークポイントを貼れる
 - [IntelliSense for CSS class names in HTML](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion) CSS class 名を補完
 
+
 # 開発環境について (編集者向け)
 
 以下、開発環境の編集者向け資料です。
@@ -117,8 +112,8 @@ https、ssi、自動リロード に対応
 
 ### 今後の予定
 
-- 起動速度改善
-- 新規ファイル作成時のwebpack動作改善
+- [] 起動速度改善
+- [] 新規ファイル作成時のwebpack動作改善
 
 ## npm scripts + node API
 
@@ -131,37 +126,23 @@ https、ssi、自動リロード に対応
 - scripts/ (node 実行用 js を格納します)
 - scripts/lib/ (エクスポートモジュール用 js を格納します)
 
-### ファイル
-
-- scripts/lib/entry_point.js (webpack のエントリーポイントを設定する)
-- scripts/lib/server_middlewares.js (webpack-dev-server のミドルウェア設定)
-- scripts/ejs.js (ejs をコンパイルする)
-
 ## 使っているパッケージ
 
 インストールしているパッケージは package.json を参照してください
 
 ### ビルドについて
 
-ejs はリクエストがあったときのみレンダリング結果をサーバーに返します。
+ssi はリクエストがあったときのみレンダリング結果をサーバーに返します。
 
 ## 設定ルール
 
-### タスク
-
-package.json で設定するものは以下とします。  
-細かい設定(コンパイル、モジュール など)は scripts フォルダの js のように api で設定を管理します。
-
-- 標準タスク
-- git hooks(husky,lint-staged)のタスク
-
-#### メインタスク
+### メインタスク
 
 `npm start` で開発に必要な機能すべてを起動します。  
 `npm run build` でビルドファイルを作成します。
 
-#### タスク名
+### タスク名
 
+- start (開発サーバーを起動する)
 - build (最終ビルドを実行する)
-- server (開発サーバーを起動する)
 - build:\* (ビルド機能全般)

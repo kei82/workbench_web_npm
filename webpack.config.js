@@ -51,7 +51,9 @@ const moduleSass = {
     {
       loader: "sass-loader?cacheDirectory",
       options: {
-        outputStyle: "compressed",
+        sassOptions: {
+          outputStyle: "compressed"
+        },
         sourceMap: true
       }
     }
@@ -62,7 +64,7 @@ const moduleSass = {
 module.exports = {
   target: "web",
   mode: process.env.NODE_ENV,
-  devtool: isProduction ? false : "inline-source-map",
+  devtool: isProduction ? false : "source-map",
   context: __dirname,
   entry: entryPoint,
   output: {

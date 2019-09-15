@@ -6,28 +6,12 @@
     "npm": "6.4.1"
   },
   "scripts": {
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.html": [
-      "htmlhint",
-      "prettier --write",
-      "git add"
-    ],
-    "*.scss": [
-      "stylelint --fix",
-      "prettier --write",
-      "git add"
-    ],
-    "*.js": [
-      "eslint --fix",
-      "prettier --write",
-      "git add"
-    ]
+    "start": "cross-env NODE_ENV=development webpack-dev-server",
+    "build": "cross-env NODE_ENV=production npm-run-all -s build:*",
+    "build:clean": "trash dist",
+    "build:webpack": "webpack",
+    "build:copy": "cpy **/* **/.* !**/babel/**/*.js !**/sass/**/*.scss ../dist --parents --cwd=src",
+    "build:disuse": "trash dist/**/css/**/*.js"
   },
   "devDependencies": {
     "@babel/core": "7.6.0",

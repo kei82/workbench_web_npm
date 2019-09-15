@@ -15,7 +15,4 @@ const testB = (text = "test B") => {
 // DEMO fetch
 (async () => {
   const getContents = await fetch("/assets/js/test.json");
-  const responseJson = await getContents.json();
-  const addArea = document.getElementById("js_text");
-  if (addArea) addArea.innerHTML = responseJson.notes;
-})();
+  const responseJson = await getContents.j

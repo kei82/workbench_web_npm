@@ -1,9 +1,9 @@
 {
   "name": "web-coding-boilerplate",
-  "version": "2.3.5",
+  "version": "2.4.0",
   "engines": {
-    "node": "10.15.3",
-    "npm": "6.4.1"
+    "node": "12.13.0",
+    "npm": "6.12.0"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server",
@@ -16,24 +16,24 @@
   "devDependencies": {
     "@babel/core": "7.6.4",
     "@babel/preset-env": "7.6.3",
-    "autoprefixer": "9.6.5",
+    "autoprefixer": "9.7.0",
     "babel-loader": "8.0.6",
     "connect-ssi": "1.1.1",
-    "core-js": "3.3.2",
+    "core-js": "3.3.4",
     "cpy-cli": "2.0.0",
     "cross-env": "6.0.3",
     "css-loader": "3.2.0",
     "css-mqpacker": "7.0.0",
-    "eslint": "6.5.1",
+    "eslint": "6.6.0",
     "fs-extra": "8.1.0",
-    "glob": "7.1.4",
+    "glob": "7.1.5",
     "htmlhint": "0.11.0",
     "husky": "3.0.9",
     "lint-staged": "9.4.2",
     "mini-css-extract-plugin": "0.8.0",
-    "node-sass": "4.12.0",
+    "node-sass": "4.13.0",
     "npm-run-all": "4.1.5",
-    "postcss": "7.0.18",
+    "postcss": "7.0.21",
     "postcss-loader": "3.0.0",
     "prettier": "1.18.2",
     "regenerator-runtime": "0.13.3",
@@ -42,10 +42,10 @@
     "stylelint-config-rational-order": "0.1.2",
     "stylelint-config-recommended-scss": "4.0.0",
     "stylelint-config-standard": "19.0.0",
-    "stylelint-scss": "3.11.1",
+    "stylelint-scss": "3.12.0",
     "trash-cli": "3.0.0",
     "webpack": "4.41.2",
     "webpack-cli": "3.3.9",
-    "webpack-dev-server": "3.8.2"
+    "webpack-dev-server": "3.9.0"
   }
 }

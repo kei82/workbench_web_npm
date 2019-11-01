@@ -16,10 +16,10 @@
   "devDependencies": {
     "@babel/core": "7.6.4",
     "@babel/preset-env": "7.6.3",
-    "autoprefixer": "9.7.0",
+    "autoprefixer": "9.7.1",
     "babel-loader": "8.0.6",
     "connect-ssi": "1.1.1",
-    "core-js": "3.3.4",
+    "core-js": "3.3.6",
     "cpy-cli": "2.0.0",
     "cross-env": "6.0.3",
     "css-loader": "3.2.0",
@@ -45,7 +45,7 @@
     "stylelint-scss": "3.12.0",
     "trash-cli": "3.0.0",
     "webpack": "4.41.2",
-    "webpack-cli": "3.3.9",
+    "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.9.0"
   }
 }

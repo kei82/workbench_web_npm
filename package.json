@@ -14,8 +14,8 @@
     "build:disuse": "trash dist/**/css/**/*.js"
   },
   "devDependencies": {
-    "@babel/core": "7.6.4",
-    "@babel/preset-env": "7.6.3",
+    "@babel/core": "7.7.0",
+    "@babel/preset-env": "7.7.1",
     "autoprefixer": "9.7.1",
     "babel-loader": "8.0.6",
     "connect-ssi": "1.1.1",
@@ -42,7 +42,7 @@
     "stylelint-config-rational-order": "0.1.2",
     "stylelint-config-recommended-scss": "4.0.0",
     "stylelint-config-standard": "19.0.0",
-    "stylelint-scss": "3.12.0",
+    "stylelint-scss": "3.12.1",
     "trash-cli": "3.0.0",
     "webpack": "4.41.2",
     "webpack-cli": "3.3.10",

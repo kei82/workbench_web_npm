@@ -35,7 +35,7 @@
     "npm-run-all": "4.1.5",
     "postcss": "7.0.21",
     "postcss-loader": "3.0.0",
-    "prettier": "1.18.2",
+    "prettier": "1.19.1",
     "regenerator-runtime": "0.13.3",
     "sass-loader": "8.0.0",
     "stylelint": "11.1.1",

@@ -2,8 +2,8 @@
   "name": "web-coding-boilerplate",
   "version": "2.4.0",
   "engines": {
-    "node": "12.13.0",
-    "npm": "6.13.0"
+    "node": "12.14.0",
+    "npm": "6.13.4"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server",

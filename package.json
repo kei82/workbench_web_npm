@@ -36,15 +36,15 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "7.7.5",
-    "@babel/preset-env": "7.7.6",
+    "@babel/core": "7.7.7",
+    "@babel/preset-env": "7.7.7",
     "autoprefixer": "9.7.3",
     "babel-loader": "8.0.6",
     "connect-ssi": "1.1.1",
-    "core-js": "3.5.0",
+    "core-js": "3.6.0",
     "cpy-cli": "3.0.0",
     "cross-env": "6.0.3",
-    "css-loader": "3.3.2",
+    "css-loader": "3.4.0",
     "css-mqpacker": "7.0.0",
     "eslint": "6.7.2",
     "fs-extra": "8.1.0",
@@ -52,10 +52,10 @@
     "htmlhint": "0.11.0",
     "husky": "3.1.0",
     "lint-staged": "9.5.0",
-    "mini-css-extract-plugin": "0.8.0",
+    "mini-css-extract-plugin": "0.8.2",
     "node-sass": "4.13.0",
     "npm-run-all": "4.1.5",
-    "postcss": "7.0.24",
+    "postcss": "7.0.25",
     "postcss-loader": "3.0.0",
     "prettier": "1.19.1",
     "regenerator-runtime": "0.13.3",
@@ -66,8 +66,8 @@
     "stylelint-config-standard": "19.0.0",
     "stylelint-scss": "3.13.0",
     "trash-cli": "3.0.0",
-    "webpack": "4.41.2",
+    "webpack": "4.41.4",
     "webpack-cli": "3.3.10",
-    "webpack-dev-server": "3.9.0"
+    "webpack-dev-server": "3.10.1"
   }
 }

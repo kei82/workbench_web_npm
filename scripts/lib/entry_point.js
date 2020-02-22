@@ -8,11 +8,11 @@ const glob = require("glob");
 module.exports = (entryPoint = {}) => {
   /**
    * エントリーポイント追加
-   * @param {String[]} patterns ファイル検索（ワイルドカード）
+   * @param {string[]} patterns ファイル検索（ワイルドカード）
    * @param {replaceFunc} replaceFunc ファイルパスを返すコールバック
    * @callback replaceFunc ビルド元からビルド先のパスに置換
-   * @param {String} path
-   * @return {Void}
+   * @param {string} path
+   * @return {void}
    */
   const addEntryPoint = (patterns, replaceFunc) => {
     let entryFiles = glob.sync(patterns, { nodir: true });

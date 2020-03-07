@@ -33,14 +33,14 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "7.8.6",
-    "@babel/preset-env": "7.8.6",
+    "@babel/core": "7.8.7",
+    "@babel/preset-env": "7.8.7",
     "autoprefixer": "9.7.4",
     "babel-loader": "8.0.6",
     "connect-ssi": "1.1.1",
     "core-js": "3.6.4",
     "cpy-cli": "3.1.0",
-    "cross-env": "7.0.0",
+    "cross-env": "7.0.2",
     "css-loader": "3.4.2",
     "css-mqpacker": "7.0.0",
     "eslint": "6.8.0",
@@ -63,7 +63,7 @@
     "stylelint-config-standard": "20.0.0",
     "stylelint-scss": "3.14.2",
     "trash-cli": "3.0.0",
-    "webpack": "4.41.6",
+    "webpack": "4.42.0",
     "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.10.3"
   }

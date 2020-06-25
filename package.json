@@ -35,7 +35,7 @@
   "devDependencies": {
     "@babel/core": "7.10.3",
     "@babel/preset-env": "7.10.3",
-    "autoprefixer": "9.8.1",
+    "autoprefixer": "9.8.4",
     "babel-loader": "8.1.0",
     "connect-ssi": "1.1.1",
     "core-js": "3.6.5",
@@ -43,7 +43,7 @@
     "cross-env": "7.0.2",
     "css-loader": "3.6.0",
     "css-mqpacker": "7.0.0",
-    "eslint": "7.3.0",
+    "eslint": "7.3.1",
     "fs-extra": "9.0.1",
     "glob": "7.1.6",
     "htmlhint": "0.14.0",
